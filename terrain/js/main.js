@@ -11,6 +11,10 @@ import { buildRover } from './rover.js';
 import { buildWorld } from './world.js';
 import { Hud } from './hud.js';
 
+// Same condition as the compact CSS layout (drawer index + bottom instrument strip).
+const mqCompact = window.matchMedia('(max-width: 1080px), (max-height: 620px)');
+const compact = () => mqCompact.matches;
+
 const params = new URLSearchParams(location.search);
 const DEBUG = params.has('debug');
 const html = document.documentElement;
@@ -145,6 +149,14 @@ function start() {
   const editable = (t) => t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
   window.addEventListener('keydown', (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey || sheetOpen || editable(e.target)) return;
+    if ((e.key === 'r' || e.key === 'R') && !e.repeat) {
+      // "I'm stuck": put the rover back at the lab centre
+      drive.cancel();
+      drive.teleport(0, 0, drive.psi);
+      emit('toast', { text: 'Rover reset to the lab centre (R)', ms: 2200 });
+      e.preventDefault();
+      return;
+    }
     const k = keyOf(e);
     if (!k) return;
     keys.add(k);
@@ -368,11 +380,11 @@ function start() {
     // Centre the rover in the area that the HUD chrome leaves free.
     const topEdge = document.querySelector('.tl-top')?.getBoundingClientRect().bottom || 0;
     let bottomEdge = h;
-    if (w <= 760 && rightEl && rightEl.offsetParent) bottomEdge = rightEl.getBoundingClientRect().top;
+    if (compact() && rightEl && rightEl.offsetParent) bottomEdge = rightEl.getBoundingClientRect().top;
     else { const f = document.querySelector('.tl-foot'); if (f) bottomEdge = f.getBoundingClientRect().top; }
     const shift = clamp((topEdge + bottomEdge) / 2 - h / 2, -h * 0.25, h * 0.25);
     let shiftX = 0;
-    if (w > 760 && leftEl && rightEl) {
+    if (!compact() && leftEl && rightEl) {
       const l = leftEl.getBoundingClientRect(), r = rightEl.getBoundingClientRect();
       if (l.width > 0 && r.width > 0) shiftX = clamp((l.right + r.left) / 2 - w / 2, -w * 0.2, w * 0.2);
     }
@@ -498,7 +510,7 @@ function start() {
 
     hud.drawScope(imu, surf.stable);
     hud.drawIK(drive);
-    const mobile = rect.width <= 760;
+    const mobile = compact();
     if (!mobile || leftEl.classList.contains('is-open')) {
       hud.drawMinimap({ x: drive.x, z: drive.z, psi: drive.psi, surface: surf.stable, sweep, range: world.uniforms.uRange.value, path: drive.path, imu: g, view: viewFootprint() });
     }

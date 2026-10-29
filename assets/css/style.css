@@ -225,10 +225,11 @@ body:not(.webgl) .toolbar, body:not(.webgl) .hint { display: none; }
   border-color: rgba(255, 45, 45, .3);
   box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .9), 0 0 40px -12px rgba(255, 45, 45, .45), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
-.card[data-card="about"] { left: 13.5vw; top: 10.5vh; --ry: 9deg; --rz: 1.4deg; --d: 14; }
-.card[data-card="projects"] { right: 12.5vw; top: 8.5vh; --ry: -9deg; --rz: -1.1deg; --d: 12; }
-.card[data-card="experience"] { left: 16vw; top: 50vh; --ry: 10deg; --rz: 2.2deg; --d: 18; }
-.card[data-card="now"] { right: 10vw; top: 53vh; --ry: -8deg; --rz: .5deg; --d: 16; }
+/* the cards hold the outer columns so the arm, the quadruped and the bench parts stay in the clear */
+.card[data-card="about"] { left: 5.5vw; top: 10.5vh; --ry: 9deg; --rz: 1.4deg; --d: 14; }
+.card[data-card="projects"] { right: 5vw; top: 8.5vh; --ry: -9deg; --rz: -1.1deg; --d: 12; }
+.card[data-card="experience"] { left: 7vw; top: 50vh; --ry: 10deg; --rz: 2.2deg; --d: 18; }
+.card[data-card="now"] { right: 4vw; top: 53vh; --ry: -8deg; --rz: .5deg; --d: 16; }
 
 .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .card-kicker { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
@@ -957,13 +958,13 @@ html:not(.js) .sheet:target { display: block; }
 @media (max-width: 1280px) {
   .card { width: clamp(240px, 23vw, 320px); padding: 16px 18px 14px; }
   .card-body { font-size: 12.5px; margin-bottom: 14px; }
-  .card[data-card="about"] { left: 5.5vw; }
-  .card[data-card="experience"] { left: 7vw; }
-  .card[data-card="projects"] { right: 5vw; }
-  .card[data-card="now"] { right: 4vw; }
   .bottombar .hint { display: none; }
 }
-@media (max-height: 760px) and (min-width: 821px) {
+/* the full title block only where the left column has room for it under the Experience card */
+@media (max-width: 1699px), (max-height: 999px) {
+  .tb-grid { display: none; }
+}
+@media (max-height: 800px) and (min-width: 821px) {
   .card-body { display: none; }
   .card-title { margin-bottom: 10px; }
   .card[data-card="experience"] { top: 54vh; }
@@ -1057,3 +1058,10 @@ html:not(.js) .sheet:target { display: block; }
   .hud-ring::before, .demo-dot, .touch-marker i, .tool-btn.on .dot, .milestones li.next::before { animation: none; }
   .sheet.is-active { animation: none; }
 }
+
+/* ---------- small additions: co-op status, dual units, footnotes ---------- */
+.brand-open { display: inline-flex; align-items: center; gap: 5px; margin-left: 6px; color: #9ff0b5; }
+.brand-open i { width: 5px; height: 5px; border-radius: 50%; background: #39e07a; box-shadow: 0 0 8px #39e07a; animation: pulse 2s ease-in-out infinite; }
+.spec-grid b small { display: block; margin-top: 3px; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .08em; color: var(--dim); }
+.stat sup, .footnote sup { font-size: .5em; vertical-align: super; color: var(--red); }
+.footnote { margin: 8px 0 0; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; line-height: 1.5; color: var(--dim); }

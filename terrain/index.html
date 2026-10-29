@@ -12,6 +12,12 @@
   <meta property="og:title" content="Terrain Lab · Mohammed Abdullah">
   <meta property="og:description" content="A point-cloud robotics lab: drive a model of the Mecabot Plus over four floor surfaces and watch a live IMU trace and surface classifier react.">
   <meta property="og:url" content="https://mohammedabdullah-fn.github.io/terrain/">
+  <meta property="og:site_name" content="Mohammed Abdullah · Robotics Portfolio">
+  <meta property="og:image" content="https://mohammedabdullah-fn.github.io/assets/img/og-terrain.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Top view of a mecanum-wheel rover crossing a green point-cloud floor, titled Terrain Lab.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +57,7 @@
     <div class="tl-tools">
       <span class="tl-padchip" id="tl-pad" hidden>Gamepad</span>
       <button class="tl-tool tl-tool--index" id="tl-btn-index" type="button" aria-expanded="false" aria-controls="tl-left">Index</button>
+      <button class="tl-tool tl-needs3d" id="tl-btn-detail" type="button" aria-pressed="false" title="Show every instrument: mecanum IK, telemetry and per-window decisions">Detail</button>
       <button class="tl-tool tl-needs3d" id="tl-btn-haptics" type="button" aria-pressed="true" title="Rumble a connected gamepad, or vibrate a phone, when the rover changes surface">Haptics</button>
       <button class="tl-tool tl-needs3d" id="tl-btn-audio" type="button" aria-pressed="false" title="Synthesized terrain rumble through your speakers (off by default)">Audio</button>
       <button class="tl-tool tl-tool--help" id="tl-btn-help" type="button" aria-expanded="false" aria-controls="tl-help" aria-label="Controls">?</button>
@@ -149,6 +156,7 @@
       <div><dt>Click a beacon or label</dt><dd>Open that section straight away.</dd></div>
       <div><dt>Drag · wheel · pinch</dt><dd>Orbit and zoom the camera.</dd></div>
       <div><dt>Gamepad</dt><dd>Left stick drives, right stick turns. Surface changes rumble it with the T2H motor levels.</dd></div>
+      <div><dt><kbd>R</kbd></dt><dd>Stuck? Reset the rover to the lab centre.</dd></div>
       <div><dt><kbd>Esc</kbd></dt><dd>Close a section.</dd></div>
     </dl>
     <button class="tl-btn" type="button" data-close-help>Got it</button>
@@ -465,7 +473,7 @@
                 <ul class="tl-stack">
                   <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
                   <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
-                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
                   <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
                   <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
                   <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
@@ -538,5 +546,22 @@
 
   <script type="module" src="js/panel.js"></script>
   <script type="module" src="js/main.js"></script>
+  <script>
+    // Detail toggle: the default view keeps only the essential instruments on screen
+    (() => {
+      const b = document.getElementById('tl-btn-detail');
+      if (!b) return;
+      let on = false;
+      try { on = localStorage.getItem('tl-detail') === '1'; } catch { /* storage blocked */ }
+      const set = (v) => {
+        on = v;
+        document.body.classList.toggle('tl-detail', v);
+        b.setAttribute('aria-pressed', String(v));
+        try { localStorage.setItem('tl-detail', v ? '1' : '0'); } catch { /* storage blocked */ }
+      };
+      set(on);
+      b.addEventListener('click', () => set(!on));
+    })();
+  </script>
 </body>
 </html>

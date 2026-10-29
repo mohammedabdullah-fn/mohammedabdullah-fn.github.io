@@ -376,8 +376,8 @@ kbd { display: inline-block; min-width: 18px; margin: 0 1px; padding: 2px 4px; f
   .tl-brief-how { display: none; }
 }
 
-/* ---------------- Phones ---------------- */
-@media (max-width: 760px) {
+/* ---------------- Phones, small and short windows: drawer index + bottom instrument strip ---------------- */
+@media (max-width: 1080px), (max-height: 620px) {
   :root { --top: 52px; --foot: 70px; --gut: 10px; }
   .tl-brand { gap: 9px; }
   .tl-brand-mark { width: 26px; height: 26px; }
@@ -480,3 +480,27 @@ html:not(.tl-js) .tl-sheet { position: static; visibility: visible; pointer-even
 html:not(.tl-js) .tl-sheet-backdrop, html:not(.tl-js) .tl-sheet-head, html:not(.tl-js) .tl-sheet-foot { display: none; }
 html:not(.tl-js) .tl-sheet-panel { position: static; opacity: 1; transform: none; width: auto; border: 0; }
 html:not(.tl-js) .tl-sheet-scroll { overflow: visible; }
+
+/* Calm default view: the extra instruments appear only in Detail mode */
+body:not(.tl-detail) .tl-ik,
+body:not(.tl-detail) .tl-telem,
+body:not(.tl-detail) .tl-strip,
+body:not(.tl-detail) .tl-cls-note,
+body:not(.tl-detail) .tl-wp-dist { display: none; }
+
+/* Compact layout on a desktop with a mouse: keep the keyboard/mouse hints */
+@media (hover: hover) and (pointer: fine) and (max-width: 1080px), (hover: hover) and (pointer: fine) and (max-height: 620px) {
+  .tl-hint-desk { display: inline; }
+  .tl-hint-touch { display: none; }
+}
+
+/* Short desktop windows: one-line footer, no scope trace (the surface summary and classifier stay) */
+@media (max-height: 620px) and (min-width: 761px) {
+  :root { --foot: 40px; }
+  .tl-scope { display: none; }
+  .tl-foot { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 2px 18px; }
+  .tl-foot-mail { flex-basis: auto; }
+}
+
+/* Exploration progress: visited sections get a tick */
+.tl-wp li.is-visited .tl-wp-num::after { content: ' ✓'; color: var(--acid); }

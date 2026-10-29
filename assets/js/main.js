@@ -26,7 +26,7 @@ const FLOOR_Y = -1;
 const TABLE = { x: -0.15, z: 1.75, w: 5.3, d: 1.7, top: 0 };
 const BASE = new THREE.Vector3(0.35, 0, 1.3);
 const SHOULDER = new THREE.Vector3(BASE.x, BASE.y + SHOULDER_Y, BASE.z);
-const TARGET = new THREE.Vector3(1.95, 0, 2.0);
+const TARGET = new THREE.Vector3(1.05, 0, 2.22);   // front right of the bench, clear of the Now card
 const SAFE_Y = 0.78;            // tool height while carrying a part
 const TRACK_Z = BASE.z + 0.75;  // preferred depth when the tool follows the cursor
 const VCART = 3.4;              // Cartesian speed cap of the servo-tracking filter (m/s)
@@ -153,10 +153,10 @@ function tableTexture() {
   decal.position.set(TABLE.x, TABLE.top + 0.0015, TABLE.z);
 }
 
-/* ---------- parts on the bench ---------- */
+/* ---------- parts on the bench (front left of the base, where no card covers them) ---------- */
 const PART_DEFS = [
-  { kind: 'cube', name: 'Cube', geo: new RoundedBoxGeometry(0.24, 0.24, 0.24, 4, 0.025), mat: new THREE.MeshPhysicalMaterial({ color: 0xd0181f, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }), halfH: 0.12, r: 0.14, grip: 0.69, home: [-1.55, 1.35], yaw: 0.55 },
-  { kind: 'cylinder', name: 'Cylinder', geo: new THREE.CylinderGeometry(0.115, 0.115, 0.32, 48), mat: new THREE.MeshPhysicalMaterial({ color: 0x0d0d10, roughness: 0.28, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.15 }), halfH: 0.16, r: 0.115, grip: 0.66, home: [-0.8, 2.0], yaw: 0 },
+  { kind: 'cube', name: 'Cube', geo: new RoundedBoxGeometry(0.24, 0.24, 0.24, 4, 0.025), mat: new THREE.MeshPhysicalMaterial({ color: 0xd0181f, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }), halfH: 0.12, r: 0.14, grip: 0.69, home: [-0.85, 2.0], yaw: 0.55 },
+  { kind: 'cylinder', name: 'Cylinder', geo: new THREE.CylinderGeometry(0.115, 0.115, 0.32, 48), mat: new THREE.MeshPhysicalMaterial({ color: 0x0d0d10, roughness: 0.28, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.15 }), halfH: 0.16, r: 0.115, grip: 0.66, home: [-0.45, 2.38], yaw: 0 },
   { kind: 'sphere', name: 'Sphere', geo: new THREE.SphereGeometry(0.13, 48, 32), mat: new THREE.MeshPhysicalMaterial({ color: 0xf1ede8, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.1 }), halfH: 0.13, r: 0.13, grip: 0.76, home: [0.0, 2.25], yaw: 0 },
 ];
 const props = PART_DEFS.map((def) => {

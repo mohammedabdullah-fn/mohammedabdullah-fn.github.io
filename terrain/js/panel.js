@@ -29,6 +29,17 @@ function setInert(v) {
   }
 }
 
+const SECTION_IDS = ['about', 'projects', 'experience', 'now', 'resume'];
+const visited = new Set();
+function markVisited(id) {
+  if (!SECTION_IDS.includes(id) || visited.has(id)) return;
+  visited.add(id);
+  document.querySelector(`.tl-wp-link[href="#${id}"]`)?.closest('li')?.classList.add('is-visited');
+  const chip = document.querySelector('#tl-index .tl-chip');
+  if (chip) chip.textContent = `Visited ${visited.size}/${SECTION_IDS.length}`;
+  if (visited.size === SECTION_IDS.length) setTimeout(() => toast('Lab complete: you have visited all five sections', 4200), 400);
+}
+
 const SOURCE_NOTE = { drive: 'Reached by rover', click: 'Beacon selected', hash: 'Deep link', nav: 'From the index' };
 
 export function openSection(id, { source = 'nav', focus = true } = {}) {
@@ -38,6 +49,7 @@ export function openSection(id, { source = 'nav', focus = true } = {}) {
   if (!wasOpen) returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   for (const [k, s] of sections) s.hidden = k !== id;
   current = id;
+  markVisited(id);
   const b = beaconById(id);
   kicker.textContent = `Beacon ${b.num} // ${b.label}`;
   meta.textContent = SOURCE_NOTE[source] || '';

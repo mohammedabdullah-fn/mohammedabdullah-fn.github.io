@@ -10,6 +10,13 @@
   <meta property="og:title" content="Mohammed Abdullah · Robotics Portfolio">
   <meta property="og:description" content="Mechanical engineer moving into robotics: quality at Bosch, hydraulic design at Minar Industries, terrain perception with wheel-mounted IMUs, and an elbow actuator for a surgical assist arm.">
   <meta property="og:url" content="https://mohammedabdullah-fn.github.io/">
+  <meta property="og:site_name" content="Mohammed Abdullah · Robotics Portfolio">
+  <meta property="og:image" content="https://mohammedabdullah-fn.github.io/assets/img/og-workcell.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="A white five-axis robot arm with cyan joints beside a holographic four-legged robot, titled Mohammed Abdullah, Mechanical and Robotics Engineer.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://mohammedabdullah-fn.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +57,7 @@
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-stack">
         <span class="brand-name">Mohammed <em>Abdullah.</em></span>
-        <span class="brand-role">M.S. Robotics · Northeastern · Boston</span>
+        <span class="brand-role">M.S. Robotics · Northeastern · Boston <span class="brand-open"><i></i>Open to co-op</span></span>
       </span>
     </a>
     <nav class="toolbar" aria-label="Scene controls">
@@ -213,7 +220,7 @@
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="about-title">
       <div class="modal-head">
         <span class="modal-kicker" id="modal-kicker">About</span>
-        <span class="modal-count" id="modal-count">01 / 04</span>
+        <span class="modal-count" id="modal-count">01 / 05</span>
         <button class="modal-close" type="button" data-close aria-label="Close">×</button>
       </div>
 
@@ -306,8 +313,9 @@
               <div class="stat"><b>40</b><span>test runs<br>4 surfaces</span></div>
               <div class="stat"><b>3,474</b><span>labeled<br>1-second windows</span></div>
               <div class="stat"><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
-              <div class="stat"><b>87.3%</b><span>test accuracy<br>SVM · full fusion</span></div>
+              <div class="stat"><b>87.3%<sup>1</sup></b><span>test accuracy<br>SVM · full fusion</span></div>
             </div>
+            <p class="footnote"><sup>1</sup> Held-out test runs (runs 1 and 10 of each surface); SVM on time- and frequency-domain features from the accelerometer and gyroscope.</p>
 
             <div class="two-col">
               <div>
@@ -466,14 +474,14 @@
             <p class="project-sub">One complete bolt-in joint module for a lightweight arm that holds a surgical tool or endoscope camera next to a patient. It has to hold position when power is lost, know its exact angle at power-up with no homing move, and stay small enough to keep out of the surgeon's way. Medical arms like the KUKA LBR Med set the reference.</p>
 
             <div class="spec-grid">
-              <div><span>Continuous torque</span><b>20 Nm</b></div>
-              <div><span>Peak torque</span><b>50 Nm</b></div>
-              <div><span>Range of motion</span><b>±170°</b></div>
-              <div><span>Max speed</span><b>30 rpm</b></div>
-              <div><span>Position error</span><b>≤ 0.1°</b></div>
-              <div><span>Power-off hold</span><b>≥ 50 Nm</b></div>
-              <div><span>Envelope</span><b>Ø90 × 110 mm</b></div>
-              <div><span>Mass</span><b>≤ 1.5 kg</b></div>
+              <div><span>Continuous torque</span><b>20 Nm <small>14.8 lbf·ft</small></b></div>
+              <div><span>Peak torque</span><b>50 Nm <small>36.9 lbf·ft</small></b></div>
+              <div><span>Range of motion</span><b>±170° <small>hard stops ±175°</small></b></div>
+              <div><span>Max speed</span><b>30 rpm <small>180°/s</small></b></div>
+              <div><span>Position error</span><b>≤ 0.1° <small>≈ 0.8 mm at the tool</small></b></div>
+              <div><span>Power-off hold</span><b>≥ 50 Nm <small>36.9 lbf·ft</small></b></div>
+              <div><span>Envelope</span><b>Ø90 × 110 mm <small>Ø3.54 × 4.33 in</small></b></div>
+              <div><span>Mass</span><b>≤ 1.5 kg <small>3.3 lb</small></b></div>
             </div>
 
             <div class="two-col">
@@ -482,7 +490,7 @@
                 <ul class="stack">
                   <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
                   <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
-                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
                   <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
                   <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
                   <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>

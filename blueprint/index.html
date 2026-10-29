@@ -10,6 +10,12 @@
   <meta property="og:title" content="Mohammed Abdullah · Blueprint">
   <meta property="og:description" content="A five-sheet drawing set: about, projects, experience, the ME 5374 elbow actuator in exploded section, and contact.">
   <meta property="og:url" content="https://mohammedabdullah-fn.github.io/blueprint/">
+  <meta property="og:site_name" content="Mohammed Abdullah · Robotics Portfolio">
+  <meta property="og:image" content="https://mohammedabdullah-fn.github.io/assets/img/og-blueprint.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Blueprint drawing of a four-legged robot with dimension lines and a title block, titled Blueprint.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://mohammedabdullah-fn.github.io/blueprint/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +40,7 @@
   <a class="brand" href="#sheet-1" aria-label="Mohammed Abdullah, back to sheet 1">
     <span class="brand-name">M. Abdullah</span>
     <span class="brand-meta">CSWP · Drawing set MA-BP</span>
-    <span class="strip-now"><span id="now-sheet">Sheet 1 of 5</span> · <b id="now-title">Title · About</b></span>
+    <span class="strip-now"><span id="now-sheet">Sheet 1 of 5</span><span class="strip-sep"> · </span><b id="now-title">Title · About</b></span>
   </a>
   <div class="lane" id="lane">
     <svg class="lane-svg" id="lane-svg" aria-hidden="true" focusable="false"></svg>
@@ -438,7 +444,7 @@
         <ul class="stack">
           <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
           <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
-          <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+          <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
           <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
           <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
           <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>

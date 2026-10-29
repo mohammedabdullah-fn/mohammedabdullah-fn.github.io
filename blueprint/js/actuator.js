@@ -15,7 +15,7 @@ export const PARTS = [
   { id: 'ctrl', item: 3, name: 'Controller board', spec: 'mjbots moteus n1', note: '48 V, dual-encoder mode, gravity feedforward.', row: -1, anchor: [10.8, 22], delta: -82.8, t0: 0.1,
     polys: [{ h: 'pcb', full: true, pts: [[10, -24], [10, 24], [11.6, 24], [11.6, -24]] }],
     boxes: [[11.6, 3, 14.2, 10], [11.6, 13, 13.4, 21], [11.6, -9, 13.6, -3], [11.6, -21, 13.4, -13], [8, 15, 10, 22], [8, -22, 10, -15]] },
-  { id: 'brake', item: 4, name: 'Spring-applied brake', spec: 'Miki Pulley BXR-LE', note: 'On the motor side, so it only needs to hold about 1 Nm.', row: 1, anchor: [21, 31], delta: -76.6, t0: 0.2,
+  { id: 'brake', item: 4, name: 'Spring-applied brake', spec: 'Miki Pulley BXR-LE', note: 'On the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2).', row: 1, anchor: [21, 31], delta: -76.6, t0: 0.2,
     polys: [
       { h: 'st', pts: [[17, 14], [17, 31], [25, 31], [25, 27.5], [19.5, 27.5], [19.5, 17.5], [25, 17.5], [25, 14]] },
       { h: 'cu', pts: [[19.5, 17.5], [19.5, 27.5], [25, 27.5], [25, 17.5]] },
