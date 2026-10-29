@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Terrain Lab · Mohammed Abdullah · Robotics Portfolio</title>
+  <meta name="description" content="Drive a mecanum-wheel rover across tile, hardwood, carpet and grass in Mohammed Abdullah's robotics portfolio: wheel-mounted IMU terrain perception with an 87.3% SVM, quality at Bosch, hydraulic design at Minar Industries, and an elbow actuator for a surgical assist arm.">
+  <meta name="theme-color" content="#020402">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://mohammedabdullah-fn.github.io/terrain/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Terrain Lab · Mohammed Abdullah">
+  <meta property="og:description" content="A point-cloud robotics lab: drive a model of the Mecabot Plus over four floor surfaces and watch a live IMU trace and surface classifier react.">
+  <meta property="og:url" content="https://mohammedabdullah-fn.github.io/terrain/">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="css/lab.css">
+  <script>document.documentElement.classList.add('tl-js');</script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="tl-skip" href="#tl-index">Skip to the section index</a>
+
+  <!-- 3D stage -->
+  <div class="tl-stage" id="tl-stage" data-inert>
+    <canvas id="tl-canvas" tabindex="-1" role="img" aria-label="Top-down point-cloud lab with a mecanum-wheel rover on four floor zones: tile, hardwood, carpet and short grass. Section beacons stand in each zone."></canvas>
+    <div class="tl-labels" id="tl-labels" aria-hidden="true"></div>
+    <div class="tl-fallback" aria-hidden="true"><p>3D view unavailable on this device. Every section is in the index.</p></div>
+  </div>
+  <div class="tl-fx" aria-hidden="true"><i class="tl-fx-scan"></i><i class="tl-fx-roll"></i><i class="tl-fx-noise"></i><i class="tl-fx-vig"></i></div>
+
+  <!-- Top bar -->
+  <header class="tl-top" data-inert>
+    <div class="tl-brand">
+      <span class="tl-brand-mark" aria-hidden="true"><i></i></span>
+      <div class="tl-brand-text">
+        <h1 class="tl-brand-name"><a href="./">Mohammed Abdullah</a></h1>
+        <p class="tl-brand-sub"><span class="tl-brand-lab">Terrain Lab</span><span class="tl-brand-role"> · M.S. Robotics, Northeastern · CSWP</span></p>
+      </div>
+    </div>
+    <div class="tl-tools">
+      <span class="tl-padchip" id="tl-pad" hidden>Gamepad</span>
+      <button class="tl-tool tl-tool--index" id="tl-btn-index" type="button" aria-expanded="false" aria-controls="tl-left">Index</button>
+      <button class="tl-tool tl-needs3d" id="tl-btn-haptics" type="button" aria-pressed="true" title="Rumble a connected gamepad, or vibrate a phone, when the rover changes surface">Haptics</button>
+      <button class="tl-tool tl-needs3d" id="tl-btn-audio" type="button" aria-pressed="false" title="Synthesized terrain rumble through your speakers (off by default)">Audio</button>
+      <button class="tl-tool tl-tool--help" id="tl-btn-help" type="button" aria-expanded="false" aria-controls="tl-help" aria-label="Controls">?</button>
+    </div>
+  </header>
+
+  <!-- Mission brief -->
+  <section class="tl-brief" id="tl-brief" aria-label="Introduction" data-inert>
+    <p class="tl-kick">Mission brief</p>
+    <p class="tl-brief-lead">Mechanical engineer moving into robotics. Quality at Bosch, hydraulic design at Minar Industries, now an M.S. in Mechatronics, Robotics &amp; Automation at Northeastern.</p>
+    <p class="tl-brief-how">This rover is a model of the Mecabot Plus from my terrain-perception project. Drive it into a beacon to open a section. The instruments use the project's real terrain-to-haptic table and confusion matrix.</p>
+    <div class="tl-brief-actions">
+      <button class="tl-btn tl-btn--acid" type="button" data-brief-close>Start driving</button>
+      <a class="tl-btn" href="#about">Read About</a>
+    </div>
+  </section>
+
+  <!-- Left column: map + waypoint index -->
+  <aside class="tl-left" id="tl-left" data-inert>
+    <section class="tl-panel tl-map tl-needs3d" aria-labelledby="tl-map-h">
+      <header class="tl-ph"><h2 id="tl-map-h">Lab map</h2><span class="tl-chip" id="tl-pos">x 0.0 z 0.0</span></header>
+      <canvas id="tl-minimap" aria-label="Lab minimap. Click to send the rover to a point." role="img"></canvas>
+    </section>
+    <nav class="tl-panel tl-index" id="tl-index" aria-labelledby="tl-index-h">
+      <header class="tl-ph"><h2 id="tl-index-h">Waypoints</h2><span class="tl-chip">5 sections · 3 links</span></header>
+      <ol class="tl-wp">
+        <li><a class="tl-wp-link" href="#about"><span class="tl-wp-num">01</span><span class="tl-wp-name">About</span><span class="tl-wp-zone">Tile</span><span class="tl-wp-dist" data-dist="about"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="about" aria-label="Drive the rover to About">Go</button></li>
+        <li><a class="tl-wp-link" href="#projects"><span class="tl-wp-num">02</span><span class="tl-wp-name">Projects</span><span class="tl-wp-zone">Hardwood</span><span class="tl-wp-dist" data-dist="projects"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="projects" aria-label="Drive the rover to Projects">Go</button></li>
+        <li><a class="tl-wp-link" href="#experience"><span class="tl-wp-num">03</span><span class="tl-wp-name">Experience</span><span class="tl-wp-zone">Carpet</span><span class="tl-wp-dist" data-dist="experience"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="experience" aria-label="Drive the rover to Experience">Go</button></li>
+        <li><a class="tl-wp-link" href="#now"><span class="tl-wp-num">04</span><span class="tl-wp-name">Now</span><span class="tl-wp-zone">Grass</span><span class="tl-wp-dist" data-dist="now"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="now" aria-label="Drive the rover to Now">Go</button></li>
+        <li><a class="tl-wp-link" href="#resume"><span class="tl-wp-num">05</span><span class="tl-wp-name">Resume</span><span class="tl-wp-zone">A/B edge</span><span class="tl-wp-dist" data-dist="resume"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="resume" aria-label="Drive the rover to Resume">Go</button></li>
+        <li class="tl-wp-ext"><a class="tl-wp-link" href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener"><span class="tl-wp-num">06</span><span class="tl-wp-name">LinkedIn <span aria-hidden="true">↗</span></span><span class="tl-wp-zone">A/C edge</span><span class="tl-wp-dist" data-dist="linkedin"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="linkedin" aria-label="Drive the rover to the LinkedIn beacon">Go</button></li>
+        <li class="tl-wp-ext"><a class="tl-wp-link" href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener"><span class="tl-wp-num">07</span><span class="tl-wp-name">GitHub <span aria-hidden="true">↗</span></span><span class="tl-wp-zone">B/D edge</span><span class="tl-wp-dist" data-dist="github"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="github" aria-label="Drive the rover to the GitHub beacon">Go</button></li>
+        <li class="tl-wp-ext"><a class="tl-wp-link" href="mailto:mohammedabdullah.fn@northeastern.edu"><span class="tl-wp-num">08</span><span class="tl-wp-name">Email</span><span class="tl-wp-zone">C/D edge</span><span class="tl-wp-dist" data-dist="email"></span></a><button class="tl-wp-go tl-needs3d" type="button" data-go="email" aria-label="Drive the rover to the Email beacon">Go</button></li>
+      </ol>
+    </nav>
+  </aside>
+
+  <!-- Right column: instruments -->
+  <aside class="tl-right tl-needs3d" id="tl-right" aria-label="Rover instruments" data-inert>
+    <section class="tl-panel tl-imu" aria-labelledby="tl-imu-h">
+      <header class="tl-ph"><h2 id="tl-imu-h">IMU <span class="tl-imu-dot" aria-hidden="true"></span> VN-100</h2><span class="tl-chip">Wheel shaft · 40 Hz</span></header>
+      <div class="tl-mobile-sum" aria-hidden="true"><b id="tl-m-surf">Tile</b><span id="tl-m-meta">0.35 · steady buzz · L/R 0.20/0.35</span></div>
+      <div class="tl-scope">
+        <canvas id="tl-scope" aria-hidden="true"></canvas>
+        <span class="tl-scope-tag tl-scope-tag--l">Accel Z · ±0.5 g · 3 s</span>
+        <span class="tl-scope-tag tl-scope-tag--r" id="tl-rms">RMS 0.000 g</span>
+      </div>
+      <dl class="tl-ro">
+        <div><dt>Surface</dt><dd id="tl-surf">Tile</dd></div>
+        <div><dt>T2H amp</dt><dd id="tl-amp">0.35</dd></div>
+        <div><dt>Pattern</dt><dd id="tl-pattern">Continuous</dd></div>
+        <div><dt>Feel</dt><dd id="tl-feel">Steady buzz</dd></div>
+        <div class="tl-ro-wide"><dt>Xbox motors L / R</dt><dd><span id="tl-ml">0.20</span> / <span id="tl-mr">0.35</span><span class="tl-motors" aria-hidden="true"><i><b id="tl-ml-bar"></b></i><i><b id="tl-mr-bar"></b></i></span></dd></div>
+      </dl>
+    </section>
+    <section class="tl-panel tl-cls" aria-labelledby="tl-cls-h">
+      <header class="tl-ph"><h2 id="tl-cls-h">Surface classifier</h2><span class="tl-chip">SVM · 87.3% test</span></header>
+      <ul class="tl-cls-bars">
+        <li data-class="carpet"><span>Carpet</span><b class="tl-track"><i></i></b><em>0.7%</em></li>
+        <li data-class="hardwood"><span>Hardwood</span><b class="tl-track"><i></i></b><em>18.1%</em></li>
+        <li data-class="grass"><span>Grass</span><b class="tl-track"><i></i></b><em>0.7%</em></li>
+        <li data-class="tile"><span>Tile</span><b class="tl-track"><i></i></b><em>79.2%</em></li>
+      </ul>
+      <p class="tl-cls-pred">Predicted <b id="tl-pred">Tile</b> <span id="tl-truth">matches tile</span><span class="tl-mpred" id="tl-m-pred" aria-hidden="true"></span></p>
+      <div class="tl-strip" id="tl-strip" aria-hidden="true"></div>
+      <p class="tl-cls-note">One decision per 1 s window, 50% overlap. Probabilities track the best model's confusion matrix; the SVM scored 87.3% test accuracy.</p>
+    </section>
+    <section class="tl-panel tl-ik" aria-labelledby="tl-ik-h">
+      <header class="tl-ph"><h2 id="tl-ik-h">Mecanum IK</h2><span class="tl-chip" id="tl-twist">v 0.00 · ω +0.00</span></header>
+      <canvas id="tl-ik" aria-hidden="true"></canvas>
+    </section>
+  </aside>
+
+  <!-- Telemetry + hint -->
+  <div class="tl-telem tl-needs3d" aria-hidden="true" data-inert>
+    <span>Mode <b id="tl-mode">Idle</b></span>
+    <span>X <b id="tl-x">+0.00</b></span>
+    <span>Z <b id="tl-z">+0.00</b></span>
+    <span>Hdg <b id="tl-hdg">000°</b></span>
+    <span>V <b id="tl-v">0.00</b> m/s</span>
+    <span>ω <b id="tl-w">+0.00</b></span>
+    <span>Tgt <b id="tl-tgt">-</b></span>
+  </div>
+  <p class="tl-hint tl-needs3d" data-inert>
+    <span class="tl-hint-desk"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows drive · <kbd>Q</kbd><kbd>E</kbd> rotate · <b>click</b> the floor to plan a path · <b>drag</b> to orbit · drive into a beacon to open it</span>
+    <span class="tl-hint-touch"><b>Tap</b> the floor to drive · <b>drag</b> to orbit · <b>pinch</b> to zoom</span>
+  </p>
+
+  <div class="tl-help" id="tl-help" role="dialog" aria-label="Controls" hidden data-inert>
+    <h2>Controls</h2>
+    <dl>
+      <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / arrows</dt><dd>Translate relative to the screen. Mecanum wheels strafe without turning.</dd></div>
+      <div><dt><kbd>Q</kbd> <kbd>E</kbd></dt><dd>Rotate left / right in place.</dd></div>
+      <div><dt>Click or tap the floor</dt><dd>Plan a path. The rover follows it with speed, acceleration and turn-rate limits.</dd></div>
+      <div><dt>Click a beacon or label</dt><dd>Open that section straight away.</dd></div>
+      <div><dt>Drag · wheel · pinch</dt><dd>Orbit and zoom the camera.</dd></div>
+      <div><dt>Gamepad</dt><dd>Left stick drives, right stick turns. Surface changes rumble it with the T2H motor levels.</dd></div>
+      <div><dt><kbd>Esc</kbd></dt><dd>Close a section.</dd></div>
+    </dl>
+    <button class="tl-btn" type="button" data-close-help>Got it</button>
+  </div>
+
+  <!-- Link beacon confirmation (no pop-ups: the user clicks a real link) -->
+  <div class="tl-linkcard" id="tl-linkcard" role="dialog" aria-labelledby="tl-lc-title" hidden data-inert>
+    <p class="tl-kick" id="tl-lc-kicker">Link beacon</p>
+    <h2 id="tl-lc-title">LinkedIn</h2>
+    <p class="tl-lc-url" id="tl-lc-url">linkedin.com/in/abd-mohdd</p>
+    <div class="tl-lc-actions">
+      <a class="tl-btn tl-btn--amber" id="tl-lc-open" href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">Open LinkedIn ↗</a>
+      <button class="tl-btn" id="tl-lc-copy" type="button" hidden>Copy address</button>
+      <button class="tl-btn tl-btn--ghost" type="button" data-lc-close>Not now</button>
+    </div>
+  </div>
+
+  <div class="tl-toast" id="tl-toast" role="status" aria-live="polite"></div>
+  <p class="tl-sr" id="tl-announce" aria-live="polite"></p>
+
+  <!-- Footer -->
+  <footer class="tl-foot" data-inert>
+    <div class="tl-foot-links">
+      <a href="mailto:mohammedabdullah.fn@northeastern.edu" class="tl-foot-mail">mohammedabdullah.fn@northeastern.edu</a>
+      <a href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      <a href="../resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="tl-versions" aria-label="Site versions">
+      <span>Versions:</span>
+      <a href="../">Workcell</a><i aria-hidden="true">·</i><a href="../terrain/" aria-current="page">Terrain Lab</a><i aria-hidden="true">·</i><a href="../blueprint/">Blueprint</a>
+    </nav>
+  </footer>
+
+  <!-- Section sheet -->
+  <div class="tl-sheet" id="tl-sheet" aria-hidden="true">
+    <div class="tl-sheet-backdrop" data-close></div>
+    <div class="tl-sheet-panel" id="tl-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
+      <header class="tl-sheet-head">
+        <span class="tl-sheet-kicker" id="tl-sheet-kicker">Beacon 01 // About</span>
+        <span class="tl-sheet-meta" id="tl-sheet-meta"></span>
+        <button class="tl-sheet-close" type="button" data-close aria-label="Close section"><span aria-hidden="true"><span class="tl-esc">Esc </span>✕</span></button>
+      </header>
+
+      <div class="tl-sheet-scroll" id="tl-sheet-scroll">
+
+        <!-- ================= ABOUT ================= -->
+        <article class="tl-sec" id="about">
+          <header class="tl-sec-head">
+            <p class="tl-kick">01 // About</p>
+            <h2 id="about-title">Mechanical engineer, <em>moving into robotics.</em></h2>
+            <p class="tl-lead">I'm Mohammed Abdullah. I've worked in quality at Bosch and in hydraulic cylinder design at Minar Industries, and I'm a Certified SOLIDWORKS Professional. Now I'm doing an M.S. in Mechatronics, Robotics &amp; Automation at Northeastern, and I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
+          </header>
+
+          <div class="tl-stats">
+            <div><b>2+</b><span>years in industry<br>Bosch · Minar</span></div>
+            <div><b>CSWP</b><span>Certified SOLIDWORKS<br>Professional</span></div>
+            <div><b>15%</b><span>test-efficiency gain<br>at Bosch</span></div>
+            <div><b>87.3%</b><span>terrain classification<br>accuracy</span></div>
+          </div>
+
+          <section class="tl-block">
+            <h3>Education</h3>
+            <div class="tl-entry">
+              <div class="tl-entry-row"><h4>Northeastern University</h4><span class="tl-when">Expected May 2028</span></div>
+              <p class="tl-sub">M.S. Mechatronics, Robotics, and Automation · Concentration in Mechanical Engineering · Boston, MA</p>
+              <p class="tl-note">Coursework: Robotics Sensing and Navigation, Mobile Robotics, Robot Design, CAD and Manufacturing</p>
+            </div>
+            <div class="tl-entry">
+              <div class="tl-entry-row"><h4>Visvesvaraya Technological University</h4><span class="tl-when">Jun 2023</span></div>
+              <p class="tl-sub">Bachelor of Engineering in Mechanical Engineering · Karnataka, India</p>
+            </div>
+          </section>
+
+          <section class="tl-block">
+            <h3>Toolkit</h3>
+            <div class="tl-skill"><h4>CAD &amp; software</h4>
+              <ul class="tl-chips"><li>SOLIDWORKS</li><li>CATIA</li><li>Siemens NX</li><li>AutoCAD</li><li>Ansys (FEA)</li><li>Revit MEP</li><li>Microsoft Office</li></ul></div>
+            <div class="tl-skill"><h4>Quality &amp; manufacturing</h4>
+              <ul class="tl-chips"><li>GD&amp;T</li><li>FMEA</li><li>Root cause analysis</li><li>CAPA</li><li>ISO 9001</li><li>Six Sigma</li><li>Lean · 5S</li><li>Gauge calibration</li><li>Micrometers &amp; precision gauges</li><li>CNC machining (lathe &amp; mill)</li></ul></div>
+            <div class="tl-skill"><h4>Programming &amp; robotics</h4>
+              <ul class="tl-chips"><li>Python</li><li>C</li><li>ROS 2</li><li>Linux (Ubuntu)</li><li>Git</li><li>IMU &amp; GPS data</li><li>Claude Code</li></ul></div>
+          </section>
+
+          <section class="tl-block">
+            <h3>Certifications &amp; activities</h3>
+            <ul class="tl-rows">
+              <li><span>Certified SOLIDWORKS Professional (CSWP) &amp; Associate (CSWA)<em>Dassault Systèmes</em></span><span class="tl-when">Apr 2026</span></li>
+              <li><span>CNC Machining (Lathe &amp; Milling) Training<em>Karnataka German Technical Training Institute</em></span><span class="tl-when">Apr 2024</span></li>
+              <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="tl-when">In progress</span></li>
+              <li><span>Member, American Society of Mechanical Engineers (ASME) · NUHOC member<em>Northeastern University</em></span><span class="tl-when">Jan 2026 – Present</span></li>
+            </ul>
+          </section>
+        </article>
+
+        <!-- ================= PROJECTS ================= -->
+        <article class="tl-sec" id="projects">
+          <header class="tl-sec-head">
+            <p class="tl-kick">02 // Projects</p>
+            <h2 id="projects-title">Built to <em>sense.</em></h2>
+            <p class="tl-lead">A ROS&nbsp;2 sensing pipeline that lets a remote operator feel the floor, plus fabrication-ready CAD and automated hardware.</p>
+          </header>
+
+          <section class="tl-proj tl-proj--feature">
+            <div class="tl-meta"><span class="tl-tag">Featured</span><span>EECE 5554 Robot Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></div>
+            <h3>Vibrotactile Indoor Terrain Perception</h3>
+            <p class="tl-sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics so a teleoperator can feel what the robot feels. Team project with Tamzid Hossain and Stanley Nketiah.</p>
+
+            <div class="tl-callout">
+              <b>You're driving a model of it.</b>
+              <span>The rover in this lab is based on the Mecabot Plus we used, with the VN-100 on a wheel shaft. The lab's IMU scope and classifier run this project's terrain-to-haptic table and confusion matrix.</span>
+            </div>
+
+            <figure class="tl-gallery">
+              <img src="../assets/img/terrain-robot.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Mecabot Plus mobile robot with mecanum wheels on a hardwood floor">
+              <img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" decoding="async" alt="Close-up of the VectorNav VN-100 IMU clamped to the robot's wheel shaft">
+              <img src="../assets/img/terrain-field-test.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="The robot and a laptop recording a test run on grass at night">
+              <figcaption>Mecabot Plus · VN-100 on the wheel shaft · a recording run on short grass</figcaption>
+            </figure>
+
+            <ol class="tl-pipe" aria-label="Pipeline">
+              <li>VN-100 IMU<small>40 Hz</small></li>
+              <li>ROS 2 driver<small>custom package</small></li>
+              <li>rosbag2 → CSV</li>
+              <li>Features<small>time + FFT</small></li>
+              <li>SVM<small>87.3%</small></li>
+              <li>T2H lookup</li>
+              <li>Xbox haptics</li>
+            </ol>
+
+            <div class="tl-stats tl-stats--sm">
+              <div><b>40</b><span>test runs<br>4 surfaces</span></div>
+              <div><b>3,474</b><span>labeled<br>1-second windows</span></div>
+              <div><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
+              <div><b>87.3%</b><span>test accuracy<br>SVM · full fusion</span></div>
+            </div>
+
+            <div class="tl-cols">
+              <div>
+                <h4 class="tl-mini">What I did</h4>
+                <ul class="tl-bul">
+                  <li>Mounted a VectorNav VN-100 IMU on the wheel shaft of a Mecabot Plus robot to sense floor vibrations.</li>
+                  <li>Recorded 40 test runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
+                  <li>Classified the four surfaces in Python with 87.3% test accuracy and gave each its own Xbox controller vibration in Unity.</li>
+                </ul>
+                <h4 class="tl-mini">Method</h4>
+                <ul class="tl-bul">
+                  <li>Custom ROS 2 Humble driver parsing VNYMR serial data at 40 Hz on Ubuntu 22.04, recorded with rosbag2.</li>
+                  <li>One-second windows with 50% overlap: RMS, variance, peak-to-peak, skewness and kurtosis, plus four FFT band energies across 1–20 Hz.</li>
+                  <li>Compared an RBF SVM, a 100-tree random forest and a raw-signal 1D-CNN across a four-run feature ablation.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="tl-mini">Model comparison · full sensor fusion</h4>
+                <div class="tl-bars" role="img" aria-label="Accuracy: SVM 87.3 percent, random forest 84.8 percent, 1D-CNN 82.5 percent">
+                  <div style="--v:87.3"><span>SVM</span><i></i><b>87.3%</b></div>
+                  <div style="--v:84.8"><span>Random forest</span><i></i><b>84.8%</b></div>
+                  <div style="--v:82.5"><span>1D-CNN (raw)</span><i></i><b>82.5%</b></div>
+                </div>
+                <h4 class="tl-mini">Confusion matrix · best model (%)</h4>
+                <div class="tl-tablewrap">
+                  <table class="tl-cm">
+                    <thead><tr><th scope="col"><span class="tl-sr">Actual \ predicted</span></th><th scope="col">Carpet</th><th scope="col">Hardwood</th><th scope="col">Grass</th><th scope="col">Tile</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Carpet</th><td style="--v:97.2">97.2</td><td style="--v:0.7">0.7</td><td style="--v:1.4">1.4</td><td style="--v:0.7">0.7</td></tr>
+                      <tr><th scope="row">Hardwood</th><td style="--v:2">2.0</td><td style="--v:72.3">72.3</td><td style="--v:0">0.0</td><td style="--v:25.7">25.7</td></tr>
+                      <tr><th scope="row">Grass</th><td style="--v:0">0.0</td><td style="--v:0">0.0</td><td style="--v:99.4">99.4</td><td style="--v:0.6">0.6</td></tr>
+                      <tr><th scope="row">Tile</th><td style="--v:2.1">2.1</td><td style="--v:18.1">18.1</td><td style="--v:0.7">0.7</td><td style="--v:79.2">79.2</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="tl-axis">Rows: actual surface · columns: predicted</p>
+              </div>
+            </div>
+
+            <div class="tl-find">
+              <div><b>01</b><p>Frequency features carry most of the signal: 78.1% accuracy on their own.</p></div>
+              <div><b>02</b><p>Adding the gyroscope lifts accuracy from 82.8% to 87.3%.</p></div>
+              <div><b>03</b><p>Grass and carpet separate cleanly. Hardwood and tile overlap in PCA, a data limit at 40&nbsp;Hz rather than a model limit.</p></div>
+              <div><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs 82.5%).</p></div>
+            </div>
+
+            <h4 class="tl-mini">Terrain-to-haptic (T2H) mapping</h4>
+            <div class="tl-tablewrap">
+              <table class="tl-t2h">
+                <thead><tr><th scope="col">Surface</th><th scope="col">Amp</th><th scope="col">Pattern</th><th scope="col">Feel</th><th scope="col">Xbox L / R</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Tile</th><td>0.35</td><td>Continuous</td><td>Steady buzz</td><td>0.20 / 0.35</td></tr>
+                  <tr><th scope="row">Hardwood</th><td>0.25</td><td>Continuous</td><td>Medium hum</td><td>0.12 / 0.25</td></tr>
+                  <tr><th scope="row">Carpet</th><td>0.12</td><td>Slow pulse</td><td>Gentle throb</td><td>0.05 / 0.12</td></tr>
+                  <tr><th scope="row">Grass</th><td>0.10</td><td>Fast pulse</td><td>Faint taps</td><td>0.03 / 0.10</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tl-surfs">
+              <p class="tl-surfs-lead">Feel it here: send the rover to a zone and watch the IMU trace change. With a gamepad connected, each surface change rumbles it at these levels.</p>
+              <div class="tl-surfs-grid">
+                <button class="tl-surf tl-needs3d" type="button" data-zone="tile"><img src="../assets/img/surf-tile.webp" alt="" loading="lazy" decoding="async" width="480" height="640"><span>Tile</span><small>Drive there</small></button>
+                <button class="tl-surf tl-needs3d" type="button" data-zone="hardwood"><img src="../assets/img/surf-hardwood.webp" alt="" loading="lazy" decoding="async" width="480" height="640"><span>Hardwood</span><small>Drive there</small></button>
+                <button class="tl-surf tl-needs3d" type="button" data-zone="carpet"><img src="../assets/img/surf-carpet.webp" alt="" loading="lazy" decoding="async" width="480" height="640"><span>Carpet</span><small>Drive there</small></button>
+                <button class="tl-surf tl-needs3d" type="button" data-zone="grass"><img src="../assets/img/surf-grass.webp" alt="" loading="lazy" decoding="async" width="480" height="360"><span>Grass</span><small>Drive there</small></button>
+              </div>
+            </div>
+
+            <figure class="tl-fig">
+              <img src="../assets/img/terrain-unity-sim.webp" width="1400" height="830" loading="lazy" decoding="async" alt="Unity editor running the terrain-to-haptic teleoperation simulation">
+              <figcaption>Unity 2022.3 simulation: the robot drives over terrain tiles and each class maps to left/right controller motor speeds</figcaption>
+            </figure>
+          </section>
+
+          <section class="tl-proj">
+            <div class="tl-meta"><span class="tl-tag tl-tag--amber">In progress</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></div>
+            <h3>Elbow Joint Actuator for a Surgical Assist Arm</h3>
+            <p class="tl-sub">A bolt-in elbow module with a frameless motor, 100:1 strain-wave gear, fail-safe brake and an absolute output encoder in a 90&nbsp;mm housing. <a href="#now">Full breakdown in Now →</a></p>
+          </section>
+
+          <section class="tl-proj">
+            <div class="tl-meta"><span>Visvesvaraya Technological University</span><span>Jan – May 2023</span></div>
+            <h3>Mini Robotic Cart Design</h3>
+            <ul class="tl-bul">
+              <li>Modeled a mini robotic cart chassis in SOLIDWORKS, including the frame, wheel mounts and motor housings.</li>
+              <li>Arranged the layout for balance and easy assembly, with all parts ready to fabricate.</li>
+            </ul>
+            <ul class="tl-chips tl-chips--sm"><li>SOLIDWORKS</li><li>Chassis design</li><li>Assembly layout</li></ul>
+          </section>
+
+          <section class="tl-proj">
+            <div class="tl-meta"><span>Visvesvaraya Technological University</span><span>Aug – Dec 2022</span></div>
+            <h3>Renewable Energy-Powered Water Purification System</h3>
+            <ul class="tl-bul">
+              <li>Developed a brine water purification system powered by solar and wind energy.</li>
+              <li>Added sensors and automatic valve, pump and motor control so the system needed less manual work.</li>
+            </ul>
+            <ul class="tl-chips tl-chips--sm"><li>Solar + wind</li><li>Sensors</li><li>Automatic control</li></ul>
+          </section>
+        </article>
+
+        <!-- ================= EXPERIENCE ================= -->
+        <article class="tl-sec" id="experience">
+          <header class="tl-sec-head">
+            <p class="tl-kick">03 // Experience</p>
+            <h2 id="experience-title">The road <em>so far.</em></h2>
+            <p class="tl-lead">Over two years between the shop floor and the design desk: quality systems for precision diesel components at Bosch, then hydraulic cylinder design at Minar Industries.</p>
+          </header>
+
+          <ol class="tl-tl">
+            <li>
+              <div class="tl-tl-when">Jun 2025 – Oct 2025</div>
+              <div class="tl-tl-body">
+                <h3>Design Engineer <span>· Minar Industries</span></h3>
+                <p class="tl-sub">Karnataka, India</p>
+                <ul class="tl-bul">
+                  <li>Designed hydraulic cylinders and pistons for heavy machinery and took each one from concept through design review.</li>
+                  <li>Prepared the manufacturing drawings, assembly drawings and bills of materials (BOMs) used to build each part.</li>
+                  <li>Verified part dimensions, tolerances and clearances against engineering and performance standards before production.</li>
+                  <li>Partnered with production, quality and supplier teams to make manufacturing more efficient and parts more reliable.</li>
+                </ul>
+                <ul class="tl-chips tl-chips--sm"><li>Hydraulic design</li><li>Manufacturing drawings</li><li>BOMs</li><li>Tolerancing</li></ul>
+              </div>
+            </li>
+            <li>
+              <div class="tl-tl-when">Jul 2023 – May 2025</div>
+              <div class="tl-tl-body">
+                <h3>Graduate Engineer <span>· Bosch</span></h3>
+                <p class="tl-sub">Karnataka, India · Precision diesel components</p>
+                <div class="tl-hl"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+                <ul class="tl-bul">
+                  <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
+                  <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
+                  <li>Inspected and tested diesel parts with calibrated gauges, checked gauge accuracy with MSA and logged results in SAP.</li>
+                  <li>Supported lean workshop improvements, including 5S implementation and safer work practices.</li>
+                </ul>
+                <ul class="tl-chips tl-chips--sm"><li>ISO 9001</li><li>FMEA</li><li>RCA · CAPA</li><li>MSA</li><li>SAP</li><li>5S</li></ul>
+              </div>
+            </li>
+            <li class="tl-tl-edu">
+              <div class="tl-tl-when">Jun 2023</div>
+              <div class="tl-tl-body">
+                <h3>B.E. Mechanical Engineering <span>· VTU</span></h3>
+                <p class="tl-sub">Visvesvaraya Technological University, Karnataka, India</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <!-- ================= NOW ================= -->
+        <article class="tl-sec" id="now">
+          <header class="tl-sec-head">
+            <p class="tl-kick">04 // Now</p>
+            <h2 id="now-title">Currently <em>building.</em></h2>
+            <p class="tl-lead">An elbow joint actuator for a surgical assist robot arm, my ME 5374 Robot Design final project this fall, alongside the M.S. at Northeastern (expected May 2028). I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
+          </header>
+
+          <section class="tl-proj tl-proj--feature">
+            <div class="tl-meta"><span class="tl-tag tl-tag--amber">In progress</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></div>
+            <h3>Elbow Joint Actuator for a Surgical Assist Robot Arm</h3>
+            <p class="tl-sub">One complete bolt-in joint module for a lightweight arm that holds a surgical tool or endoscope camera next to a patient. It has to hold position when power is lost, know its exact angle at power-up with no homing move, and stay small enough to keep out of the surgeon's way. Medical arms like the KUKA LBR Med set the reference.</p>
+
+            <div class="tl-spec">
+              <div><span>Continuous torque</span><b>20 Nm</b></div>
+              <div><span>Peak torque</span><b>50 Nm</b></div>
+              <div><span>Range of motion</span><b>±170°</b></div>
+              <div><span>Max speed</span><b>30 rpm</b></div>
+              <div><span>Position error</span><b>≤ 0.1°</b></div>
+              <div><span>Power-off hold</span><b>≥ 50 Nm</b></div>
+              <div><span>Envelope</span><b>Ø90 × 110 mm</b></div>
+              <div><span>Mass</span><b>≤ 1.5 kg</b></div>
+            </div>
+
+            <div class="tl-cols">
+              <div>
+                <h4 class="tl-mini">Inside the joint</h4>
+                <ul class="tl-stack">
+                  <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
+                  <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+                  <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
+                  <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
+                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="tl-mini">First estimates</h4>
+                <ul class="tl-stack tl-stack--num">
+                  <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm. The gear sets the rating.</span></li>
+                  <li><b>≈ 40 Hz</b><span>first resonance, so 8–13 Hz position bandwidth is realistic</span></li>
+                  <li><b>0.084°</b><span>gear twist at 20 Nm, which is why the output encoder is there</span></li>
+                  <li><b>&lt; 0.02°</b><span>expected error with the loop closed on the AksIM-2</span></li>
+                  <li><b>27%</b><span>of total inertia on the motor side (0.216 kg·m² reflected)</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <h4 class="tl-mini">Milestones</h4>
+            <ol class="tl-ms">
+              <li data-date="2026-11-15"><b>Nov 15</b><span>Component selection &amp; layout</span></li>
+              <li data-date="2026-11-29"><b>Nov 29</b><span>Detailed CAD &amp; GD&amp;T drawing</span></li>
+              <li data-date="2026-12-07"><b>Dec 7</b><span>FEA, FMEA, life checks &amp; report</span></li>
+              <li data-date="2026-12-10"><b>Dec 10</b><span>Final presentation</span></li>
+            </ol>
+          </section>
+
+          <section class="tl-block">
+            <h3>Also right now</h3>
+            <ul class="tl-rows">
+              <li><span>M.S. Mechatronics, Robotics &amp; Automation<em>Northeastern University · Boston, MA</em></span><span class="tl-when">Expected May 2028</span></li>
+              <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="tl-when">In progress</span></li>
+              <li><span>ASME member · NUHOC member<em>Northeastern University</em></span><span class="tl-when">Since Jan 2026</span></li>
+            </ul>
+          </section>
+
+          <div class="tl-cta">
+            <p>Open to co-op roles in <b>mechanical design</b>, <b>manufacturing</b> and <b>quality engineering</b>.</p>
+            <div class="tl-cta-row">
+              <a class="tl-btn tl-btn--acid" href="mailto:mohammedabdullah.fn@northeastern.edu">Email me</a>
+              <a class="tl-btn" href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">LinkedIn ↗</a>
+              <a class="tl-btn" href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener">GitHub ↗</a>
+              <a class="tl-btn" href="#resume">Resume</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ================= RESUME ================= -->
+        <article class="tl-sec tl-sec--resume" id="resume">
+          <header class="tl-sec-head">
+            <p class="tl-kick">05 // Resume</p>
+            <h2 id="resume-title">Resume <em>· PDF</em></h2>
+            <div class="tl-cta-row">
+              <a class="tl-btn tl-btn--acid" href="../resume.pdf" download="Mohammed-Abdullah-Resume.pdf">Download</a>
+              <a class="tl-btn" href="../resume.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+            </div>
+          </header>
+          <div class="tl-pdf">
+            <iframe id="tl-resume-frame" data-src="../resume.pdf#view=FitH" title="Mohammed Abdullah resume (PDF)"></iframe>
+          </div>
+          <p class="tl-pdf-note">If the preview doesn't load on your device, use Download or open it in a new tab.</p>
+        </article>
+      </div>
+
+      <footer class="tl-sheet-foot">
+        <button class="tl-sheet-nav" id="tl-prev" type="button" data-to="resume">← <span>Resume</span></button>
+        <button class="tl-sheet-nav" id="tl-next" type="button" data-to="projects"><span>Projects</span> →</button>
+      </footer>
+    </div>
+  </div>
+
+  <script type="module" src="js/panel.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

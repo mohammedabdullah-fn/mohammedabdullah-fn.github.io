@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en" data-theme="blueprint">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mohammed Abdullah · Blueprint · Mechanical &amp; Robotics Engineer</title>
+  <meta name="description" content="Mohammed Abdullah's portfolio drawn as an engineering drawing set. Certified SOLIDWORKS Professional and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern: terrain perception from wheel-mounted IMUs, quality at Bosch, hydraulic design at Minar Industries, and an elbow actuator for a surgical assist arm.">
+  <meta name="theme-color" content="#0d2b52">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohammed Abdullah · Blueprint">
+  <meta property="og:description" content="A five-sheet drawing set: about, projects, experience, the ME 5374 elbow actuator in exploded section, and contact.">
+  <meta property="og:url" content="https://mohammedabdullah-fn.github.io/blueprint/">
+  <link rel="canonical" href="https://mohammedabdullah-fn.github.io/blueprint/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="css/blueprint.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('bp-theme');
+        if (t === 'whiteprint' || t === 'blueprint') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { /* storage unavailable */ }
+    })();
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+<a class="skip" href="#sheet-1">Skip to the drawings</a>
+
+<!-- ============================================================ STRIP -->
+<header class="strip" id="strip">
+  <a class="brand" href="#sheet-1" aria-label="Mohammed Abdullah, back to sheet 1">
+    <span class="brand-name">M. Abdullah</span>
+    <span class="brand-meta">CSWP · Drawing set MA-BP</span>
+    <span class="strip-now"><span id="now-sheet">Sheet 1 of 5</span> · <b id="now-title">Title · About</b></span>
+  </a>
+  <div class="lane" id="lane">
+    <svg class="lane-svg" id="lane-svg" aria-hidden="true" focusable="false"></svg>
+    <p class="dro" id="dro" aria-hidden="true">X 0000 MM</p>
+    <nav class="stations" aria-label="Drawing sheets">
+      <a class="stn" href="#sheet-1"><b>1</b><span>Title</span></a>
+      <a class="stn" href="#sheet-2"><b>2</b><span>Projects</span></a>
+      <a class="stn" href="#sheet-3"><b>3</b><span>Experience</span></a>
+      <a class="stn" href="#sheet-4"><b>4</b><span>Now</span></a>
+      <a class="stn" href="#sheet-5"><b>5</b><span>Contact</span></a>
+    </nav>
+  </div>
+  <figure class="iso" id="iso" aria-hidden="true">
+    <div class="iso-box" id="iso-box"><svg id="iso-svg" focusable="false"></svg></div>
+    <figcaption id="iso-cap">ISO</figcaption>
+  </figure>
+  <div class="tools">
+    <button class="tool" id="btn-measure" type="button" aria-pressed="false" title="Measure: click two points on a sheet (M). Esc clears.">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 11.5 11.5 1.5l3 3-10 10z"/><path d="M4 9l1.5 1.5M6 7l1 1M8 5l1.5 1.5M10 3l1 1"/></svg><span class="lbl">Measure</span>
+    </button>
+    <button class="tool tool--theme" id="btn-theme" type="button" aria-pressed="false" aria-label="Whiteprint drawing style" title="Switch between blueprint and whiteprint">
+      <span class="tt" data-v="blueprint">Blueprint</span><span class="tt-sw" aria-hidden="true"><i></i></span><span class="tt" data-v="whiteprint">Whiteprint</span>
+    </button>
+  </div>
+</header>
+
+<main class="set" id="set">
+
+<!-- ======================================================= SHEET 1: TITLE -->
+<section class="sheet" id="sheet-1" data-label="Sheet 1" data-title="Title · About" aria-labelledby="s1-name">
+  <div class="sh-in">
+    <div class="s1-top">
+      <div class="s1-hero">
+        <p class="kicker"><span class="badge">1</span>DWG MA-BP-001 · General arrangement</p>
+        <h1 class="name" id="s1-name" data-dim data-dim-offset="16"><span><span class="dim-target">Mohammed</span></span><span class="name-l2">Abdullah</span></h1>
+        <p class="role">Mechanical engineer, moving into robotics. <span>Certified SOLIDWORKS Professional.</span></p>
+        <p class="lead">I've spent over two years in industry: quality for precision diesel components at Bosch, then hydraulic cylinder design at Minar Industries. Now I'm doing an M.S. in Mechatronics, Robotics &amp; Automation at Northeastern, and I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
+      </div>
+      <aside class="revs" aria-label="Revision history and drawing index">
+        <table class="revtable">
+          <caption>Revisions</caption>
+          <thead><tr><th scope="col">Rev</th><th scope="col">Description</th><th scope="col">Date</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>B.E. Mechanical Engineering, VTU</td><td>2023-06</td></tr>
+            <tr><td>B</td><td>Graduate Engineer, Bosch</td><td>2023-07</td></tr>
+            <tr><td>C</td><td>Design Engineer, Minar Industries</td><td>2025-06</td></tr>
+            <tr><td>D</td><td>CSWP + CSWA; terrain perception project</td><td>2026-04</td></tr>
+            <tr class="is-current"><td>E</td><td>ME 5374 elbow actuator, in work</td><td>Fall 2026</td></tr>
+          </tbody>
+        </table>
+        <table class="revtable idx">
+          <caption>Drawing index</caption>
+          <thead><tr><th scope="col">Sht</th><th scope="col">Title</th><th scope="col">Rev</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><a href="#sheet-1">General arrangement · About</a></td><td>D</td></tr>
+            <tr><td>2</td><td><a href="#sheet-2">Projects · Terrain perception</a></td><td>D</td></tr>
+            <tr><td>3</td><td><a href="#sheet-3">Experience · Dimension chain</a></td><td>C</td></tr>
+            <tr><td>4</td><td><a href="#sheet-4">Elbow actuator · Exploded section</a></td><td>E</td></tr>
+            <tr><td>5</td><td><a href="#sheet-5">Contact · Resume</a></td><td>E</td></tr>
+          </tbody>
+        </table>
+      </aside>
+    </div>
+
+    <div class="basics" role="list" aria-label="Key figures">
+      <div class="basic" role="listitem"><b>2+</b><span>Years in industry<br>Bosch · Minar</span></div>
+      <div class="basic" role="listitem"><b>CSWP</b><span>Certified SOLIDWORKS<br>Professional</span></div>
+      <div class="basic" role="listitem"><b>15%</b><span>Test-efficiency gain<br>at Bosch</span></div>
+      <div class="basic" role="listitem"><b>87.3%</b><span>Terrain classification<br>accuracy</span></div>
+    </div>
+    <p class="basic-note">Boxed values are basic dimensions: exact, no tolerance applied.</p>
+
+    <div class="fcf-row">
+      <div class="fcf" role="img" aria-label="Feature control frame: position, diameter 0.1, datums A, B and C">
+        <span class="fcf-c fcf-sym" aria-hidden="true">⌖</span><span class="fcf-c" aria-hidden="true">Ø0.1</span><span class="fcf-c" aria-hidden="true">A</span><span class="fcf-c" aria-hidden="true">B</span><span class="fcf-c" aria-hidden="true">C</span>
+      </div>
+      <p class="fcf-cap">Co-op search, toleranced: positioned on <b>mechanical design</b><i class="datum" aria-hidden="true">A</i>, <b>manufacturing</b><i class="datum" aria-hidden="true">B</i> and <b>quality engineering</b><i class="datum" aria-hidden="true">C</i>.</p>
+    </div>
+
+    <div class="s1-cols">
+      <section aria-labelledby="s1-edu">
+        <h2 class="nh" id="s1-edu">Education</h2>
+        <div class="edu">
+          <div>
+            <h3>Northeastern University</h3>
+            <span class="when">Expected May 2028 · Boston, MA</span>
+            <p>M.S. Mechatronics, Robotics, and Automation, concentration in Mechanical Engineering.</p>
+            <p class="note">Coursework: Robotics Sensing and Navigation, Mobile Robotics, Robot Design, CAD and Manufacturing.</p>
+          </div>
+          <div>
+            <h3>Visvesvaraya Technological University</h3>
+            <span class="when">Jun 2023 · Karnataka, India</span>
+            <p>Bachelor of Engineering in Mechanical Engineering.</p>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="s1-tool">
+        <h2 class="nh" id="s1-tool">Toolkit</h2>
+        <div class="skill">
+          <h3>CAD &amp; software</h3>
+          <ul class="chips"><li>SOLIDWORKS</li><li>CATIA</li><li>Siemens NX</li><li>AutoCAD</li><li>Ansys (FEA)</li><li>Revit MEP</li><li>Microsoft Office</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Quality &amp; manufacturing</h3>
+          <ul class="chips"><li>GD&amp;T</li><li>FMEA</li><li>Root cause analysis</li><li>CAPA</li><li>ISO 9001</li><li>Six Sigma</li><li>Lean · 5S</li><li>Gauge calibration</li><li>Micrometers &amp; precision gauges</li><li>CNC machining (lathe &amp; mill)</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Programming &amp; robotics</h3>
+          <ul class="chips"><li>Python</li><li>C</li><li>ROS 2</li><li>Linux (Ubuntu)</li><li>Git</li><li>IMU &amp; GPS data</li><li>Claude Code</li></ul>
+        </div>
+      </section>
+      <section aria-labelledby="s1-cert">
+        <h2 class="nh" id="s1-cert">Certifications &amp; activities</h2>
+        <ul class="rows">
+          <li data-rev="D"><span>Certified SOLIDWORKS Professional (CSWP) &amp; Associate (CSWA)<em>Dassault Systèmes</em></span><span class="when">Apr 2026</span></li>
+          <li><span>CNC Machining (Lathe &amp; Milling) Training<em>Karnataka German Technical Training Institute</em></span><span class="when">Apr 2024</span></li>
+          <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="when">In progress</span></li>
+          <li><span>Member, American Society of Mechanical Engineers (ASME) · NUHOC member<em>Northeastern University</em></span><span class="when">Jan 2026 – now</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="tb" aria-label="Title block, sheet 1">
+      <div class="tb-who"><span class="k">Drawn</span><b>M. Abdullah</b><span>Mechanical · Robotics</span></div>
+      <div class="tb-title"><span class="k">Title</span><b>General arrangement · About</b></div>
+      <div><span class="k">Cert.</span><b>CSWP</b></div>
+      <div><span class="k">Dwg no.</span><b>MA-BP-001</b></div>
+      <div><span class="k">Rev</span><b>D</b></div>
+      <div class="tb-proj" title="Third-angle projection"><svg viewBox="0 0 60 26" aria-label="Third-angle projection symbol" role="img"><path class="c" d="M1 13h58M44 1v24"/><path d="M4 3 28 8v10L4 23z"/><circle cx="44" cy="13" r="10"/><circle cx="44" cy="13" r="5"/></svg></div>
+      <div><span class="k">Scale</span><b data-tb="scale">1:1</b></div>
+      <div><span class="k">Date</span><b data-tb="date">2026-10-29</b></div>
+      <div><span class="k">Units</span><b>mm</b></div>
+      <div class="tb-sheet"><span class="k">Sheet</span><b>1 of 5</b></div>
+      <div class="tb-note">Unless otherwise specified: dimensions in mm · Do not scale drawing (the Measure tool may)</div>
+    </footer>
+  </div>
+</section>
+
+<!-- ==================================================== SHEET 2: PROJECTS -->
+<section class="sheet" id="sheet-2" data-label="Sheet 2" data-title="Projects" aria-labelledby="s2-title">
+  <div class="sh-in">
+    <header class="sh-head">
+      <p class="kicker"><span class="badge">2</span>DWG MA-BP-002 · Projects</p>
+      <h2 class="sh-title" id="s2-title">Built to <em>sense.</em></h2>
+      <p class="lead">A ROS&nbsp;2 sensing pipeline that lets a remote operator feel the floor, an elbow joint in progress, and fabrication-ready CAD and automated hardware from my undergraduate years.</p>
+    </header>
+
+    <article class="feat" aria-labelledby="p-terrain">
+      <p class="meta"><span class="tag">Featured</span><span>EECE 5554 Robot Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></p>
+      <h3 class="ph" id="p-terrain">Vibrotactile Indoor Terrain Perception</h3>
+      <p class="sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics so a teleoperator can feel what the robot feels. A team project with Tamzid Hossain and Stanley Nketiah.</p>
+
+      <div class="views">
+        <figure class="view view-a">
+          <div class="view-img" id="view-a" data-circle="0.43,0.6,0.13" data-leader="#detail-b" data-leader-label="B">
+            <img src="../assets/img/terrain-robot.webp" width="1400" height="1050" loading="lazy" alt="Mecabot Plus mobile robot with mecanum wheels on a hardwood floor">
+            <svg class="view-mark" viewBox="0 0 1400 1050" aria-hidden="true" focusable="false"><circle class="vm-c2" cx="602" cy="630" r="182"/><circle cx="602" cy="630" r="182"/></svg>
+          </div>
+          <figcaption><b>View A</b> · Mecabot Plus, mecanum wheels</figcaption>
+        </figure>
+        <figure class="view view-b">
+          <div class="detail" id="detail-b"><img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" alt="Close-up of the VectorNav VN-100 IMU clamped to the robot's wheel shaft"></div>
+          <figcaption><b>Detail B</b> (enlarged) · VectorNav VN-100 clamped to the wheel shaft</figcaption>
+        </figure>
+        <figure class="view view-c">
+          <img src="../assets/img/terrain-field-test.webp" width="1400" height="1050" loading="lazy" alt="The robot and a laptop recording a test run on grass at night">
+          <figcaption><b>View C</b> · a recording run on short grass</figcaption>
+        </figure>
+      </div>
+
+      <h4 class="mini">Signal path</h4>
+      <ol class="pipe" data-plot aria-label="Pipeline from IMU to haptics">
+        <li style="--i:0"><span>VN-100 IMU</span><small>40 Hz</small></li>
+        <li style="--i:1"><span>ROS 2 driver</span><small>custom package</small></li>
+        <li style="--i:2"><span>rosbag2 → CSV</span></li>
+        <li style="--i:3"><span>Features</span><small>time + FFT</small></li>
+        <li style="--i:4" class="is-key"><span>SVM</span><small>87.3%</small></li>
+        <li style="--i:5"><span>T2H lookup</span></li>
+        <li style="--i:6"><span>Xbox haptics</span></li>
+      </ol>
+
+      <div class="basics basics--tight" role="list" aria-label="Project figures">
+        <div class="basic" role="listitem"><b>40</b><span>Test runs<br>4 surfaces</span></div>
+        <div class="basic" role="listitem"><b>3,474</b><span>Labeled<br>1-second windows</span></div>
+        <div class="basic" role="listitem"><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
+        <div class="basic" role="listitem"><b>87.3%</b><span>Test accuracy<br>SVM · full fusion</span></div>
+      </div>
+
+      <div class="two">
+        <div>
+          <h4 class="mini">What I did</h4>
+          <ul class="bullets">
+            <li>Mounted a VectorNav VN-100 IMU on the wheel shaft of a Mecabot Plus robot to sense floor vibrations.</li>
+            <li>Recorded 40 test runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
+            <li>Classified the four surfaces in Python with 87.3% test accuracy and gave each its own Xbox controller vibration in Unity.</li>
+          </ul>
+          <h4 class="mini">Method</h4>
+          <ul class="bullets">
+            <li>Custom ROS 2 Humble driver parsing VNYMR serial data at 40 Hz on Ubuntu 22.04, recorded with rosbag2.</li>
+            <li>One-second windows with 50% overlap: RMS, variance, peak-to-peak, skewness and kurtosis, plus four FFT band energies across 1–20 Hz.</li>
+            <li>Compared an RBF SVM, a 100-tree random forest and a raw-signal 1D-CNN across a four-run feature ablation.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="plot">
+            <div class="plot-h"><h4 class="mini">Plot 1 · Model comparison</h4><span>Full sensor fusion · test accuracy</span></div>
+            <div class="ch" id="ch-models"></div>
+            <details class="tview"><summary>Table view</summary>
+              <table class="dtable"><caption>Test accuracy, full sensor fusion</caption><thead><tr><th scope="col">Model</th><th scope="col">Accuracy (%)</th></tr></thead>
+                <tbody><tr><th scope="row">SVM (RBF)</th><td>87.3</td></tr><tr><th scope="row">Random forest (100 trees)</th><td>84.8</td></tr><tr><th scope="row">1D-CNN (raw signal)</th><td>82.5</td></tr></tbody></table>
+            </details>
+          </div>
+          <div class="plot">
+            <div class="plot-h"><h4 class="mini">Plot 2 · Per-class accuracy</h4><span>Best model (SVM)</span></div>
+            <div class="ch" id="ch-class"></div>
+            <p class="ch-note">Hardwood and tile trade places: 25.7% of hardwood windows read as tile, 18.1% of tile as hardwood.</p>
+            <details class="tview"><summary>Table view</summary>
+              <table class="dtable"><caption>Per-class accuracy, best model</caption><thead><tr><th scope="col">Surface</th><th scope="col">Accuracy (%)</th></tr></thead>
+                <tbody><tr><th scope="row">Grass</th><td>99.4</td></tr><tr><th scope="row">Carpet</th><td>97.2</td></tr><tr><th scope="row">Tile</th><td>79.2</td></tr><tr><th scope="row">Hardwood</th><td>72.3</td></tr></tbody></table>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="cm-find">
+        <div class="cm-wrap">
+          <table class="dtable cm">
+            <caption>Table 1 · Confusion matrix, best model (%)</caption>
+            <thead><tr><th scope="col">Actual ↓ · predicted →</th><th scope="col">Carpet</th><th scope="col">Hardwood</th><th scope="col">Grass</th><th scope="col">Tile</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Carpet</th><td class="diag" style="--v:97.2">97.2</td><td style="--v:0.7">0.7</td><td style="--v:1.4">1.4</td><td style="--v:0.7">0.7</td></tr>
+              <tr><th scope="row">Hardwood</th><td style="--v:2">2.0</td><td class="diag" style="--v:72.3">72.3</td><td style="--v:0">0.0</td><td style="--v:25.7">25.7</td></tr>
+              <tr><th scope="row">Grass</th><td style="--v:0">0.0</td><td style="--v:0">0.0</td><td class="diag" style="--v:99.4">99.4</td><td style="--v:0.6">0.6</td></tr>
+              <tr><th scope="row">Tile</th><td style="--v:2.1">2.1</td><td style="--v:18.1">18.1</td><td style="--v:0.7">0.7</td><td class="diag" style="--v:79.2">79.2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4 class="mini">Findings</h4>
+          <div class="findings">
+            <div class="find"><b>01</b><p>Frequency features carry most of the signal: 78.1% accuracy on their own.</p></div>
+            <div class="find"><b>02</b><p>Adding the gyroscope lifts accuracy from 82.8% to 87.3%.</p></div>
+            <div class="find"><b>03</b><p>Grass and carpet separate cleanly. Hardwood and tile overlap in PCA, a data limit at 40&nbsp;Hz rather than a model limit.</p></div>
+            <div class="find"><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs 82.5%).</p></div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="view view-d">
+        <img src="../assets/img/terrain-unity-sim.webp" width="1400" height="830" loading="lazy" alt="Unity editor running the terrain-to-haptic teleoperation simulation">
+        <figcaption><b>View D</b> · Unity 2022.3 simulation: the robot drives over terrain tiles and each class maps to left and right controller motor speeds</figcaption>
+      </figure>
+    </article>
+
+    <div class="more">
+      <article class="card" data-dwg="MA-P-02">
+        <p class="meta"><span class="tag tag--red">In work</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></p>
+        <h3>Elbow Joint Actuator for a Surgical Assist Arm</h3>
+        <p class="sub">A bolt-in elbow module with a frameless motor, 100:1 strain-wave gear, fail-safe brake and an absolute output encoder in a 90&nbsp;mm housing.</p>
+        <p style="margin-top:12px"><a class="card-link" href="#sheet-4">Exploded section on sheet 4 →</a></p>
+      </article>
+      <article class="card" data-dwg="MA-P-03">
+        <p class="meta"><span>Visvesvaraya Technological University</span><span>Jan – May 2023</span></p>
+        <h3>Mini Robotic Cart Design</h3>
+        <ul class="bullets">
+          <li>Modeled a mini robotic cart chassis in SOLIDWORKS, including the frame, wheel mounts and motor housings.</li>
+          <li>Arranged the layout for balance and easy assembly, with all parts ready to fabricate.</li>
+        </ul>
+        <ul class="chips chips--sm"><li>SOLIDWORKS</li><li>Chassis design</li><li>Assembly layout</li></ul>
+      </article>
+      <article class="card" data-dwg="MA-P-04">
+        <p class="meta"><span>Visvesvaraya Technological University</span><span>Aug – Dec 2022</span></p>
+        <h3>Renewable Energy-Powered Water Purification System</h3>
+        <ul class="bullets">
+          <li>Developed a brine water purification system powered by solar and wind energy.</li>
+          <li>Added sensors and automatic valve, pump and motor control so the system needed less manual work.</li>
+        </ul>
+        <ul class="chips chips--sm"><li>Solar + wind</li><li>Sensors</li><li>Automatic control</li></ul>
+      </article>
+    </div>
+
+    <footer class="tb" aria-label="Title block, sheet 2">
+      <div class="tb-who"><span class="k">Drawn</span><b>M. Abdullah</b><span>Mechanical · Robotics</span></div>
+      <div class="tb-title"><span class="k">Title</span><b>Projects · Terrain perception</b></div>
+      <div><span class="k">Cert.</span><b>CSWP</b></div>
+      <div><span class="k">Dwg no.</span><b>MA-BP-002</b></div>
+      <div><span class="k">Rev</span><b>D</b></div>
+      <div class="tb-proj" title="Third-angle projection"><svg viewBox="0 0 60 26" aria-label="Third-angle projection symbol" role="img"><path class="c" d="M1 13h58M44 1v24"/><path d="M4 3 28 8v10L4 23z"/><circle cx="44" cy="13" r="10"/><circle cx="44" cy="13" r="5"/></svg></div>
+      <div><span class="k">Scale</span><b data-tb="scale">1:1</b></div>
+      <div><span class="k">Date</span><b data-tb="date">2026-10-29</b></div>
+      <div><span class="k">Units</span><b>mm</b></div>
+      <div class="tb-sheet"><span class="k">Sheet</span><b>2 of 5</b></div>
+      <div class="tb-note">Photographs not to scale · Team: T. Hossain, S. Nketiah, M. Abdullah</div>
+    </footer>
+  </div>
+</section>
+
+<!-- ================================================== SHEET 3: EXPERIENCE -->
+<section class="sheet" id="sheet-3" data-label="Sheet 3" data-title="Experience" aria-labelledby="s3-title">
+  <div class="sh-in">
+    <header class="sh-head">
+      <p class="kicker"><span class="badge">3</span>DWG MA-BP-003 · Experience, dimensioned</p>
+      <h2 class="sh-title" id="s3-title">The road <em>so far.</em></h2>
+      <p class="lead">Over two years between the shop floor and the design desk: quality systems for precision diesel components at Bosch, then hydraulic cylinder design at Minar Industries.</p>
+    </header>
+
+    <div class="tl" id="tl"></div>
+
+    <div class="jobs">
+      <article class="job" data-dwg="DETAIL C">
+        <p class="meta"><span class="tag">Jun 2025 – Oct 2025</span></p>
+        <h3>Design Engineer <span>· Minar Industries</span></h3>
+        <p class="where">Karnataka, India · Hydraulic cylinders</p>
+        <ul class="bullets">
+          <li>Designed hydraulic cylinders and pistons for heavy machinery and took each one from concept through design review.</li>
+          <li>Prepared the manufacturing drawings, assembly drawings and bills of materials (BOMs) used to build each part.</li>
+          <li>Verified part dimensions, tolerances and clearances against engineering and performance standards before production.</li>
+          <li>Partnered with production, quality and supplier teams to make manufacturing more efficient and parts more reliable.</li>
+        </ul>
+        <ul class="chips chips--sm"><li>Hydraulic design</li><li>Manufacturing drawings</li><li>BOMs</li><li>Tolerancing</li></ul>
+      </article>
+      <article class="job" data-dwg="DETAIL D">
+        <p class="meta"><span class="tag">Jul 2023 – May 2025</span></p>
+        <h3>Graduate Engineer <span>· Bosch</span></h3>
+        <p class="where">Karnataka, India · Precision diesel components</p>
+        <div class="callout-box" data-rev="B"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+        <ul class="bullets">
+          <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
+          <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
+          <li>Inspected and tested diesel parts with calibrated gauges, checked gauge accuracy with MSA and logged results in SAP.</li>
+          <li>Supported lean workshop improvements, including 5S implementation and safer work practices.</li>
+        </ul>
+        <ul class="chips chips--sm"><li>ISO 9001</li><li>FMEA</li><li>RCA · CAPA</li><li>MSA</li><li>SAP</li><li>5S</li></ul>
+      </article>
+    </div>
+    <div class="edu-strip"><b>B.E. Mechanical Engineering · VTU</b><span>Visvesvaraya Technological University, Karnataka, India · Jun 2023 · Datum A of the chain above</span></div>
+
+    <footer class="tb" aria-label="Title block, sheet 3">
+      <div class="tb-who"><span class="k">Drawn</span><b>M. Abdullah</b><span>Mechanical · Robotics</span></div>
+      <div class="tb-title"><span class="k">Title</span><b>Experience · Dimension chain</b></div>
+      <div><span class="k">Cert.</span><b>CSWP</b></div>
+      <div><span class="k">Dwg no.</span><b>MA-BP-003</b></div>
+      <div><span class="k">Rev</span><b>C</b></div>
+      <div class="tb-proj" title="Third-angle projection"><svg viewBox="0 0 60 26" aria-label="Third-angle projection symbol" role="img"><path class="c" d="M1 13h58M44 1v24"/><path d="M4 3 28 8v10L4 23z"/><circle cx="44" cy="13" r="10"/><circle cx="44" cy="13" r="5"/></svg></div>
+      <div><span class="k">Scale</span><b data-tb="scale">1:1</b></div>
+      <div><span class="k">Date</span><b data-tb="date">2026-10-29</b></div>
+      <div><span class="k">Units</span><b>mm · months</b></div>
+      <div class="tb-sheet"><span class="k">Sheet</span><b>3 of 5</b></div>
+      <div class="tb-note">Chain dimensions in months, counted inclusively · ( ) = reference dimension</div>
+    </footer>
+  </div>
+</section>
+
+<!-- ========================================================= SHEET 4: NOW -->
+<section class="sheet" id="sheet-4" data-label="Sheet 4" data-title="Now · Elbow actuator" aria-labelledby="s4-title">
+  <div class="sh-in">
+    <header class="sh-head">
+      <p class="kicker"><span class="badge">4</span>DWG MA-BP-004 · ME 5374 Robot Design · Fall 2026</p>
+      <h2 class="sh-title" id="s4-title">Currently <em>building.</em></h2>
+      <p class="lead">An elbow joint actuator for a surgical assist robot arm, my ME 5374 Robot Design final project this fall, alongside the M.S. at Northeastern (expected May 2028).</p>
+    </header>
+    <p class="meta"><span class="tag tag--red">In work</span><span>Concept layout · preliminary, not for manufacture</span></p>
+    <p class="sub">One complete bolt-in joint module for a lightweight arm that holds a surgical tool or endoscope camera next to a patient. It has to hold position when power is lost, know its exact angle at power-up with no homing move, and stay small enough to keep out of the surgeon's way. Medical arms like the KUKA LBR Med set the reference.</p>
+
+    <dl class="reqs" aria-label="Design requirements">
+      <div><dt>Continuous torque</dt><dd>20 Nm</dd></div>
+      <div><dt>Peak torque</dt><dd>50 Nm</dd></div>
+      <div><dt>Range of motion</dt><dd>±170°</dd></div>
+      <div><dt>Max speed</dt><dd>30 rpm</dd></div>
+      <div><dt>Position error</dt><dd>≤ 0.1°</dd></div>
+      <div><dt>Power-off hold</dt><dd>≥ 50 Nm</dd></div>
+      <div><dt>Envelope</dt><dd>Ø90 × 110 mm</dd></div>
+      <div><dt>Mass</dt><dd>≤ 1.5 kg</dd></div>
+    </dl>
+
+    <div class="ex" id="ex">
+      <div class="ex-stage">
+        <div class="ex-main">
+          <div class="ex-draw"></div>
+          <div class="ex-controls">
+            <label for="ex-range">Explode</label>
+            <input class="ex-range" id="ex-range" type="range" min="0" max="1000" step="1" value="0">
+            <output class="ex-out" for="ex-range">0%</output>
+            <button class="ex-mode" type="button" aria-pressed="true">Linked to scroll</button>
+            <span>Scale <b class="ex-scale">1:1</b></span>
+          </div>
+        </div>
+        <aside class="ex-side" aria-label="End view and parts list">
+          <figure class="ex-endfig">
+            <div class="ex-end"></div>
+            <figcaption><span><b>View B</b> · output end</span><span>Cutting plane A–A</span></figcaption>
+          </figure>
+          <div class="ex-bom"></div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="two">
+      <div>
+        <h4 class="mini">Inside the joint</h4>
+        <ul class="stack">
+          <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
+          <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
+          <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+          <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
+          <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
+          <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mini">First estimates</h4>
+        <ul class="stack stack--num">
+          <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm. The gear sets the rating.</span></li>
+          <li><b>≈ 40 Hz</b><span>first resonance, so 8–13 Hz position bandwidth is realistic</span></li>
+          <li><b>0.084°</b><span>gear twist at 20 Nm, which is why the output encoder is there</span></li>
+          <li><b>&lt; 0.02°</b><span>expected error with the loop closed on the AksIM-2</span></li>
+          <li><b>27%</b><span>of total inertia on the motor side (0.216 kg·m² reflected)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="mini">Milestones · dimension chain in days</h4>
+    <div class="ms" id="ms"></div>
+    <ol class="ms-list" data-rev="E">
+      <li data-date="2026-11-15"><b>M1 · Nov 15</b><span>Component selection &amp; layout</span></li>
+      <li data-date="2026-11-29"><b>M2 · Nov 29</b><span>Detailed CAD &amp; GD&amp;T drawing</span></li>
+      <li data-date="2026-12-07"><b>M3 · Dec 7</b><span>FEA, FMEA, life checks &amp; report</span></li>
+      <li data-date="2026-12-10"><b>M4 · Dec 10</b><span>Final presentation</span></li>
+    </ol>
+
+    <h2 class="nh">Also right now</h2>
+    <ul class="rows" style="margin-bottom:34px">
+      <li><span>M.S. Mechatronics, Robotics &amp; Automation<em>Northeastern University · Boston, MA</em></span><span class="when">Expected May 2028</span></li>
+      <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="when">In progress</span></li>
+      <li><span>ASME member · NUHOC member<em>Northeastern University</em></span><span class="when">Since Jan 2026</span></li>
+    </ul>
+
+    <footer class="tb" aria-label="Title block, sheet 4">
+      <div class="tb-who"><span class="k">Drawn</span><b>M. Abdullah</b><span>Mechanical · Robotics</span></div>
+      <div class="tb-title"><span class="k">Title</span><b>Elbow joint actuator · Exploded section A–A</b></div>
+      <div><span class="k">Cert.</span><b>CSWP</b></div>
+      <div><span class="k">Dwg no.</span><b>MA-BP-004</b></div>
+      <div><span class="k">Rev</span><b>E</b></div>
+      <div class="tb-proj" title="Third-angle projection"><svg viewBox="0 0 60 26" aria-label="Third-angle projection symbol" role="img"><path class="c" d="M1 13h58M44 1v24"/><path d="M4 3 28 8v10L4 23z"/><circle cx="44" cy="13" r="10"/><circle cx="44" cy="13" r="5"/></svg></div>
+      <div><span class="k">Scale · live</span><b data-tb="scale">1:1</b></div>
+      <div><span class="k">Date</span><b data-tb="date">2026-10-29</b></div>
+      <div><span class="k">Material</span><b>6061-T6</b></div>
+      <div class="tb-sheet"><span class="k">Sheet</span><b>4 of 5</b></div>
+      <div class="tb-note">Concept layout, preliminary · Section lining per part, rolling elements not sectioned</div>
+    </footer>
+  </div>
+</section>
+
+<!-- ===================================================== SHEET 5: CONTACT -->
+<section class="sheet" id="sheet-5" data-label="Sheet 5" data-title="Contact · Resume" aria-labelledby="s5-title">
+  <div class="sh-in">
+    <header class="sh-head">
+      <p class="kicker"><span class="badge">5</span>DWG MA-BP-005 · Interface control drawing</p>
+      <h2 class="sh-title" id="s5-title">Let's build the <em>next revision.</em></h2>
+      <p class="lead">Open to co-op roles in <b>mechanical design</b>, <b>manufacturing</b> and <b>quality engineering</b>. Email is the fastest way to reach me.</p>
+    </header>
+
+    <div class="icd" data-plot>
+      <div class="icd-block">
+        <b>J1 · M. Abdullah</b>
+        <span>Connector, 4 pins · <span class="ref">Mechanical · Robotics</span><br>Boston, MA · Northeastern University</span>
+      </div>
+      <ol class="icd-pins" aria-label="Contact channels">
+        <li style="--i:0"><span class="pin" aria-hidden="true">1</span><span class="sig">Email</span><i class="wire" aria-hidden="true"></i>
+          <span class="dest"><a href="mailto:mohammedabdullah.fn@northeastern.edu">mohammedabdullah.fn@<wbr>northeastern.edu</a></span></li>
+        <li style="--i:1"><span class="pin" aria-hidden="true">2</span><span class="sig">LinkedIn</span><i class="wire" aria-hidden="true"></i>
+          <span class="dest"><a href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">linkedin.com/<wbr>in/abd-mohdd ↗</a></span></li>
+        <li style="--i:2"><span class="pin" aria-hidden="true">3</span><span class="sig">GitHub</span><i class="wire" aria-hidden="true"></i>
+          <span class="dest"><a href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener">github.com/<wbr>mohammedabdullah-fn ↗</a></span></li>
+        <li style="--i:3"><span class="pin" aria-hidden="true">4</span><span class="sig">Resume</span><i class="wire" aria-hidden="true"></i>
+          <span class="dest"><a class="btn btn--hi" href="../resume.pdf" download="Mohammed-Abdullah-Resume.pdf">Download PDF</a><a class="btn" href="../resume.pdf" target="_blank" rel="noopener">Open ↗</a></span></li>
+      </ol>
+    </div>
+
+    <div class="contact-foot">
+      <p class="stamp">Issued for review<small>Rev E · 2026</small></p>
+      <nav class="versions" aria-label="Site versions">Versions: <a href="../">Workcell</a> · <a href="../terrain/">Terrain Lab</a> · <a href="../blueprint/" aria-current="page">Blueprint</a></nav>
+    </div>
+
+    <footer class="tb" aria-label="Title block, sheet 5">
+      <div class="tb-who"><span class="k">Drawn</span><b>M. Abdullah</b><span>Mechanical · Robotics</span></div>
+      <div class="tb-title"><span class="k">Title</span><b>Contact · Resume</b></div>
+      <div><span class="k">Cert.</span><b>CSWP</b></div>
+      <div><span class="k">Dwg no.</span><b>MA-BP-005</b></div>
+      <div><span class="k">Rev</span><b>E</b></div>
+      <div class="tb-proj" title="Third-angle projection"><svg viewBox="0 0 60 26" aria-label="Third-angle projection symbol" role="img"><path class="c" d="M1 13h58M44 1v24"/><path d="M4 3 28 8v10L4 23z"/><circle cx="44" cy="13" r="10"/><circle cx="44" cy="13" r="5"/></svg></div>
+      <div><span class="k">Scale</span><b data-tb="scale">1:1</b></div>
+      <div><span class="k">Date</span><b data-tb="date">2026-10-29</b></div>
+      <div><span class="k">Units</span><b>mm</b></div>
+      <div class="tb-sheet"><span class="k">Sheet</span><b>5 of 5</b></div>
+      <div class="tb-note">End of drawing set · Hand-built in SVG, CSS and vanilla JavaScript</div>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <span>© 2026 Mohammed Abdullah</span>
+  <span class="kbd-hint">Press M to measure · Esc to clear</span>
+</footer>
+
+<div class="mhud" id="mhud" hidden role="status" aria-live="polite">
+  <div class="mhud-h"><b>Measure</b><span id="mhud-sheet">Pick a point</span></div>
+  <output class="mhud-v" id="mhud-val">—</output>
+  <p class="mhud-d" id="mhud-d">Click two points on a sheet</p>
+  <p class="mhud-tip">Snaps to geometry · Shift = ortho · Esc = clear</p>
+  <div class="mhud-b"><button type="button" id="mhud-clear">Clear</button><button type="button" id="mhud-done">Done</button></div>
+</div>
+
+<div class="callout" id="callout" hidden><svg class="co-ldr" aria-hidden="true" focusable="false"><path d="M0 0"/><circle r="2" cx="0" cy="0"/></svg><b class="co-t"></b><span class="co-b"></span></div>
+
+<noscript><style>.stations .stn{position:static;transform:none}.stations{position:static;display:flex;gap:8px;height:auto}</style></noscript>
+</body>
+</html>

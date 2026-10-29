@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mohammed Abdullah · Mechanical &amp; Robotics Engineer</title>
+  <meta name="description" content="Mohammed Abdullah: mechanical engineer and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern University. Certified SOLIDWORKS Professional. Quality at Bosch, hydraulic design at Minar Industries.">
+  <meta name="theme-color" content="#0a0708">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohammed Abdullah · Robotics Portfolio">
+  <meta property="og:description" content="Mechanical engineer moving into robotics: quality at Bosch, hydraulic design at Minar Industries, terrain perception with wheel-mounted IMUs, and an elbow actuator for a surgical assist arm.">
+  <meta property="og:url" content="https://mohammedabdullah-fn.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="is-booting">
+
+  <canvas id="scene" aria-label="Interactive 3D robot workcell" role="img"></canvas>
+  <div class="fx-fallback" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
+  <div class="fx-grain" aria-hidden="true"></div>
+  <div class="sheet-frame" id="sheet-frame" aria-hidden="true"></div>
+
+  <!-- Boot screen -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-title">MA-01 <span>// arm controller</span></div>
+      <p class="boot-line"><span>&gt; Power bus · 48 V</span><i></i><b>OK</b></p>
+      <p class="boot-line"><span>&gt; Absolute encoders · no homing</span><i></i><b>OK</b></p>
+      <p class="boot-line"><span>&gt; Gripper calibration</span><i></i><b>OK</b></p>
+      <p class="boot-line"><span>&gt; Loading portfolio</span><i></i><b>OK</b></p>
+      <div class="boot-bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Mohammed Abdullah, home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-stack">
+        <span class="brand-name">Mohammed <em>Abdullah.</em></span>
+        <span class="brand-role">M.S. Robotics · Northeastern · Boston</span>
+      </span>
+    </a>
+    <nav class="toolbar" aria-label="Scene controls">
+      <button class="tool-btn" id="btn-transform" type="button" title="Cycle the hologram through my projects">
+        <span class="ico" aria-hidden="true">⚡</span><span class="lbl">Transform</span>
+      </button>
+      <button class="tool-btn" id="btn-design" type="button" aria-pressed="false" title="Design mode: live dimensions, joint frames, teach pendant and exploded view">
+        <span class="ico" aria-hidden="true">⌖</span><span class="lbl">Design</span>
+      </button>
+      <button class="tool-btn" id="btn-demo" type="button" title="Watch the arm run a pick-and-place routine">
+        <span class="ico" aria-hidden="true">▶</span><span class="lbl">Run Demo</span>
+      </button>
+      <button class="tool-btn" id="btn-audio" type="button" aria-pressed="false" title="Toggle procedural sound">
+        <span class="dot" aria-hidden="true"></span><span class="lbl">Audio</span>
+      </button>
+    </nav>
+  </header>
+
+
+  <!-- Quick links the robot can press -->
+  <nav class="dock" aria-label="Quick links">
+    <a class="dock-item" href="#resume" data-touch="resume"><span class="dock-ico" aria-hidden="true">⤓</span><span class="dock-label">Resume</span></a>
+    <a class="dock-item" href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener" data-touch="linkedin" data-link><span class="dock-ico" aria-hidden="true">in</span><span class="dock-label">LinkedIn</span></a>
+    <a class="dock-item" href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener" data-touch="github" data-link><span class="dock-ico" aria-hidden="true">&lt;/&gt;</span><span class="dock-label">GitHub</span></a>
+    <a class="dock-item" href="mailto:mohammedabdullah.fn@northeastern.edu" data-touch="email" data-link><span class="dock-ico" aria-hidden="true">@</span><span class="dock-label">Email</span></a>
+  </nav>
+
+  <!-- Floating section cards -->
+  <main class="cards" id="cards" aria-label="Portfolio sections">
+    <article class="card" data-card="about" data-touch="about" style="--i:0">
+      <div class="card-top"><span class="card-kicker">About</span><span class="card-num">01</span></div>
+      <h2 class="card-title">Engineered with<br><em>precision.</em></h2>
+      <p class="card-body">Mechanical engineer moving into robotics. Quality at Bosch, hydraulic design at Minar Industries, Certified SOLIDWORKS Professional.</p>
+      <div class="card-foot"><a class="card-open" href="#about">Open <span aria-hidden="true">→</span></a><span class="card-tag">About</span></div>
+    </article>
+
+    <article class="card" data-card="projects" data-touch="projects" style="--i:1">
+      <div class="card-top"><span class="card-kicker">Projects</span><span class="card-num">02</span></div>
+      <h2 class="card-title">Built to<br><em>sense.</em></h2>
+      <p class="card-body">Vibrotactile terrain perception: a wheel-mounted IMU, an SVM at 87.3% accuracy and Xbox haptics that let an operator feel the floor.</p>
+      <div class="card-foot"><a class="card-open" href="#projects">Open <span aria-hidden="true">→</span></a><span class="card-tag">Projects</span></div>
+    </article>
+
+    <article class="card" data-card="experience" data-touch="experience" style="--i:2">
+      <div class="card-top"><span class="card-kicker">Experience</span><span class="card-num">03</span></div>
+      <h2 class="card-title">The road<br><em>so far.</em></h2>
+      <p class="card-body">Graduate Engineer at Bosch (2023–25), then Design Engineer at Minar Industries (2025). Quality systems, CAD and production floors.</p>
+      <div class="card-foot"><a class="card-open" href="#experience">Open <span aria-hidden="true">→</span></a><span class="card-tag">Experience</span></div>
+    </article>
+
+    <article class="card" data-card="now" data-touch="now" style="--i:3">
+      <div class="card-top"><span class="card-kicker">Now</span><span class="card-num">04</span></div>
+      <h2 class="card-title">Currently<br><em>building.</em></h2>
+      <p class="card-body">An elbow joint actuator for a surgical assist arm: frameless motor, 100:1 strain-wave gear, fail-safe brake. ME 5374, Fall 2026.</p>
+      <div class="card-foot"><a class="card-open" href="#now">Open <span aria-hidden="true">→</span></a><span class="card-tag">Now</span></div>
+    </article>
+  </main>
+
+  <!-- HUD labels projected from the 3D scene -->
+  <div class="hud" aria-hidden="true">
+    <svg class="dims" id="dims">
+      <defs>
+        <marker id="dim-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+          <path d="M0,1.6 L10,5 L0,8.4 z" fill="currentColor"></path>
+        </marker>
+      </defs>
+      <g class="dim" id="dim-l1"><line class="ext"></line><line class="ext"></line><line class="dl" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"></line><text text-anchor="middle"></text></g>
+      <g class="dim" id="dim-l2"><line class="ext"></line><line class="ext"></line><line class="dl" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"></line><text text-anchor="middle"></text></g>
+      <g class="dim" id="dim-ang"><path class="dl" fill="none" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"></path><text text-anchor="middle"></text></g>
+      <g class="dim dim--z" id="dim-z"><line class="ext"></line><line class="ext"></line><line class="dl" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"></line><text text-anchor="middle"></text></g>
+    </svg>
+    <div class="ex-tags" id="ex-tags"></div>
+    <div class="hud-tag hud-tag--joint" id="hud-joint">
+      <i class="hud-ring"></i><i class="hud-lead"></i>
+      <div class="hud-text"><b id="hud-joint-a">WRIST 120°</b><span id="hud-joint-s">J3 · TRACKING</span></div>
+    </div>
+    <div class="hud-tag hud-tag--holo" id="hud-holo">
+      <i class="hud-lead"></i>
+      <div class="hud-text"><b id="hud-holo-a">HOLO · QUADRUPED</b><span id="hud-holo-s">CONCEPT MODEL</span></div>
+    </div>
+  </div>
+
+  <div class="reticle" id="reticle" aria-hidden="true"><i></i><span id="reticle-label"></span></div>
+  <div class="touch-marker" id="contact" aria-hidden="true">
+    <svg viewBox="0 0 64 64"><circle class="c-base" cx="32" cy="32" r="26"></circle><circle class="c-prog" cx="32" cy="32" r="26"></circle></svg>
+    <i></i><span id="contact-label">Contact</span>
+  </div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <div class="demo-status" id="demo-status" aria-live="polite">
+    <div class="demo-row">
+      <span><span class="demo-dot"></span> Demo · <span id="demo-label">Initializing</span></span>
+      <span id="demo-step">Step 0 / 0</span>
+    </div>
+    <ol class="demo-code" id="demo-code"></ol>
+    <div class="demo-bar"><span></span></div>
+  </div>
+
+  <!-- Engineering-drawing furniture: title block, view triad, teach pendant -->
+  <aside class="title-block" id="title-block" data-status="full" aria-label="Drawing title block">
+    <div class="tb-title">MA-01 · Articulated arm workcell</div>
+    <dl class="tb-grid">
+      <dt>Drawn</dt><dd>M. Abdullah</dd><dt>Cert.</dt><dd>CSWP</dd>
+      <dt>Scale</dt><dd>1:3</dd><dt>Units</dt><dd>mm</dd>
+      <dt>Date</dt><dd id="tb-date">2026-10-29</dd><dt>Proj.</dt><dd>3rd angle</dd>
+    </dl>
+    <div class="tb-status"><i></i><span id="tb-status">Fully defined</span><span class="tb-rev">Rev A</span></div>
+    <nav class="tb-versions" aria-label="Site versions">
+      <span>Sheet</span>
+      <a href="./" aria-current="page">1 Workcell</a>
+      <a href="terrain/">2 Terrain</a>
+      <a href="blueprint/">3 Blueprint</a>
+    </nav>
+  </aside>
+  <svg class="triad" id="triad" viewBox="0 0 80 80" aria-hidden="true">
+    <line id="tx" class="tx"></line><line id="ty" class="ty"></line><line id="tz" class="tz"></line>
+    <circle cx="40" cy="40" r="2.5"></circle>
+    <text id="tlx" class="tx" text-anchor="middle">X</text><text id="tly" class="ty" text-anchor="middle">Y</text><text id="tlz" class="tz" text-anchor="middle">Z</text>
+  </svg>
+
+  <aside class="pendant" id="pendant" aria-label="Teach pendant">
+    <header class="pd-head"><b>Teach pendant</b><span id="pd-mode">SERVO</span></header>
+    <div class="pd-row"><label for="pd-yaw">J0 Base</label><input id="pd-yaw" type="range"><output>0.0°</output></div>
+    <div class="pd-row"><label for="pd-sh">J1 Shoulder</label><input id="pd-sh" type="range"><output>0.0°</output></div>
+    <div class="pd-row"><label for="pd-el">J2 Elbow</label><input id="pd-el" type="range"><output>0.0°</output></div>
+    <div class="pd-row"><label for="pd-wr">J3 Wrist</label><input id="pd-wr" type="range"><output>0.0°</output></div>
+    <div class="pd-row"><label for="pd-roll">J4 Roll</label><input id="pd-roll" type="range"><output>0.0°</output></div>
+    <div class="pd-row"><label for="pd-grip">Gripper</label><input id="pd-grip" type="range" min="0" max="100" step="1" value="100"><output>open</output></div>
+    <div class="pd-tcp"><span>TCP mm</span><b id="pd-x">X 0</b><b id="pd-y">Y 0</b><b id="pd-z">Z 0</b></div>
+    <div class="pd-row"><label for="pd-speed">Speed</label><input id="pd-speed" type="range" min="25" max="150" step="5" value="100"><output>100%</output></div>
+    <div class="pd-btns">
+      <button type="button" id="pd-home">Home</button>
+      <button type="button" id="pd-explode">Explode</button>
+      <button type="button" id="pd-frames" aria-pressed="true">Frames</button>
+    </div>
+    <p class="pd-note">Drag a slider to jog one axis. Click the scene to hand control back to the cursor.</p>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Bottom bar -->
+  <footer class="bottombar">
+    <a href="mailto:mohammedabdullah.fn@northeastern.edu" class="mail">mohammedabdullah.fn@northeastern.edu</a>
+    <span class="divider" aria-hidden="true"></span>
+    <a href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+    <a href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    <a href="resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+    <span class="divider" aria-hidden="true"></span>
+    <span class="hint" id="hint"><b>Space</b> wave · <b>Click</b> object · <b>Drag</b> arm onto a card</span>
+    <nav class="foot-versions" aria-label="Site versions">
+      <a href="./" aria-current="page">01 Workcell</a>
+      <a href="terrain/">02 Terrain Lab</a>
+      <a href="blueprint/">03 Blueprint</a>
+    </nav>
+  </footer>
+  <span class="corner-mark" aria-hidden="true"></span>
+
+  <!-- Section sheets -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="about-title">
+      <div class="modal-head">
+        <span class="modal-kicker" id="modal-kicker">About</span>
+        <span class="modal-count" id="modal-count">01 / 04</span>
+        <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+      </div>
+
+      <div class="modal-scroll" id="modal-scroll">
+
+        <!-- ============ ABOUT ============ -->
+        <article class="sheet" id="about" data-kicker="About">
+          <header class="sheet-head">
+            <h2 id="about-title">Engineered with <em>precision.</em></h2>
+            <p class="lead">I'm a mechanical engineer who has worked in quality at Bosch and in hydraulic cylinder design at Minar Industries. I'm a Certified SOLIDWORKS Professional, now doing an M.S. in Mechatronics, Robotics &amp; Automation at Northeastern, and I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
+          </header>
+
+          <div class="stats">
+            <div class="stat"><b>2+</b><span>years in industry<br>Bosch · Minar</span></div>
+            <div class="stat"><b>CSWP</b><span>Certified SOLIDWORKS<br>Professional</span></div>
+            <div class="stat"><b>15%</b><span>test-efficiency gain<br>at Bosch</span></div>
+            <div class="stat"><b>87.3%</b><span>terrain classification<br>accuracy</span></div>
+          </div>
+
+          <section class="block">
+            <h3 class="block-title">Education</h3>
+            <div class="entry">
+              <div class="entry-head"><h4>Northeastern University</h4><span class="when">Expected May 2028</span></div>
+              <p class="entry-sub">M.S. Mechatronics, Robotics, and Automation · Concentration in Mechanical Engineering · Boston, MA</p>
+              <p class="entry-note">Coursework: Robotics Sensing and Navigation, Mobile Robotics, Robot Design, CAD and Manufacturing</p>
+            </div>
+            <div class="entry">
+              <div class="entry-head"><h4>Visvesvaraya Technological University</h4><span class="when">Jun 2023</span></div>
+              <p class="entry-sub">Bachelor of Engineering in Mechanical Engineering · Karnataka, India</p>
+            </div>
+          </section>
+
+          <section class="block">
+            <h3 class="block-title">Toolkit</h3>
+            <div class="skill-group">
+              <h4>CAD &amp; Software</h4>
+              <ul class="chips"><li>SOLIDWORKS</li><li>CATIA</li><li>Siemens NX</li><li>AutoCAD</li><li>Ansys (FEA)</li><li>Revit MEP</li><li>Microsoft Office</li></ul>
+            </div>
+            <div class="skill-group">
+              <h4>Quality &amp; Manufacturing</h4>
+              <ul class="chips"><li>GD&amp;T</li><li>FMEA</li><li>Root cause analysis</li><li>CAPA</li><li>ISO 9001</li><li>Six Sigma</li><li>Lean · 5S</li><li>Gauge calibration</li><li>Micrometers &amp; precision gauges</li><li>CNC machining (lathe &amp; mill)</li></ul>
+            </div>
+            <div class="skill-group">
+              <h4>Programming &amp; Robotics</h4>
+              <ul class="chips"><li>Python</li><li>C</li><li>ROS 2</li><li>Linux (Ubuntu)</li><li>Git</li><li>IMU &amp; GPS data</li><li>Claude Code</li></ul>
+            </div>
+          </section>
+
+          <section class="block">
+            <h3 class="block-title">Certifications &amp; Activities</h3>
+            <ul class="rows">
+              <li><span>Certified SOLIDWORKS Professional (CSWP) &amp; Associate (CSWA)<em>Dassault Systèmes</em></span><span class="when">Apr 2026</span></li>
+              <li><span>CNC Machining (Lathe &amp; Milling) Training<em>Karnataka German Technical Training Institute</em></span><span class="when">Apr 2024</span></li>
+              <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="when">In progress</span></li>
+              <li><span>Member, American Society of Mechanical Engineers (ASME) · NUHOC member<em>Northeastern University</em></span><span class="when">Jan 2026 – Present</span></li>
+            </ul>
+          </section>
+        </article>
+
+        <!-- ============ PROJECTS ============ -->
+        <article class="sheet" id="projects" data-kicker="Projects">
+          <header class="sheet-head">
+            <h2 id="projects-title">Built to <em>sense.</em></h2>
+            <p class="lead">From a ROS&nbsp;2 sensing pipeline that lets a remote operator feel the floor, to fabrication-ready CAD and automated hardware.</p>
+          </header>
+
+          <section class="project project--feature">
+            <div class="project-meta"><span class="tag tag--red">Featured</span><span>EECE 5554 Robot Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></div>
+            <h3>Vibrotactile Indoor Terrain Perception</h3>
+            <p class="project-sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics so a teleoperator can feel what the robot feels. Team project with Tamzid Hossain and Stanley Nketiah.</p>
+
+            <figure class="gallery">
+              <img src="assets/img/terrain-robot.webp" width="1400" height="1050" loading="lazy" alt="Mecabot Plus mobile robot with mecanum wheels on a hardwood floor">
+              <img src="assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" alt="Close-up of the VectorNav VN-100 IMU clamped to the robot's wheel shaft">
+              <img src="assets/img/terrain-field-test.webp" width="1400" height="1050" loading="lazy" alt="The robot and a laptop recording a test run on grass at night">
+              <figcaption>Mecabot Plus · VN-100 on the wheel shaft · a recording run on short grass</figcaption>
+            </figure>
+
+            <div class="pipeline" aria-label="Pipeline">
+              <span>VN-100 IMU<small>40 Hz</small></span><i></i>
+              <span>ROS 2 driver<small>custom pkg</small></span><i></i>
+              <span>rosbag2 → CSV</span><i></i>
+              <span>Features<small>time + FFT</small></span><i></i>
+              <span>SVM<small>87.3%</small></span><i></i>
+              <span>T2H lookup</span><i></i>
+              <span>Xbox haptics</span>
+            </div>
+
+            <div class="stats stats--compact">
+              <div class="stat"><b>40</b><span>test runs<br>4 surfaces</span></div>
+              <div class="stat"><b>3,474</b><span>labeled<br>1-second windows</span></div>
+              <div class="stat"><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
+              <div class="stat"><b>87.3%</b><span>test accuracy<br>SVM · full fusion</span></div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <h4 class="mini">What I did</h4>
+                <ul class="bullets">
+                  <li>Mounted a VectorNav VN-100 IMU on the wheel shaft of a Mecabot Plus robot to sense floor vibrations.</li>
+                  <li>Recorded 40 test runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
+                  <li>Classified the four surfaces in Python with 87.3% test accuracy and gave each its own Xbox controller vibration in Unity.</li>
+                </ul>
+                <h4 class="mini">Method</h4>
+                <ul class="bullets">
+                  <li>Custom ROS 2 Humble driver parsing VNYMR serial data at 40 Hz on Ubuntu 22.04, recorded with rosbag2.</li>
+                  <li>One-second windows with 50% overlap: RMS, variance, peak-to-peak, skewness and kurtosis, plus four FFT band energies across 1–20 Hz.</li>
+                  <li>Compared an RBF SVM, a 100-tree random forest and a raw-signal 1D-CNN across a four-run feature ablation.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="mini">Model comparison · full sensor fusion</h4>
+                <div class="bars" role="img" aria-label="Accuracy: SVM 87.3 percent, random forest 84.8 percent, 1D-CNN 82.5 percent">
+                  <div class="bar" style="--v:87.3"><span>SVM</span><i></i><b>87.3%</b></div>
+                  <div class="bar" style="--v:84.8"><span>Random forest</span><i></i><b>84.8%</b></div>
+                  <div class="bar" style="--v:82.5"><span>1D-CNN (raw)</span><i></i><b>82.5%</b></div>
+                </div>
+                <h4 class="mini">Confusion matrix · best model (%)</h4>
+                <table class="cm">
+                  <thead><tr><th scope="col"><span class="sr">Actual \ predicted</span></th><th scope="col">Carpet</th><th scope="col">Hardwood</th><th scope="col">Grass</th><th scope="col">Tile</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Carpet</th><td style="--v:97.2">97.2</td><td style="--v:0.7">0.7</td><td style="--v:1.4">1.4</td><td style="--v:0.7">0.7</td></tr>
+                    <tr><th scope="row">Hardwood</th><td style="--v:2">2.0</td><td style="--v:72.3">72.3</td><td style="--v:0">0.0</td><td style="--v:25.7">25.7</td></tr>
+                    <tr><th scope="row">Grass</th><td style="--v:0">0.0</td><td style="--v:0">0.0</td><td style="--v:99.4">99.4</td><td style="--v:0.6">0.6</td></tr>
+                    <tr><th scope="row">Tile</th><td style="--v:2.1">2.1</td><td style="--v:18.1">18.1</td><td style="--v:0.7">0.7</td><td style="--v:79.2">79.2</td></tr>
+                  </tbody>
+                </table>
+                <p class="cm-axis">Rows: actual surface · columns: predicted</p>
+              </div>
+            </div>
+
+            <div class="findings">
+              <div><b>01</b><p>Frequency features carry most of the signal: 78.1% accuracy on their own.</p></div>
+              <div><b>02</b><p>Adding the gyroscope lifts accuracy from 82.8% to 87.3%.</p></div>
+              <div><b>03</b><p>Grass and carpet separate cleanly. Hardwood and tile overlap in PCA, a data limit at 40&nbsp;Hz rather than a model limit.</p></div>
+              <div><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs 82.5%).</p></div>
+            </div>
+
+            <div class="haptics" id="haptics">
+              <div class="haptics-head">
+                <h4 class="mini">Feel the terrain</h4>
+                <p>The project's terrain-to-haptic (T2H) mapping. Pick a surface: it rumbles a connected gamepad, vibrates a phone, or plays through your speakers.</p>
+              </div>
+              <div class="haptics-grid">
+                <button class="surface" type="button" data-surface="tile" aria-pressed="false"><img src="assets/img/surf-tile.webp" alt="" loading="lazy" width="480" height="640"><span>Tile</span><small>Steady buzz</small></button>
+                <button class="surface" type="button" data-surface="hardwood" aria-pressed="false"><img src="assets/img/surf-hardwood.webp" alt="" loading="lazy" width="480" height="640"><span>Hardwood</span><small>Medium hum</small></button>
+                <button class="surface" type="button" data-surface="carpet" aria-pressed="false"><img src="assets/img/surf-carpet.webp" alt="" loading="lazy" width="480" height="640"><span>Carpet</span><small>Gentle throb</small></button>
+                <button class="surface" type="button" data-surface="grass" aria-pressed="false"><img src="assets/img/surf-grass.webp" alt="" loading="lazy" width="480" height="360"><span>Grass</span><small>Faint taps</small></button>
+              </div>
+              <div class="scope">
+                <canvas id="haptic-scope" aria-hidden="true"></canvas>
+                <p class="scope-readout" id="haptic-readout">Select a surface</p>
+              </div>
+            </div>
+
+            <figure class="figure">
+              <img src="assets/img/terrain-unity-sim.webp" width="1400" height="830" loading="lazy" alt="Unity editor running the terrain-to-haptic teleoperation simulation">
+              <figcaption>Unity 2022.3 simulation: the robot drives over terrain tiles and each class maps to left/right controller motor speeds</figcaption>
+            </figure>
+
+            <p class="project-links"><button class="link-btn" type="button" data-holo="rover">View hologram ↗</button></p>
+          </section>
+
+          <section class="project">
+            <div class="project-meta"><span class="tag">In progress</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></div>
+            <h3>Elbow Joint Actuator for a Surgical Assist Arm</h3>
+            <p class="project-sub">A bolt-in elbow module with a frameless motor, 100:1 strain-wave gear, fail-safe brake and an absolute output encoder in a 90&nbsp;mm housing. <a href="#now">Full breakdown in Now →</a></p>
+          </section>
+
+          <section class="project">
+            <div class="project-meta"><span>Visvesvaraya Technological University</span><span>Jan – May 2023</span></div>
+            <h3>Mini Robotic Cart Design</h3>
+            <ul class="bullets">
+              <li>Modeled a mini robotic cart chassis in SOLIDWORKS, including the frame, wheel mounts and motor housings.</li>
+              <li>Arranged the layout for balance and easy assembly, with all parts ready to fabricate.</li>
+            </ul>
+            <ul class="chips chips--sm"><li>SOLIDWORKS</li><li>Chassis design</li><li>Assembly layout</li></ul>
+            <p class="project-links"><button class="link-btn" type="button" data-holo="cart">View hologram ↗</button></p>
+          </section>
+
+          <section class="project">
+            <div class="project-meta"><span>Visvesvaraya Technological University</span><span>Aug – Dec 2022</span></div>
+            <h3>Renewable Energy-Powered Water Purification System</h3>
+            <ul class="bullets">
+              <li>Developed a brine water purification system powered by solar and wind energy.</li>
+              <li>Added sensors and automatic valve, pump and motor control so the system needed less manual work.</li>
+            </ul>
+            <ul class="chips chips--sm"><li>Solar + wind</li><li>Sensors</li><li>Automatic control</li></ul>
+          </section>
+        </article>
+
+        <!-- ============ EXPERIENCE ============ -->
+        <article class="sheet" id="experience" data-kicker="Experience">
+          <header class="sheet-head">
+            <h2 id="experience-title">The road <em>so far.</em></h2>
+            <p class="lead">Over two years between the shop floor and the design desk: quality systems for precision diesel components at Bosch, then hydraulic cylinder design at Minar Industries.</p>
+          </header>
+
+          <ol class="timeline">
+            <li class="tl-item">
+              <div class="tl-when">Jun 2025 – Oct 2025</div>
+              <div class="tl-body">
+                <h3>Design Engineer <span>· Minar Industries</span></h3>
+                <p class="entry-sub">Karnataka, India</p>
+                <ul class="bullets">
+                  <li>Designed hydraulic cylinders and pistons for heavy machinery and took each one from concept through design review.</li>
+                  <li>Prepared the manufacturing drawings, assembly drawings and bills of materials (BOMs) used to build each part.</li>
+                  <li>Verified part dimensions, tolerances and clearances against engineering and performance standards before production.</li>
+                  <li>Partnered with production, quality and supplier teams to make manufacturing more efficient and parts more reliable.</li>
+                </ul>
+                <ul class="chips chips--sm"><li>Hydraulic design</li><li>Manufacturing drawings</li><li>BOMs</li><li>Tolerancing</li></ul>
+                <p class="project-links"><button class="link-btn" type="button" data-holo="hydraulic">View hologram ↗</button></p>
+              </div>
+            </li>
+            <li class="tl-item">
+              <div class="tl-when">Jul 2023 – May 2025</div>
+              <div class="tl-body">
+                <h3>Graduate Engineer <span>· Bosch</span></h3>
+                <p class="entry-sub">Karnataka, India · Precision diesel components</p>
+                <div class="highlight"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+                <ul class="bullets">
+                  <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
+                  <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
+                  <li>Inspected and tested diesel parts with calibrated gauges, checked gauge accuracy with MSA and logged results in SAP.</li>
+                  <li>Supported lean workshop improvements, including 5S implementation and safer work practices.</li>
+                </ul>
+                <ul class="chips chips--sm"><li>ISO 9001</li><li>FMEA</li><li>RCA · CAPA</li><li>MSA</li><li>SAP</li><li>5S</li></ul>
+              </div>
+            </li>
+            <li class="tl-item tl-item--edu">
+              <div class="tl-when">Jun 2023</div>
+              <div class="tl-body">
+                <h3>B.E. Mechanical Engineering <span>· VTU</span></h3>
+                <p class="entry-sub">Visvesvaraya Technological University, Karnataka, India</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <!-- ============ NOW ============ -->
+        <article class="sheet" id="now" data-kicker="Now">
+          <header class="sheet-head">
+            <h2 id="now-title">Currently <em>building.</em></h2>
+            <p class="lead">An elbow joint actuator for a surgical assist robot arm, my ME 5374 Robot Design final project this fall, alongside the M.S. at Northeastern (expected May 2028). I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
+          </header>
+
+          <section class="project project--feature">
+            <div class="project-meta"><span class="tag tag--red">In progress</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></div>
+            <h3>Elbow Joint Actuator for a Surgical Assist Robot Arm</h3>
+            <p class="project-sub">One complete bolt-in joint module for a lightweight arm that holds a surgical tool or endoscope camera next to a patient. It has to hold position when power is lost, know its exact angle at power-up with no homing move, and stay small enough to keep out of the surgeon's way. Medical arms like the KUKA LBR Med set the reference.</p>
+
+            <div class="spec-grid">
+              <div><span>Continuous torque</span><b>20 Nm</b></div>
+              <div><span>Peak torque</span><b>50 Nm</b></div>
+              <div><span>Range of motion</span><b>±170°</b></div>
+              <div><span>Max speed</span><b>30 rpm</b></div>
+              <div><span>Position error</span><b>≤ 0.1°</b></div>
+              <div><span>Power-off hold</span><b>≥ 50 Nm</b></div>
+              <div><span>Envelope</span><b>Ø90 × 110 mm</b></div>
+              <div><span>Mass</span><b>≤ 1.5 kg</b></div>
+            </div>
+
+            <div class="two-col">
+              <div>
+                <h4 class="mini">Inside the joint</h4>
+                <ul class="stack">
+                  <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
+                  <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side, so it only needs to hold about 1 Nm</span></li>
+                  <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
+                  <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
+                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="mini">First estimates</h4>
+                <ul class="stack stack--num">
+                  <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm. The gear sets the rating.</span></li>
+                  <li><b>≈ 40 Hz</b><span>first resonance, so 8–13 Hz position bandwidth is realistic</span></li>
+                  <li><b>0.084°</b><span>gear twist at 20 Nm, which is why the output encoder is there</span></li>
+                  <li><b>&lt; 0.02°</b><span>expected error with the loop closed on the AksIM-2</span></li>
+                  <li><b>27%</b><span>of total inertia on the motor side (0.216 kg·m² reflected)</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <h4 class="mini">Milestones</h4>
+            <ol class="milestones" id="milestones">
+              <li data-date="2026-11-15"><b>Nov 15</b><span>Component selection &amp; layout</span></li>
+              <li data-date="2026-11-29"><b>Nov 29</b><span>Detailed CAD &amp; GD&amp;T drawing</span></li>
+              <li data-date="2026-12-07"><b>Dec 7</b><span>FEA, FMEA, life checks &amp; report</span></li>
+              <li data-date="2026-12-10"><b>Dec 10</b><span>Final presentation</span></li>
+            </ol>
+
+            <p class="project-links"><button class="link-btn" type="button" data-holo="elbow">View exploded hologram ↗</button></p>
+          </section>
+
+          <section class="block">
+            <h3 class="block-title">Also right now</h3>
+            <ul class="rows">
+              <li><span>M.S. Mechatronics, Robotics &amp; Automation<em>Northeastern University · Boston, MA</em></span><span class="when">Expected May 2028</span></li>
+              <li><span>Building Practical Python Programming Skills for Technology Careers<em>LinkedIn Learning</em></span><span class="when">In progress</span></li>
+              <li><span>ASME member · NUHOC member<em>Northeastern University</em></span><span class="when">Since Jan 2026</span></li>
+            </ul>
+          </section>
+
+          <div class="cta">
+            <p>Open to co-op roles in <b>mechanical design</b>, <b>manufacturing</b> and <b>quality engineering</b>.</p>
+            <div class="cta-row">
+              <a class="btn btn--red" href="mailto:mohammedabdullah.fn@northeastern.edu">Email me</a>
+              <a class="btn" href="https://www.linkedin.com/in/abd-mohdd" target="_blank" rel="noopener">LinkedIn ↗</a>
+              <a class="btn" href="https://github.com/mohammedabdullah-fn" target="_blank" rel="noopener">GitHub ↗</a>
+              <a class="btn" href="#resume">Resume</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ============ RESUME ============ -->
+        <article class="sheet sheet--resume" id="resume" data-kicker="Resume">
+          <header class="sheet-head sheet-head--row">
+            <h2 id="resume-title">Resume <em>·&nbsp;PDF</em></h2>
+            <div class="cta-row">
+              <a class="btn btn--red" href="resume.pdf" download="Mohammed-Abdullah-Resume.pdf">Download</a>
+              <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+            </div>
+          </header>
+          <div class="pdf-frame">
+            <iframe id="resume-frame" data-src="resume.pdf#view=FitH" title="Mohammed Abdullah resume (PDF)"></iframe>
+          </div>
+          <p class="pdf-note">If the preview doesn't load on your device, use Download.</p>
+        </article>
+      </div>
+
+      <div class="modal-foot">
+        <button class="modal-nav" id="modal-prev" type="button">← <span>Now</span></button>
+        <button class="modal-nav" id="modal-next" type="button"><span>Projects</span> →</button>
+      </div>
+    </div>
+  </div>
+
+  <noscript><style>.cards .card { opacity: 1 !important; }</style></noscript>
+  <script type="module" src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
