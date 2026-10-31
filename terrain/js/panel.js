@@ -29,7 +29,6 @@ function setInert(v) {
   }
 }
 
-const SECTION_IDS = ['about', 'projects', 'experience', 'now', 'resume'];
 const visited = new Set();
 function markVisited(id) {
   if (!SECTION_IDS.includes(id) || visited.has(id)) return;
