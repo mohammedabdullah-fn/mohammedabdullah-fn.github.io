@@ -389,7 +389,7 @@ for (const btn of $$('.surface')) {
     if (rumbleGamepad(cfg)) via.push('gamepad');
     if (vibratePhone(cfg)) via.push('phone');
     if (!via.length && playHapticAudio(cfg)) via.push('audio');
-    $('#haptic-readout').textContent = `${key} · amp ${cfg.amp.toFixed(2)} · ${cfg.pattern} · L ${cfg.left.toFixed(2)} / R ${cfg.right.toFixed(2)} · via ${via.join(' + ') || 'visual only'}`;
+    $('#haptic-readout').textContent = `${key} · amp ${cfg.amp.toFixed(2)} · ${cfg.pattern} · L ${cfg.left.toFixed(2)} / R ${cfg.right.toFixed(2)} · ${via.length ? `via ${via.join(' + ')}` : 'visual only'}`;
     runScope(cfg);
   });
 }

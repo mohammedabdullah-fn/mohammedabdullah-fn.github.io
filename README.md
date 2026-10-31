@@ -7,7 +7,7 @@ Three versions, three robots:
 | Path | Version | Robot | Idea |
 | --- | --- | --- | --- |
 | `/` | 01 Workcell | 5-axis articulated arm | Cinematic WebGL workcell. The arm tracks the cursor with closed-form IK; drag it onto a card to open it, pick and place parts, run a robot program, open the teach pendant and exploded view. |
-| `/terrain/` | 02 Terrain Lab | Mecanum-wheel rover | Drive a Mecabot-style rover across tile, hardwood, carpet and grass with a live IMU trace and the terrain classifier from the EECE 5554 project. |
+| `/terrain/` | 02 Terrain Lab | Mecanum-wheel rover | Drive a Mecabot-style rover across tile, hardwood, carpet and grass with a live IMU trace and a classifier that follows the EECE 5554 project's confusion matrix. |
 | `/blueprint/` | 03 Blueprint | Quadruped | An engineering drawing set that comes alive: a line-art quadruped walks the sheets, dimensions draw themselves, and the ME 5374 elbow actuator explodes on scroll. |
 
 ## Run locally
@@ -30,14 +30,14 @@ The site goes live at https://mohammedabdullah-fn.github.io/ within a minute or 
 
 ## Editing content
 
-- **01 Workcell:** all text is in `index.html` (cards near the top, full sections inside `#modal`). Scene code is in `assets/js/`:
+- **01 Workcell:** page text is in `index.html` (cards near the top, full sections inside `#modal`). Scene code is in `assets/js/`:
   - `arm.js`: robot geometry, IK, servos
   - `motion.js`: MoveJ/MoveL programs
   - `main.js`: scene and interaction
   - `holo.js`: hologram models
   - `room.js`: room and follow-spot
   - `ui.js`: sheets, toasts, haptics
-- **Images:** `assets/img/` (WebP, EXIF stripped). **Resume:** `resume.pdf`.
+- **Images:** `assets/img/` (EXIF stripped). **Resume:** `resume.pdf`.
 
 ## Notes
 

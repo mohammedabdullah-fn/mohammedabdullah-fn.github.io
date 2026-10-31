@@ -647,7 +647,7 @@ export class Walker {
     }
     const T = {
       body: ['Body frame', `Q-4 concept quadruped, 650 mm long, drawn at 1:${sc}. Hidden lines show the far legs.`],
-      'hip-front': ['Front hip actuator', 'Pitch joint, Ø88 housing. Centre mark extends past the part, as drawn on a CAD sheet.'],
+      'hip-front': ['Front hip actuator', 'Pitch joint, Ø88 housing. Center mark extends past the part, as drawn on a CAD sheet.'],
       'hip-rear': ['Rear hip actuator', 'Pitch joint, Ø88 housing.'],
       handle: ['Carry handle', '192 mm bar on two posts.'],
       antenna: ['Antenna', 'Sprung mast; it sways when the body accelerates.'],

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mohammed Abdullah · Blueprint · Mechanical &amp; Robotics Engineer</title>
-  <meta name="description" content="Mohammed Abdullah's portfolio drawn as an engineering drawing set. Certified SOLIDWORKS Professional and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern: terrain perception from wheel-mounted IMUs, quality at Bosch, hydraulic design at Minar Industries, and an elbow actuator for a surgical assist arm.">
+  <meta name="description" content="Mohammed Abdullah's portfolio drawn as an engineering drawing set. Certified SOLIDWORKS Professional and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern: terrain perception from a wheel-mounted IMU, quality at Bosch, hydraulic design at Minar Industries, and an elbow actuator for a surgical assist arm.">
   <meta name="theme-color" content="#0d2b52">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mohammed Abdullah · Blueprint">
@@ -94,7 +94,7 @@
             <tr><td>1</td><td><a href="#sheet-1">General arrangement · About</a></td><td>D</td></tr>
             <tr><td>2</td><td><a href="#sheet-2">Projects · Terrain perception</a></td><td>D</td></tr>
             <tr><td>3</td><td><a href="#sheet-3">Experience · Dimension chain</a></td><td>C</td></tr>
-            <tr><td>4</td><td><a href="#sheet-4">Elbow actuator · Exploded section</a></td><td>E</td></tr>
+            <tr><td>4</td><td><a href="#sheet-4">Elbow joint actuator · Exploded section A–A</a></td><td>E</td></tr>
             <tr><td>5</td><td><a href="#sheet-5">Contact · Resume</a></td><td>E</td></tr>
           </tbody>
         </table>
@@ -123,7 +123,7 @@
           <div>
             <h3>Northeastern University</h3>
             <span class="when">Expected May 2028 · Boston, MA</span>
-            <p>M.S. Mechatronics, Robotics, and Automation, concentration in Mechanical Engineering.</p>
+            <p>M.S. Mechatronics, Robotics &amp; Automation, concentration in Mechanical Engineering.</p>
             <p class="note">Coursework: Robotics Sensing and Navigation, Mobile Robotics, Robot Design, CAD and Manufacturing.</p>
           </div>
           <div>
@@ -181,13 +181,13 @@
     <header class="sh-head">
       <p class="kicker"><span class="badge">2</span>DWG MA-BP-002 · Projects</p>
       <h2 class="sh-title" id="s2-title">Built to <em>sense.</em></h2>
-      <p class="lead">A ROS&nbsp;2 sensing pipeline that lets a remote operator feel the floor, an elbow joint in progress, and fabrication-ready CAD and automated hardware from my undergraduate years.</p>
+      <p class="lead">A ROS&nbsp;2 sensing pipeline that lets an operator feel the floor in simulation; an elbow joint in progress; and fabrication-ready CAD and automated hardware from my undergraduate years.</p>
     </header>
 
     <article class="feat" aria-labelledby="p-terrain">
-      <p class="meta"><span class="tag">Featured</span><span>EECE 5554 Robot Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></p>
+      <p class="meta"><span class="tag">Featured</span><span>EECE 5554 Robotics Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></p>
       <h3 class="ph" id="p-terrain">Vibrotactile Indoor Terrain Perception</h3>
-      <p class="sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics so a teleoperator can feel what the robot feels. A team project with Tamzid Hossain and Stanley Nketiah.</p>
+      <p class="sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics in a Unity simulation, so a teleoperator can feel what the robot feels. A team project with Tamzid Hossain and Stanley Nketiah.</p>
 
       <div class="views">
         <figure class="view view-a">
@@ -198,8 +198,8 @@
           <figcaption><b>View A</b> · Mecabot Plus, mecanum wheels</figcaption>
         </figure>
         <figure class="view view-b">
-          <div class="detail" id="detail-b"><img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" alt="Close-up of the VectorNav VN-100 IMU clamped to the robot's wheel shaft"></div>
-          <figcaption><b>Detail B</b> (enlarged) · VectorNav VN-100 clamped to the wheel shaft</figcaption>
+          <div class="detail" id="detail-b"><img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" alt="Close-up of the VectorNav VN-100 IMU attached to the robot's wheel shaft"></div>
+          <figcaption><b>Detail B</b> (enlarged) · VectorNav VN-100 attached to the wheel shaft</figcaption>
         </figure>
         <figure class="view view-c">
           <img src="../assets/img/terrain-field-test.webp" width="1400" height="1050" loading="lazy" alt="The robot and a laptop recording a test run on grass at night">
@@ -213,7 +213,7 @@
         <li style="--i:1"><span>ROS 2 driver</span><small>custom package</small></li>
         <li style="--i:2"><span>rosbag2 → CSV</span></li>
         <li style="--i:3"><span>Features</span><small>time + FFT</small></li>
-        <li style="--i:4" class="is-key"><span>SVM</span><small>87.3%</small></li>
+        <li style="--i:4" class="is-key"><span>Classifier</span><small>SVM 87.3% best</small></li>
         <li style="--i:5"><span>T2H lookup</span></li>
         <li style="--i:6"><span>Xbox haptics</span></li>
       </ol>
@@ -237,7 +237,7 @@
           <ul class="bullets">
             <li>Custom ROS 2 Humble driver parsing VNYMR serial data at 40 Hz on Ubuntu 22.04, recorded with rosbag2.</li>
             <li>One-second windows with 50% overlap: RMS, variance, peak-to-peak, skewness and kurtosis, plus four FFT band energies across 1–20 Hz.</li>
-            <li>Compared an RBF SVM, a 100-tree random forest and a raw-signal 1D-CNN across a four-run feature ablation.</li>
+            <li>Compared an RBF SVM and a 100-tree random forest across four feature configurations, and a raw-signal 1D-CNN on full sensor fusion.</li>
           </ul>
         </div>
         <div>
@@ -280,21 +280,21 @@
             <div class="find"><b>01</b><p>Frequency features carry most of the signal: 78.1% accuracy on their own.</p></div>
             <div class="find"><b>02</b><p>Adding the gyroscope lifts accuracy from 82.8% to 87.3%.</p></div>
             <div class="find"><b>03</b><p>Grass and carpet separate cleanly. Hardwood and tile overlap in PCA, a data limit at 40&nbsp;Hz rather than a model limit.</p></div>
-            <div class="find"><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs 82.5%).</p></div>
+            <div class="find"><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs. 82.5%).</p></div>
           </div>
         </div>
       </div>
 
       <figure class="view view-d">
         <img src="../assets/img/terrain-unity-sim.webp" width="1400" height="830" loading="lazy" alt="Unity editor running the terrain-to-haptic teleoperation simulation">
-        <figcaption><b>View D</b> · Unity 2022.3 simulation: the robot drives over terrain tiles and each class maps to left and right controller motor speeds</figcaption>
+        <figcaption><b>View D</b> · Unity 2022.3 simulation: a vehicle drives over terrain tiles and each class maps to left and right controller motor speeds</figcaption>
       </figure>
     </article>
 
     <div class="more">
       <article class="card" data-dwg="MA-P-02">
         <p class="meta"><span class="tag tag--red">In work</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></p>
-        <h3>Elbow Joint Actuator for a Surgical Assist Arm</h3>
+        <h3>Elbow Joint Actuator for a Surgical Assist Robot Arm</h3>
         <p class="sub">A bolt-in elbow module with a frameless motor, 100:1 strain-wave gear, fail-safe brake and an absolute output encoder in a 90&nbsp;mm housing.</p>
         <p style="margin-top:12px"><a class="card-link" href="#sheet-4">Exploded section on sheet 4 →</a></p>
       </article>
@@ -362,7 +362,7 @@
         <p class="meta"><span class="tag">Jul 2023 – May 2025</span></p>
         <h3>Graduate Engineer <span>· Bosch</span></h3>
         <p class="where">Karnataka, India · Precision diesel components</p>
-        <div class="callout-box" data-rev="B"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+        <div class="callout-box" data-rev="B"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, work recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
         <ul class="bullets">
           <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
           <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
@@ -408,7 +408,7 @@
       <div><dt>Max speed</dt><dd>30 rpm</dd></div>
       <div><dt>Position error</dt><dd>≤ 0.1°</dd></div>
       <div><dt>Power-off hold</dt><dd>≥ 50 Nm</dd></div>
-      <div><dt>Envelope</dt><dd>Ø90 × 110 mm</dd></div>
+      <div><dt>Envelope</dt><dd>≤ Ø90 × 110 mm</dd></div>
       <div><dt>Mass</dt><dd>≤ 1.5 kg</dd></div>
     </dl>
 
@@ -441,7 +441,7 @@
           <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
           <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
           <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
-          <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
+          <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring encoder on the output</span></li>
           <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
           <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
         </ul>
@@ -449,9 +449,9 @@
       <div>
         <h4 class="mini">First estimates</h4>
         <ul class="stack stack--num">
-          <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm. The gear sets the rating.</span></li>
+          <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm; the gear sets the rating</span></li>
           <li><b>≈ 40 Hz</b><span>first resonance, so 8–13 Hz position bandwidth is realistic</span></li>
-          <li><b>0.084°</b><span>gear twist at 20 Nm, which is why the output encoder is there</span></li>
+          <li><b>0.084°</b><span>gear twist at 20 Nm; adding 1.5 arcmin of gear error gives ≈ 0.11°, over the 0.1° target, hence the output encoder</span></li>
           <li><b>&lt; 0.02°</b><span>expected error with the loop closed on the AksIM-2</span></li>
           <li><b>27%</b><span>of total inertia on the motor side (0.216 kg·m² reflected)</span></li>
         </ul>

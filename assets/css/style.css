@@ -994,6 +994,8 @@ html:not(.js) .sheet:target { display: block; }
   .topbar { position: absolute; padding: 16px; }
   .brand-name { font-size: 17px; }
   .brand-role { font-size: 8.5px; letter-spacing: .26em; }
+  .brand-deg { display: none; } /* the full degree name wraps to five lines here; the About card below carries it */
+  .brand-open { margin-left: 0; }
   .toolbar { gap: 6px; }
   .tool-btn { width: 38px; padding: 0; justify-content: center; }
   .tool-btn .lbl { display: none; }

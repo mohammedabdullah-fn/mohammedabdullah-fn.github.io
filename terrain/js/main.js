@@ -153,7 +153,7 @@ function start() {
       // "I'm stuck": put the rover back at the lab centre
       drive.cancel();
       drive.teleport(0, 0, drive.psi);
-      emit('toast', { text: 'Rover reset to the lab centre (R)', ms: 2200 });
+      emit('toast', { text: 'Rover reset to the lab center (R)', ms: 2200 });
       e.preventDefault();
       return;
     }

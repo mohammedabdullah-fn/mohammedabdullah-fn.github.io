@@ -173,7 +173,7 @@ function rover() {
 
 // Minar Industries: tie-rod hydraulic cylinder, cycling between assembled and exploded.
 function hydraulic() {
-  const m = new Model('hydraulic', 'HYDRAULIC CYLINDER', 'TIE-ROD DESIGN · MINAR INDUSTRIES', 1.0);
+  const m = new Model('hydraulic', 'HYDRAULIC CYLINDER', 'CYLINDER DESIGN · MINAR INDUSTRIES', 1.0);
   const g = new THREE.Group();
   g.position.y = 0.62;
   g.scale.setScalar(0.8);

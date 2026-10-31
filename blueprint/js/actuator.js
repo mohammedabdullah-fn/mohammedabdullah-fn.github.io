@@ -99,7 +99,7 @@ export class Actuator {
 
   // ----------------------------------------------------------- building
   buildSection() {
-    const s = (this.svg = svg('svg', { class: 'ex-svg', role: 'img', 'aria-label': 'Exploded section A-A of the elbow joint actuator. Parts, from the rear: rear cover, controller board, brake, rotor hub, housing with stator, wave generator, flexspline cup, circular spline, cross-roller bearing, encoder ring and output flange.' }, this.drawHost));
+    const s = (this.svg = svg('svg', { class: 'ex-svg', role: 'img', 'aria-label': 'Exploded section A–A of the elbow joint actuator. Parts, from the rear: rear cover, controller board, brake, rotor hub, housing with stator, wave generator, flexspline cup, circular spline, cross-roller bearing, encoder ring and output flange.' }, this.drawHost));
     const defs = svg('defs', null, s);
     this.patterns = {};
     for (const [id, h] of Object.entries(HATCH)) this.patterns[id] = this.makePattern(defs, id, h);
@@ -152,7 +152,7 @@ export class Actuator {
   }
 
   buildEnd() {
-    const s = (this.endSvg = svg('svg', { class: 'ex-endsvg', role: 'img', 'aria-label': 'View B, the output end: Ø90 housing, output flange with an 8-hole bolt circle, hidden encoder ring and wave generator, and the cutting plane A-A.' }, this.endHost));
+    const s = (this.endSvg = svg('svg', { class: 'ex-endsvg', role: 'img', 'aria-label': 'View B, the output end: Ø90 housing, output flange with an 8-hole bolt circle, hidden encoder ring and wave generator, and the cutting plane A–A.' }, this.endHost));
     this.end = {
       hidden: svg('path', { class: 'ex-hid', 'data-part': 'enc' }, s),
       wg: svg('path', { class: 'ex-hid', 'data-part': 'wg' }, s),

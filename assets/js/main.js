@@ -716,7 +716,7 @@ function waveSteps() {
   return [
     { kind: 'movej', label: 'Raise to wave', code: 'MoveAbsJ jWave, v1500, z50, tGripper;', v: 1.5, toJ: () => pose,
       enter: () => { state.align = null; state.holdRoll = false; } },
-    { kind: 'joints', label: 'Hello!', code: 'Wave \\Cycles:=4;', dur: D,
+    { kind: 'joints', label: 'Hello!', code: 'Wave \\Cycles:=3;', dur: D,
       enter: () => { b = { ...ref.q }; },
       fn: (t, q) => {
         const env = smooth(Math.min(1, t / 0.5)) * smooth(Math.min(1, (D - t) / 0.5));
@@ -873,7 +873,7 @@ function endDemo(done) {
   ui.demoStatus(false);
   setDemoButton(false);
   if (done) ui.toast(`Demo complete · ${state.hits} parts on target`);
-  else if (state.held) ui.toast(`Holding the ${state.held.name.toLowerCase()} · click the bench to place it`);
+  else if (state.held) ui.toast(`Holding the ${state.held.name.toLowerCase()} · ${ui.coarse ? 'tap' : 'click'} the bench to place it`);
 }
 
 function demoInfo() {
@@ -1530,6 +1530,7 @@ function updateHUD(dt) {
     setText($('pd-z'), `Z ${((_tcp.y - BASE.y) * 1000).toFixed(0)}`);
     setText($('pd-mode'), modeLabel().split(' · ')[0]);
     if (document.activeElement !== $('pd-grip')) $('pd-grip').value = String(Math.round(arm.grip * 100));
+    setText($('pd-grip').parentElement.querySelector('output'), arm.grip > 0.97 ? 'open' : arm.grip < 0.03 ? 'closed' : `${Math.round(arm.grip * 100)}%`);
   }
 
   if (state.demo && state.prog) ui.demoStatus(true, demoInfo());
@@ -1547,7 +1548,7 @@ function updateHover() {
     else if (state.mode === 'explode') label = 'Exploded view';
     else {
       const h = pick();
-      if (h?.type === 'arm') { label = 'Drag · tap to wave'; hot = true; }
+      if (h?.type === 'arm') { label = `Drag · ${ui.coarse ? 'tap' : 'click'} to wave`; hot = true; }
       else if (state.held) { label = 'Place here'; hot = true; }
       else if (h?.type === 'prop') { label = `Pick ${h.prop.name}`; hot = true; hoverProp = h.prop; }
       else if (h?.type === 'holo') { label = 'Transform'; hot = true; }

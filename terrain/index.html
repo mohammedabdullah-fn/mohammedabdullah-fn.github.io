@@ -35,7 +35,7 @@
 
   <!-- 3D stage -->
   <div class="tl-stage" id="tl-stage" data-inert>
-    <canvas id="tl-canvas" tabindex="-1" role="img" aria-label="Top-down point-cloud lab with a mecanum-wheel rover on four floor zones: tile, hardwood, carpet and short grass. Section beacons stand in each zone."></canvas>
+    <canvas id="tl-canvas" tabindex="-1" role="img" aria-label="Point-cloud lab with a mecanum-wheel rover on four floor zones: tile, hardwood, carpet and short grass. Section beacons stand in each zone."></canvas>
     <div class="tl-labels" id="tl-labels" aria-hidden="true"></div>
     <div class="tl-fallback" aria-hidden="true"><p>3D view unavailable on this device. Every section is in the index.</p></div>
   </div>
@@ -47,7 +47,7 @@
       <span class="tl-brand-mark" aria-hidden="true"><i></i></span>
       <div class="tl-brand-text">
         <h1 class="tl-brand-name"><a href="./">Mohammed Abdullah</a></h1>
-        <p class="tl-brand-sub"><span class="tl-brand-lab">Terrain Lab</span><span class="tl-brand-role"> · M.S. Robotics, Northeastern · CSWP</span></p>
+        <p class="tl-brand-sub"><span class="tl-brand-lab">Terrain Lab</span><span class="tl-brand-role"> · M.S. Mechatronics, Robotics &amp; Automation, Northeastern · CSWP</span></p>
       </div>
     </div>
     <div class="tl-tools">
@@ -113,7 +113,7 @@
     <section class="tl-panel tl-cls" aria-labelledby="tl-cls-h">
       <header class="tl-ph"><h2 id="tl-cls-h">Surface classifier</h2><span class="tl-chip">SVM · 87.3% test</span></header>
       <ul class="tl-cls-bars">
-        <li data-class="carpet"><span>Carpet</span><b class="tl-track"><i></i></b><em>0.7%</em></li>
+        <li data-class="carpet"><span>Carpet</span><b class="tl-track"><i></i></b><em>2.1%</em></li>
         <li data-class="hardwood"><span>Hardwood</span><b class="tl-track"><i></i></b><em>18.1%</em></li>
         <li data-class="grass"><span>Grass</span><b class="tl-track"><i></i></b><em>0.7%</em></li>
         <li data-class="tile"><span>Tile</span><b class="tl-track"><i></i></b><em>79.2%</em></li>
@@ -123,7 +123,7 @@
       <p class="tl-cls-note">One decision per 1 s window, 50% overlap. Probabilities track the best model's confusion matrix; the SVM scored 87.3% test accuracy.</p>
     </section>
     <section class="tl-panel tl-ik" aria-labelledby="tl-ik-h">
-      <header class="tl-ph"><h2 id="tl-ik-h">Mecanum IK</h2><span class="tl-chip" id="tl-twist">v 0.00 · ω +0.00</span></header>
+      <header class="tl-ph"><h2 id="tl-ik-h">Mecanum IK</h2><span class="tl-chip" id="tl-twist">V 0.00 · ω +0.00</span></header>
       <canvas id="tl-ik" aria-hidden="true"></canvas>
     </section>
   </aside>
@@ -135,7 +135,7 @@
     <span>Z <b id="tl-z">+0.00</b></span>
     <span>Hdg <b id="tl-hdg">000°</b></span>
     <span>V <b id="tl-v">0.00</b> m/s</span>
-    <span>ω <b id="tl-w">+0.00</b></span>
+    <span><span class="tl-sym">ω</span> <b id="tl-w">+0.00</b></span>
     <span>Tgt <b id="tl-tgt">-</b></span>
   </div>
   <p class="tl-hint tl-needs3d" data-inert>
@@ -149,10 +149,10 @@
       <div><dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / arrows</dt><dd>Translate relative to the screen. Mecanum wheels strafe without turning.</dd></div>
       <div><dt><kbd>Q</kbd> <kbd>E</kbd></dt><dd>Rotate left / right in place.</dd></div>
       <div><dt>Click or tap the floor</dt><dd>Plan a path. The rover follows it with speed, acceleration and turn-rate limits.</dd></div>
-      <div><dt>Click a beacon or label</dt><dd>Open that section straight away.</dd></div>
+      <div><dt>Click a beacon or label</dt><dd>Open that section or link right away.</dd></div>
       <div><dt>Drag · wheel · pinch</dt><dd>Orbit and zoom the camera.</dd></div>
       <div><dt>Gamepad</dt><dd>Left stick drives, right stick turns. Surface changes rumble it with the T2H motor levels.</dd></div>
-      <div><dt><kbd>R</kbd></dt><dd>Stuck? Reset the rover to the lab centre.</dd></div>
+      <div><dt><kbd>R</kbd></dt><dd>Stuck? Reset the rover to the lab center.</dd></div>
       <div><dt><kbd>Esc</kbd></dt><dd>Close a section.</dd></div>
     </dl>
     <button class="tl-btn" type="button" data-close-help>Got it</button>
@@ -218,7 +218,7 @@
             <h3>Education</h3>
             <div class="tl-entry">
               <div class="tl-entry-row"><h4>Northeastern University</h4><span class="tl-when">Expected May 2028</span></div>
-              <p class="tl-sub">M.S. Mechatronics, Robotics, and Automation · Concentration in Mechanical Engineering · Boston, MA</p>
+              <p class="tl-sub">M.S. Mechatronics, Robotics &amp; Automation · Concentration in Mechanical Engineering · Boston, MA</p>
               <p class="tl-note">Coursework: Robotics Sensing and Navigation, Mobile Robotics, Robot Design, CAD and Manufacturing</p>
             </div>
             <div class="tl-entry">
@@ -253,13 +253,13 @@
           <header class="tl-sec-head">
             <p class="tl-kick">02 // Projects</p>
             <h2 id="projects-title">Built to <em>sense.</em></h2>
-            <p class="tl-lead">A ROS&nbsp;2 sensing pipeline that lets a remote operator feel the floor, plus fabrication-ready CAD and automated hardware.</p>
+            <p class="tl-lead">A ROS&nbsp;2 sensing pipeline that lets an operator feel the floor in simulation, plus fabrication-ready CAD and automated hardware.</p>
           </header>
 
           <section class="tl-proj tl-proj--feature">
-            <div class="tl-meta"><span class="tl-tag">Featured</span><span>EECE 5554 Robot Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></div>
+            <div class="tl-meta"><span class="tl-tag">Featured</span><span>EECE 5554 Robotics Sensing &amp; Navigation</span><span>Jan – Apr 2026</span></div>
             <h3>Vibrotactile Indoor Terrain Perception</h3>
-            <p class="tl-sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics so a teleoperator can feel what the robot feels. Team project with Tamzid Hossain and Stanley Nketiah.</p>
+            <p class="tl-sub">Classifying floor surfaces from wheel-mounted IMU vibrations, then rendering them as Xbox controller haptics in a Unity simulation, so a teleoperator can feel what the robot feels. Team project with Tamzid Hossain and Stanley Nketiah.</p>
 
             <div class="tl-callout">
               <b>You're driving a model of it.</b>
@@ -268,7 +268,7 @@
 
             <figure class="tl-gallery">
               <img src="../assets/img/terrain-robot.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Mecabot Plus mobile robot with mecanum wheels on a hardwood floor">
-              <img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" decoding="async" alt="Close-up of the VectorNav VN-100 IMU clamped to the robot's wheel shaft">
+              <img src="../assets/img/terrain-imu-mount.webp" width="1100" height="825" loading="lazy" decoding="async" alt="Close-up of the VectorNav VN-100 IMU attached to the robot's wheel shaft">
               <img src="../assets/img/terrain-field-test.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="The robot and a laptop recording a test run on grass at night">
               <figcaption>Mecabot Plus · VN-100 on the wheel shaft · a recording run on short grass</figcaption>
             </figure>
@@ -278,7 +278,7 @@
               <li>ROS 2 driver<small>custom package</small></li>
               <li>rosbag2 → CSV</li>
               <li>Features<small>time + FFT</small></li>
-              <li>SVM<small>87.3%</small></li>
+              <li>Classifier<small>SVM 87.3% best</small></li>
               <li>T2H lookup</li>
               <li>Xbox haptics</li>
             </ol>
@@ -302,7 +302,7 @@
                 <ul class="tl-bul">
                   <li>Custom ROS 2 Humble driver parsing VNYMR serial data at 40 Hz on Ubuntu 22.04, recorded with rosbag2.</li>
                   <li>One-second windows with 50% overlap: RMS, variance, peak-to-peak, skewness and kurtosis, plus four FFT band energies across 1–20 Hz.</li>
-                  <li>Compared an RBF SVM, a 100-tree random forest and a raw-signal 1D-CNN across a four-run feature ablation.</li>
+                  <li>Compared an RBF SVM and a 100-tree random forest across four feature configurations, and a raw-signal 1D-CNN on full sensor fusion.</li>
                 </ul>
               </div>
               <div>
@@ -315,7 +315,7 @@
                 <h4 class="tl-mini">Confusion matrix · best model (%)</h4>
                 <div class="tl-tablewrap">
                   <table class="tl-cm">
-                    <thead><tr><th scope="col"><span class="tl-sr">Actual \ predicted</span></th><th scope="col">Carpet</th><th scope="col">Hardwood</th><th scope="col">Grass</th><th scope="col">Tile</th></tr></thead>
+                    <thead><tr><th scope="col"><span class="tl-sr">Actual (rows) vs. predicted (columns)</span></th><th scope="col">Carpet</th><th scope="col">Hardwood</th><th scope="col">Grass</th><th scope="col">Tile</th></tr></thead>
                     <tbody>
                       <tr><th scope="row">Carpet</th><td style="--v:97.2">97.2</td><td style="--v:0.7">0.7</td><td style="--v:1.4">1.4</td><td style="--v:0.7">0.7</td></tr>
                       <tr><th scope="row">Hardwood</th><td style="--v:2">2.0</td><td style="--v:72.3">72.3</td><td style="--v:0">0.0</td><td style="--v:25.7">25.7</td></tr>
@@ -332,7 +332,7 @@
               <div><b>01</b><p>Frequency features carry most of the signal: 78.1% accuracy on their own.</p></div>
               <div><b>02</b><p>Adding the gyroscope lifts accuracy from 82.8% to 87.3%.</p></div>
               <div><b>03</b><p>Grass and carpet separate cleanly. Hardwood and tile overlap in PCA, a data limit at 40&nbsp;Hz rather than a model limit.</p></div>
-              <div><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs 82.5%).</p></div>
+              <div><b>04</b><p>Engineered features beat a raw-signal 1D-CNN at this dataset size (87.3% vs. 82.5%).</p></div>
             </div>
 
             <h4 class="tl-mini">Terrain-to-haptic (T2H) mapping</h4>
@@ -360,13 +360,13 @@
 
             <figure class="tl-fig">
               <img src="../assets/img/terrain-unity-sim.webp" width="1400" height="830" loading="lazy" decoding="async" alt="Unity editor running the terrain-to-haptic teleoperation simulation">
-              <figcaption>Unity 2022.3 simulation: the robot drives over terrain tiles and each class maps to left/right controller motor speeds</figcaption>
+              <figcaption>Unity 2022.3 simulation: a vehicle drives over terrain tiles and each class maps to left/right controller motor speeds</figcaption>
             </figure>
           </section>
 
           <section class="tl-proj">
             <div class="tl-meta"><span class="tl-tag tl-tag--amber">In progress</span><span>ME 5374 Robot Design</span><span>Fall 2026</span></div>
-            <h3>Elbow Joint Actuator for a Surgical Assist Arm</h3>
+            <h3>Elbow Joint Actuator for a Surgical Assist Robot Arm</h3>
             <p class="tl-sub">A bolt-in elbow module with a frameless motor, 100:1 strain-wave gear, fail-safe brake and an absolute output encoder in a 90&nbsp;mm housing. <a href="#now">Full breakdown in Now →</a></p>
           </section>
 
@@ -419,7 +419,7 @@
               <div class="tl-tl-body">
                 <h3>Graduate Engineer <span>· Bosch</span></h3>
                 <p class="tl-sub">Karnataka, India · Precision diesel components</p>
-                <div class="tl-hl"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+                <div class="tl-hl"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, work recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
                 <ul class="tl-bul">
                   <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
                   <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
@@ -459,7 +459,7 @@
               <div><span>Max speed</span><b>30 rpm</b></div>
               <div><span>Position error</span><b>≤ 0.1°</b></div>
               <div><span>Power-off hold</span><b>≥ 50 Nm</b></div>
-              <div><span>Envelope</span><b>Ø90 × 110 mm</b></div>
+              <div><span>Envelope</span><b>≤ Ø90 × 110 mm</b></div>
               <div><span>Mass</span><b>≤ 1.5 kg</b></div>
             </div>
 
@@ -470,7 +470,7 @@
                   <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
                   <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
                   <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
-                  <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring on the output</span></li>
+                  <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring encoder on the output</span></li>
                   <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
                   <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
                 </ul>
@@ -478,9 +478,9 @@
               <div>
                 <h4 class="tl-mini">First estimates</h4>
                 <ul class="tl-stack tl-stack--num">
-                  <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm. The gear sets the rating.</span></li>
+                  <li><b>≈ 52 Nm</b><span>output with motor torque capped at 0.75 Nm; the gear sets the rating</span></li>
                   <li><b>≈ 40 Hz</b><span>first resonance, so 8–13 Hz position bandwidth is realistic</span></li>
-                  <li><b>0.084°</b><span>gear twist at 20 Nm, which is why the output encoder is there</span></li>
+                  <li><b>0.084°</b><span>gear twist at 20 Nm; adding 1.5 arcmin of gear error gives ≈ 0.11°, over the 0.1° target, hence the output encoder</span></li>
                   <li><b>&lt; 0.02°</b><span>expected error with the loop closed on the AksIM-2</span></li>
                   <li><b>27%</b><span>of total inertia on the motor side (0.216 kg·m² reflected)</span></li>
                 </ul>

@@ -79,6 +79,8 @@ kbd { display: inline-block; min-width: 18px; margin: 0 1px; padding: 2px 4px; f
 .tl-ph { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px 7px; border-bottom: 1px solid var(--line); }
 .tl-ph h2 { display: flex; align-items: center; gap: 6px; margin: 0; font: 600 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--acid); }
 .tl-chip { font: 500 10px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+/* uppercase would turn the yaw-rate symbol ω into Ω (the ohm sign) */
+#tl-twist, .tl-sym { text-transform: none; }
 .tl-imu-dot { width: 7px; height: 7px; background: var(--imu); box-shadow: 0 0 8px var(--imu); }
 
 /* ---------------- Top bar ---------------- */

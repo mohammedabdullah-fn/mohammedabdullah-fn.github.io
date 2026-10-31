@@ -154,7 +154,7 @@ export class Hud {
     if (e.w) e.w.textContent = fmt(d.w);
     if (e.tgt) e.tgt.textContent = d.remaining > 0 ? d.remaining.toFixed(2) + ' m' : '-';
     if (e.pos) e.pos.textContent = `x ${fmt(d.x, 1)}  z ${fmt(d.z, 1)}`;
-    if (e.twist) e.twist.textContent = `v ${d.speed.toFixed(2)} · ω ${fmt(d.w)}`;
+    if (e.twist) e.twist.textContent = `V ${d.speed.toFixed(2)} · ω ${fmt(d.w)}`;
     if (e.rms) e.rms.textContent = 'RMS ' + d.rms.toFixed(3) + ' g';
   }
 
