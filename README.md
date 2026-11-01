@@ -7,7 +7,7 @@ Three versions, three robots:
 | Path | Version | Robot | Idea |
 | --- | --- | --- | --- |
 | `/` | 01 Workcell | 5-axis articulated arm | Cinematic WebGL workcell. The arm tracks the cursor with closed-form IK; drag it onto a card to open it, pick and place parts, run a robot program, open the teach pendant and exploded view. |
-| `/terrain/` | 02 Terrain Lab | Mecanum-wheel rover | Drive a Mecabot-style rover across tile, hardwood, carpet and grass with a live IMU trace and a classifier that follows the EECE 5554 project's confusion matrix. |
+| `/terrain/` | 02 Terrain Lab | Mecanum-wheel rover | Drive a Mecabot-style rover across tile, hardwood, carpet and grass with a simulated IMU trace and a classifier that follows the EECE 5554 project's confusion matrix. |
 | `/blueprint/` | 03 Blueprint | Quadruped | An engineering drawing set that comes alive: a line-art quadruped walks the sheets, dimensions draw themselves, and the ME 5374 elbow actuator explodes on scroll. |
 
 ## Run locally
