@@ -345,7 +345,7 @@ function start() {
     btnHap.setAttribute('aria-pressed', String(haptics.enabled));
     if (!haptics.enabled) { haptics.stop(); emit('toast', { text: 'Haptics off' }); return; }
     const r = haptics.play(surf.stable);
-    emit('toast', { text: r.gamepad ? `Haptics on: ${T2H[surf.stable].feel.toLowerCase()} on the gamepad` : r.vibrate ? 'Haptics on: phone vibration' : 'Haptics on. Connect a gamepad, or open this on a phone, to feel surface changes.', ms: 4200 });
+    emit('toast', { text: r.gamepad ? `Haptics on: ${T2H[surf.stable].feel.toLowerCase()} on the gamepad` : r.vibrate ? 'Haptics on: phone vibration' : 'Haptics on: connect a gamepad or open this on a phone to feel surface changes', ms: 4200 });
   });
 
   // ---- Terrain feedback ----------------------------------------------------------------------------

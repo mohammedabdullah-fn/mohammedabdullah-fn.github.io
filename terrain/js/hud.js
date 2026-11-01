@@ -154,7 +154,7 @@ export class Hud {
     if (e.w) e.w.textContent = fmt(d.w);
     if (e.tgt) e.tgt.textContent = d.remaining > 0 ? d.remaining.toFixed(2) + ' m' : '-';
     if (e.pos) e.pos.textContent = `x ${fmt(d.x, 1)}  z ${fmt(d.z, 1)}`;
-    if (e.twist) e.twist.textContent = `V ${d.speed.toFixed(2)} · ω ${fmt(d.w)}`;
+    if (e.twist) e.twist.textContent = `V ${d.speed.toFixed(2)} m/s · ω ${fmt(d.w)} rad/s`;
     if (e.rms) e.rms.textContent = 'RMS ' + d.rms.toFixed(3) + ' g';
   }
 
@@ -315,7 +315,7 @@ export class Hud {
     g.textBaseline = 'top';
     g.fillStyle = 'rgba(217,247,196,0.55)';
     g.fillText('A TILE', 4 * d, 4 * d);
-    g.fillText('B WOOD', W / 2 + 4 * d, 4 * d);
+    g.fillText('B HARDWOOD', W / 2 + 4 * d, 4 * d);
     g.textBaseline = 'bottom';
     g.fillText('C CARPET', 4 * d, H - 3 * d);
     g.fillText('D GRASS', W / 2 + 4 * d, H - 3 * d);

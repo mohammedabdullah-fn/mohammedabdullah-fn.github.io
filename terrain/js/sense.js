@@ -30,7 +30,10 @@ const TAU = Math.PI * 2;
 
 // ---------------------------------------------------------------------------------------------
 // IMU: vertical acceleration (gravity removed) sampled at 40 Hz, like the VNYMR stream.
-// Amplitude follows the T2H level of the surface under the IMU wheel and scales with wheel speed.
+// Synthetic, shaped after the recorded runs (deck slides 8 and 10): grass nearly flat, carpet noisy with
+// sharp irregular peaks, hardwood and tile equally chaotic (hardwood energy in 15-20 Hz, tile in 10-15 Hz).
+// Amplitude scales with wheel speed.
+const IMU_G = { tile: 0.22, hardwood: 0.22, carpet: 0.16, grass: 0.03 };   // vibration scale at full speed, g
 export class ImuSim {
   constructor(seed = 11) {
     this.rand = mulberry32(seed);
@@ -49,9 +52,6 @@ export class ImuSim {
     this.groutIdx = 0;
     this.jointAt = 1.2;
     this.impulse = 0;
-    this.tapClock = 0;
-    this.tapNext = 0.14;
-    this.tapLeft = 0;
     this.ph = [this.rand() * TAU, this.rand() * TAU, this.rand() * TAU];
   }
 
@@ -90,8 +90,7 @@ export class ImuSim {
   }
 
   sample() {
-    const T = T2H[this.surface];
-    const A = T.amp * this.excite;
+    const A = IMU_G[this.surface] * this.excite;
     const t = this.t, n = this.gauss();
     const [p1, p2, p3] = this.ph;
     let x = 0;
@@ -107,31 +106,20 @@ export class ImuSim {
       if (this.jointAt < travel) this.jointAt = travel + 1;
     }
     switch (this.surface) {
-      case 'tile': // steady buzz: dense high-frequency vibration, constant envelope
-        x = A * (0.62 * Math.sin(TAU * 11.7 * t + p1) + 0.4 * Math.sin(TAU * 17.3 * t + p2) + 0.32 * n);
+      case 'tile': // chaotic, broad energy peaking at 10-15 Hz
+        x = A * (0.5 * Math.sin(TAU * 11.8 * t + p1) + 0.35 * Math.sin(TAU * 13.9 * t + p2) + 0.55 * n);
         break;
-      case 'hardwood': // medium hum: smoother, lower carrier
-        x = A * (0.78 * Math.sin(TAU * 6.3 * t + p1) + 0.28 * Math.sin(TAU * 12.9 * t + p3) + 0.22 * n);
+      case 'hardwood': // as chaotic as tile, similar amplitude, energy in 15-20 Hz
+        x = A * (0.5 * Math.sin(TAU * 16.4 * t + p1) + 0.35 * Math.sin(TAU * 18.7 * t + p3) + 0.55 * n);
         break;
-      case 'carpet': { // gentle throb: slow pulse envelope on a soft low carrier
-        const e = 0.5 + 0.5 * Math.sin(TAU * 1.3 * t + p2);
-        x = A * (0.25 + 0.95 * e * e) * (0.85 * Math.sin(TAU * 3.4 * t + p1) + 0.3 * n);
-        break;
-      }
-      case 'grass': { // faint taps: sparse short spikes at a fast rate
-        this.tapClock += this.dtS;
-        let tap = 0;
-        if (this.tapLeft > 0) { tap = -0.55 * Math.sign(this.lastTap || 1); this.tapLeft = 0; }
-        if (this.tapClock >= this.tapNext) {
-          this.tapClock = 0;
-          this.tapNext = 1 / 7 + (this.rand() - 0.5) * 0.06;
-          this.lastTap = this.rand() < 0.5 ? -1 : 1;
-          tap = 1.3 * this.lastTap;
-          this.tapLeft = 1;
-        }
-        x = A * (tap + 0.14 * n);
+      case 'carpet': { // noisy with sharp, irregular peaks; spectral peak in 15-20 Hz
+        const spike = this.rand() < 0.09 ? (this.rand() < 0.5 ? -1 : 1) * (1.4 + this.rand() * 1.2) : 0;
+        x = A * (0.45 * Math.sin(TAU * 17.2 * t + p1) + 0.45 * n + spike);
         break;
       }
+      case 'grass': // nearly flat: the wheel glides over soft, continuous grass
+        x = A * (0.6 * n + 0.2 * Math.sin(TAU * 4.1 * t + p2));
+        break;
     }
     if (this.impulse > 0.02) {
       x += A * 1.25 * this.impulse * (this.rand() < 0.5 ? -1 : 1);

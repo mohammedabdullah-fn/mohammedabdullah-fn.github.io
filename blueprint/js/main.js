@@ -127,7 +127,7 @@ const timeline = new Timeline($('#tl'), {
     { at: M(2024, 4) + 0.5, label: 'CNC MACHINING TRAINING', sub: 'KGTTI · APR 2024' },
     { at: M(2026, 1) + 0.2, label: 'ASME · NUHOC MEMBER', sub: 'NORTHEASTERN · JAN 2026' },
     { at: M(2026, 4) + 0.5, label: 'CSWP + CSWA', sub: 'DASSAULT SYSTÈMES · APR 2026' },
-    { at: M(2028, 5) + 0.5, label: 'M.S. MRA · NORTHEASTERN', sub: 'EXPECTED MAY 2028', open: true },
+    { at: M(2028, 5) + 0.5, label: 'M.S. · NORTHEASTERN', sub: 'EXPECTED MAY 2028', open: true },
   ],
 }, drawer);
 

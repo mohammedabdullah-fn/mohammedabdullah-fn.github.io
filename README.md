@@ -38,6 +38,8 @@ The site goes live at https://mohammedabdullah-fn.github.io/ within a minute or 
   - `room.js`: room and follow-spot
   - `ui.js`: sheets, toasts, haptics
 - **Images:** `assets/img/` (EXIF stripped). **Resume:** `resume.pdf`.
+- **Link previews:** `assets/og/*.jpg` (1200x630), referenced by absolute `og:image` URLs. Give a changed image a new file name so LinkedIn fetches it again.
+- **Search:** `robots.txt`, `sitemap.xml` and a custom `404.html` live at the root.
 
 ## Notes
 

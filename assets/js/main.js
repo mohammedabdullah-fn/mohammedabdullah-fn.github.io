@@ -872,7 +872,7 @@ function endDemo(done) {
   if (!state.held) { state.holdRoll = false; arm.grip = 1; }
   ui.demoStatus(false);
   setDemoButton(false);
-  if (done) ui.toast(`Demo complete · ${state.hits} parts on target`);
+  if (done) ui.toast(`Demo complete · ${state.hits} ${state.hits === 1 ? 'part' : 'parts'} on target`);
   else if (state.held) ui.toast(`Holding the ${state.held.name.toLowerCase()} · ${ui.coarse ? 'tap' : 'click'} the bench to place it`);
 }
 
@@ -1622,6 +1622,7 @@ function frameStep(dt, render = true) {
   frame++;
 }
 
+let frozen = false;
 function loop() {
   requestAnimationFrame(loop);
   const dt = Math.min(clock.getDelta(), 1 / 20);
@@ -1629,6 +1630,12 @@ function loop() {
     if (!canvasRect.width) resize();
     return;
   }
+  // An open section sheet covers the scene: hold the last frame instead of re-rendering it under the blur.
+  if (ui.isModalOpen()) {
+    if (!frozen) { frozen = true; sound.motion(0); }
+    return;
+  }
+  frozen = false;
   frameStep(dt);
   perf(dt, simT);
 }

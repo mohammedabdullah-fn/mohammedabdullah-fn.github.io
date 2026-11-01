@@ -432,7 +432,11 @@ if (coarse) {
   if (hint) hint.innerHTML = '<b>Tap</b> object · <b>Drag</b> arm · <b>Tap</b> arm to wave';
 }
 const tbDate = $('#tb-date');
-if (tbDate) tbDate.textContent = new Date().toISOString().slice(0, 10);
+if (tbDate) {
+  // the deploy date (the page's Last-Modified header) in the visitor's own time zone
+  const d = new Date(document.lastModified);
+  if (!Number.isNaN(d.getTime())) tbDate.textContent = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
 
 markMilestones();
 runBoot();

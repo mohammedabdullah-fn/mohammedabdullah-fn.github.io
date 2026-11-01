@@ -4,20 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mohammed Abdullah · Mechanical &amp; Robotics Engineer</title>
-  <meta name="description" content="Mohammed Abdullah: mechanical engineer and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern University. Certified SOLIDWORKS Professional. Quality at Bosch, hydraulic design at Minar Industries.">
+  <meta name="description" content="Mohammed Abdullah: mechanical engineer, Certified SOLIDWORKS Professional and M.S. Mechatronics, Robotics &amp; Automation student at Northeastern, seeking a co-op.">
   <meta name="theme-color" content="#0a0708">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mohammed Abdullah · Robotics Portfolio">
   <meta property="og:description" content="Mechanical engineer moving into robotics: quality at Bosch, hydraulic design at Minar Industries, terrain perception with a wheel-mounted IMU, and an elbow actuator for a surgical assist arm.">
   <meta property="og:url" content="https://mohammedabdullah-fn.github.io/">
   <meta property="og:site_name" content="Mohammed Abdullah · Robotics Portfolio">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://mohammedabdullah-fn.github.io/assets/og/workcell.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mohammed Abdullah, Mechanical &amp; Robotics Engineer, beside a robot arm and a holographic quadruped">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://mohammedabdullah-fn.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><style>.cards .card { opacity: 1 !important; }</style></noscript>
   <script type="importmap">
     {
       "imports": {
@@ -26,10 +31,28 @@
       }
     }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://mohammedabdullah-fn.github.io/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Mohammed Abdullah",
+      "jobTitle": "Mechanical Engineer",
+      "description": "Mechanical engineer and Certified SOLIDWORKS Professional (CSWP), studying for an M.S. in Mechatronics, Robotics & Automation at Northeastern University.",
+      "url": "https://mohammedabdullah-fn.github.io/",
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "Northeastern University" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Visvesvaraya Technological University" },
+      "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "Certified SOLIDWORKS Professional (CSWP)" },
+      "sameAs": ["https://www.linkedin.com/in/abd-mohdd", "https://github.com/mohammedabdullah-fn"]
+    }
+  }
+  </script>
 </head>
 <body class="is-booting">
 
-  <canvas id="scene" aria-label="Interactive 3D robot workcell" role="img"></canvas>
+  <canvas id="scene" aria-hidden="true"></canvas>
   <div class="fx-fallback" aria-hidden="true"></div>
   <div class="fx-vignette" aria-hidden="true"></div>
   <div class="fx-grain" aria-hidden="true"></div>
@@ -57,7 +80,7 @@
       </span>
     </a>
     <nav class="toolbar" aria-label="Scene controls">
-      <button class="tool-btn" id="btn-transform" type="button" title="Cycle the hologram through my projects">
+      <button class="tool-btn" id="btn-transform" type="button" title="Cycle the hologram: a concept quadruped, then models of my projects">
         <span class="ico" aria-hidden="true">⚡</span><span class="lbl">Transform</span>
       </button>
       <button class="tool-btn" id="btn-design" type="button" aria-pressed="false" title="Design mode: live dimensions, joint frames, teach pendant and exploded view">
@@ -83,32 +106,33 @@
 
   <!-- Floating section cards -->
   <main class="cards" id="cards" aria-label="Portfolio sections">
+    <h1 class="sr">Mohammed Abdullah · Mechanical &amp; Robotics Engineer</h1>
     <article class="card" data-card="about" data-touch="about" style="--i:0">
       <div class="card-top"><span class="card-kicker">About</span><span class="card-num">01</span></div>
       <h2 class="card-title">Engineered with<br><em>precision.</em></h2>
       <p class="card-body">Mechanical engineer moving into robotics. Quality at Bosch, hydraulic design at Minar Industries, Certified SOLIDWORKS Professional.</p>
-      <div class="card-foot"><a class="card-open" href="#about">Open <span aria-hidden="true">→</span></a><span class="card-tag">About</span></div>
+      <div class="card-foot"><a class="card-open" href="#about">Open <span aria-hidden="true">→</span></a><span class="card-tag">CSWP · Bosch · Minar</span></div>
     </article>
 
     <article class="card" data-card="projects" data-touch="projects" style="--i:1">
       <div class="card-top"><span class="card-kicker">Projects</span><span class="card-num">02</span></div>
       <h2 class="card-title">Built to<br><em>sense.</em></h2>
       <p class="card-body">Vibrotactile terrain perception: a wheel-mounted IMU, an SVM at 87.3% accuracy and simulated Xbox haptics that let an operator feel the floor.</p>
-      <div class="card-foot"><a class="card-open" href="#projects">Open <span aria-hidden="true">→</span></a><span class="card-tag">Projects</span></div>
+      <div class="card-foot"><a class="card-open" href="#projects">Open <span aria-hidden="true">→</span></a><span class="card-tag">IMU · SVM 87.3%</span></div>
     </article>
 
     <article class="card" data-card="experience" data-touch="experience" style="--i:2">
       <div class="card-top"><span class="card-kicker">Experience</span><span class="card-num">03</span></div>
       <h2 class="card-title">The road<br><em>so far.</em></h2>
       <p class="card-body">Graduate Engineer at Bosch (2023–25), then Design Engineer at Minar Industries (2025). Quality systems, CAD and production floors.</p>
-      <div class="card-foot"><a class="card-open" href="#experience">Open <span aria-hidden="true">→</span></a><span class="card-tag">Experience</span></div>
+      <div class="card-foot"><a class="card-open" href="#experience">Open <span aria-hidden="true">→</span></a><span class="card-tag">2023 – 2025</span></div>
     </article>
 
     <article class="card" data-card="now" data-touch="now" style="--i:3">
       <div class="card-top"><span class="card-kicker">Now</span><span class="card-num">04</span></div>
-      <h2 class="card-title">Currently<br><em>building.</em></h2>
+      <h2 class="card-title">Currently<br><em>designing.</em></h2>
       <p class="card-body">An elbow joint actuator for a surgical assist arm: frameless motor, 100:1 strain-wave gear, fail-safe brake. ME 5374, Fall 2026.</p>
-      <div class="card-foot"><a class="card-open" href="#now">Open <span aria-hidden="true">→</span></a><span class="card-tag">Now</span></div>
+      <div class="card-foot"><a class="card-open" href="#now">Open <span aria-hidden="true">→</span></a><span class="card-tag">ME 5374 · Fall 2026</span></div>
     </article>
   </main>
 
@@ -220,7 +244,7 @@
         <button class="modal-close" type="button" data-close aria-label="Close">×</button>
       </div>
 
-      <div class="modal-scroll" id="modal-scroll">
+      <div class="modal-scroll" id="modal-scroll" tabindex="0">
 
         <!-- ============ ABOUT ============ -->
         <article class="sheet" id="about" data-kicker="About">
@@ -252,21 +276,21 @@
           <section class="block">
             <h3 class="block-title">Toolkit</h3>
             <div class="skill-group">
-              <h4>CAD &amp; Software</h4>
+              <h4>CAD &amp; software</h4>
               <ul class="chips"><li>SOLIDWORKS</li><li>CATIA</li><li>Siemens NX</li><li>AutoCAD</li><li>Ansys (FEA)</li><li>Revit MEP</li><li>Microsoft Office</li></ul>
             </div>
             <div class="skill-group">
-              <h4>Quality &amp; Manufacturing</h4>
+              <h4>Quality &amp; manufacturing</h4>
               <ul class="chips"><li>GD&amp;T</li><li>FMEA</li><li>Root cause analysis</li><li>CAPA</li><li>ISO 9001</li><li>Six Sigma</li><li>Lean · 5S</li><li>Gauge calibration</li><li>Micrometers &amp; precision gauges</li><li>CNC machining (lathe &amp; mill)</li></ul>
             </div>
             <div class="skill-group">
-              <h4>Programming &amp; Robotics</h4>
+              <h4>Programming &amp; robotics</h4>
               <ul class="chips"><li>Python</li><li>C</li><li>ROS 2</li><li>Linux (Ubuntu)</li><li>Git</li><li>IMU &amp; GPS data</li><li>Claude Code</li></ul>
             </div>
           </section>
 
           <section class="block">
-            <h3 class="block-title">Certifications &amp; Activities</h3>
+            <h3 class="block-title">Certifications &amp; activities</h3>
             <ul class="rows">
               <li><span>Certified SOLIDWORKS Professional (CSWP) &amp; Associate (CSWA)<em>Dassault Systèmes</em></span><span class="when">Apr 2026</span></li>
               <li><span>CNC Machining (Lathe &amp; Milling) Training<em>Karnataka German Technical Training Institute</em></span><span class="when">Apr 2024</span></li>
@@ -295,18 +319,18 @@
               <figcaption>Mecabot Plus · VN-100 on the wheel shaft · a recording run on short grass</figcaption>
             </figure>
 
-            <div class="pipeline" aria-label="Pipeline">
+            <div class="pipeline" role="group" aria-label="Project pipeline">
               <span>VN-100 IMU<small>40 Hz</small></span><i></i>
-              <span>ROS 2 driver<small>custom pkg</small></span><i></i>
+              <span>ROS 2 driver<small>custom package</small></span><i></i>
               <span>rosbag2 → CSV</span><i></i>
               <span>Features<small>time + FFT</small></span><i></i>
-              <span>Classifier<small>SVM 87.3% best</small></span><i></i>
+              <span>Classifier<small>SVM 87.3% offline</small></span><i></i>
               <span>T2H lookup</span><i></i>
-              <span>Xbox haptics</span>
+              <span>Xbox haptics<small>Unity sim</small></span>
             </div>
 
             <div class="stats stats--compact">
-              <div class="stat"><b>40</b><span>test runs<br>4 surfaces</span></div>
+              <div class="stat"><b>40</b><span>recorded runs<br>4 surfaces</span></div>
               <div class="stat"><b>3,474</b><span>labeled<br>1-second windows</span></div>
               <div class="stat"><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
               <div class="stat"><b>87.3%<sup>1</sup></b><span>test accuracy<br>SVM · full fusion</span></div>
@@ -318,7 +342,7 @@
                 <h4 class="mini">What I did</h4>
                 <ul class="bullets">
                   <li>Mounted a VectorNav VN-100 IMU on the wheel shaft of a Mecabot Plus robot to sense floor vibrations.</li>
-                  <li>Recorded 40 test runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
+                  <li>Recorded 40 runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
                   <li>Classified the four surfaces in Python with 87.3% test accuracy and gave each its own Xbox controller vibration in Unity.</li>
                 </ul>
                 <h4 class="mini">Method</h4>
@@ -378,7 +402,7 @@
               <figcaption>Unity 2022.3 simulation: a vehicle drives over terrain tiles and each class maps to left/right controller motor speeds</figcaption>
             </figure>
 
-            <p class="project-links"><button class="link-btn" type="button" data-holo="rover">View hologram ↗</button></p>
+            <p class="project-links"><button class="link-btn" type="button" data-holo="rover">View hologram →</button></p>
           </section>
 
           <section class="project">
@@ -395,7 +419,7 @@
               <li>Arranged the layout for balance and easy assembly, with all parts ready to fabricate.</li>
             </ul>
             <ul class="chips chips--sm"><li>SOLIDWORKS</li><li>Chassis design</li><li>Assembly layout</li></ul>
-            <p class="project-links"><button class="link-btn" type="button" data-holo="cart">View hologram ↗</button></p>
+            <p class="project-links"><button class="link-btn" type="button" data-holo="cart">View hologram →</button></p>
           </section>
 
           <section class="project">
@@ -421,7 +445,7 @@
               <div class="tl-when">Jun 2025 – Oct 2025</div>
               <div class="tl-body">
                 <h3>Design Engineer <span>· Minar Industries</span></h3>
-                <p class="entry-sub">Karnataka, India</p>
+                <p class="entry-sub">Karnataka, India · Hydraulic cylinders</p>
                 <ul class="bullets">
                   <li>Designed hydraulic cylinders and pistons for heavy machinery and took each one from concept through design review.</li>
                   <li>Prepared the manufacturing drawings, assembly drawings and bills of materials (BOMs) used to build each part.</li>
@@ -429,7 +453,7 @@
                   <li>Partnered with production, quality and supplier teams to make manufacturing more efficient and parts more reliable.</li>
                 </ul>
                 <ul class="chips chips--sm"><li>Hydraulic design</li><li>Manufacturing drawings</li><li>BOMs</li><li>Tolerancing</li></ul>
-                <p class="project-links"><button class="link-btn" type="button" data-holo="hydraulic">View hologram ↗</button></p>
+                <p class="project-links"><button class="link-btn" type="button" data-holo="hydraulic">View hologram →</button></p>
               </div>
             </li>
             <li class="tl-item">
@@ -437,7 +461,7 @@
               <div class="tl-body">
                 <h3>Graduate Engineer <span>· Bosch</span></h3>
                 <p class="entry-sub">Karnataka, India · Precision diesel components</p>
-                <div class="highlight"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, work recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+                <div class="highlight"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics; recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
                 <ul class="bullets">
                   <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
                   <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
@@ -460,7 +484,7 @@
         <!-- ============ NOW ============ -->
         <article class="sheet" id="now" data-kicker="Now">
           <header class="sheet-head">
-            <h2 id="now-title">Currently <em>building.</em></h2>
+            <h2 id="now-title">Currently <em>designing.</em></h2>
             <p class="lead">An elbow joint actuator for a surgical assist robot arm, my ME 5374 Robot Design final project this fall, alongside the M.S. at Northeastern (expected May 2028). I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
           </header>
 
@@ -486,10 +510,10 @@
                 <ul class="stack">
                   <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
                   <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
-                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is rated ≥ 1 Nm (safety factor 2)</span></li>
                   <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring encoder on the output</span></li>
                   <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
-                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
+                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, designed so every custom part can be made on a mill or lathe</span></li>
                 </ul>
               </div>
               <div>
@@ -512,7 +536,7 @@
               <li data-date="2026-12-10"><b>Dec 10</b><span>Final presentation</span></li>
             </ol>
 
-            <p class="project-links"><button class="link-btn" type="button" data-holo="elbow">View exploded hologram ↗</button></p>
+            <p class="project-links"><button class="link-btn" type="button" data-holo="elbow">View exploded hologram →</button></p>
           </section>
 
           <section class="block">
@@ -558,7 +582,6 @@
     </div>
   </div>
 
-  <noscript><style>.cards .card { opacity: 1 !important; }</style></noscript>
   <script type="module" src="assets/js/ui.js"></script>
   <script type="module" src="assets/js/main.js"></script>
 </body>

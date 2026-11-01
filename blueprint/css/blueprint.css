@@ -45,7 +45,7 @@
   --strip-bg: #efede6;
   --ink: #132442;
   --ink-2: rgba(19, 36, 66, .8);
-  --ink-3: rgba(19, 36, 66, .6);
+  --ink-3: rgba(19, 36, 66, .7);
   --line: rgba(19, 36, 66, .9);
   --hair: rgba(19, 36, 66, .32);
   --faint: rgba(19, 36, 66, .12);
@@ -149,6 +149,7 @@ ul, ol { margin: 0; padding: 0; }
   color: var(--ink-3); text-decoration: none; white-space: nowrap;
   pointer-events: auto;
 }
+.stn::after { content: ""; position: absolute; inset: -6px -8px; }   /* a bigger touch target, same look */
 .stn b { color: var(--ink-2); font-weight: 600; }
 .stn:hover, .stn[aria-current] { color: var(--cyan); }
 .stn[aria-current] b { color: var(--cyan); }
@@ -184,7 +185,7 @@ ul, ol { margin: 0; padding: 0; }
 .tool[aria-pressed="true"] { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-3); }
 .tool .ico { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.3; }
 .tool--theme { gap: 8px; padding: 0 10px; }
-.tt { opacity: .5; transition: opacity .2s, color .2s; }
+.tt { opacity: .85; transition: opacity .2s, color .2s; }
 .tt-sw { position: relative; width: 26px; height: 14px; border: 1px solid currentColor; border-radius: 8px; flex: none; }
 .tt-sw i { position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: currentColor; transition: transform .25s var(--ease); }
 .tool--theme[aria-pressed="false"] .tt[data-v="blueprint"],
@@ -320,7 +321,7 @@ ul, ol { margin: 0; padding: 0; }
 }
 .nh::before { content: ""; width: 7px; height: 7px; border: 1px solid currentColor; transform: rotate(45deg); flex: none; }
 h3.ph { font: 600 clamp(24px, 3vw, 34px)/1.1 var(--f-cond); margin-bottom: 10px; }
-h4.mini {
+.mini {
   font: 600 11px/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--cyan);
   margin: 0 0 12px;
 }

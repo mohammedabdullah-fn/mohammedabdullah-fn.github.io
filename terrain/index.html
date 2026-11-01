@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Terrain Lab · Mohammed Abdullah · Robotics Portfolio</title>
-  <meta name="description" content="Drive a mecanum-wheel rover across tile, hardwood, carpet and grass in Mohammed Abdullah's robotics portfolio: wheel-mounted IMU terrain perception with an 87.3% SVM, quality at Bosch, hydraulic design at Minar Industries, and an elbow actuator for a surgical assist arm.">
+  <title>Mohammed Abdullah · Terrain Lab · Mechanical &amp; Robotics Engineer</title>
+  <meta name="description" content="Mohammed Abdullah's robotics portfolio as a drivable lab: a mecanum rover, an IMU terrain classifier (87.3% SVM), Bosch quality work, a surgical-arm actuator.">
   <meta name="theme-color" content="#020402">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://mohammedabdullah-fn.github.io/terrain/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Terrain Lab · Mohammed Abdullah">
-  <meta property="og:description" content="A point-cloud robotics lab: drive a model of the Mecabot Plus over four floor surfaces and watch a live IMU trace and surface classifier react.">
+  <meta property="og:description" content="A point-cloud robotics lab: drive a model of the Mecabot Plus over four floor surfaces and watch a simulated IMU trace and surface classifier react.">
   <meta property="og:url" content="https://mohammedabdullah-fn.github.io/terrain/">
   <meta property="og:site_name" content="Mohammed Abdullah · Robotics Portfolio">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://mohammedabdullah-fn.github.io/assets/og/terrain.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mohammed Abdullah's Terrain Lab: a mecanum rover on a point-cloud floor">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,11 +38,11 @@
   <a class="tl-skip" href="#tl-index">Skip to the section index</a>
 
   <!-- 3D stage -->
-  <div class="tl-stage" id="tl-stage" data-inert>
-    <canvas id="tl-canvas" tabindex="-1" role="img" aria-label="Point-cloud lab with a mecanum-wheel rover on four floor zones: tile, hardwood, carpet and short grass. Section beacons stand in each zone."></canvas>
+  <section class="tl-stage" id="tl-stage" aria-label="3D lab" data-inert>
+    <canvas id="tl-canvas" tabindex="-1" role="img" aria-describedby="tl-hint" aria-label="Point-cloud lab with a mecanum-wheel rover on four floor zones: tile, hardwood, carpet and short grass. Section beacons stand in each zone."></canvas>
     <div class="tl-labels" id="tl-labels" aria-hidden="true"></div>
     <div class="tl-fallback" aria-hidden="true"><p>3D view unavailable on this device. Every section is in the index.</p></div>
-  </div>
+  </section>
   <div class="tl-fx" aria-hidden="true"><i class="tl-fx-scan"></i><i class="tl-fx-roll"></i><i class="tl-fx-noise"></i><i class="tl-fx-vig"></i></div>
 
   <!-- Top bar -->
@@ -93,13 +97,13 @@
   </aside>
 
   <!-- Right column: instruments -->
-  <aside class="tl-right tl-needs3d" id="tl-right" aria-label="Rover instruments" data-inert>
+  <aside class="tl-right tl-needs3d" id="tl-right" aria-label="Rover instruments" tabindex="0" data-inert>
     <section class="tl-panel tl-imu" aria-labelledby="tl-imu-h">
       <header class="tl-ph"><h2 id="tl-imu-h">IMU <span class="tl-imu-dot" aria-hidden="true"></span> VN-100</h2><span class="tl-chip">Wheel shaft · 40 Hz</span></header>
       <div class="tl-mobile-sum" aria-hidden="true"><b id="tl-m-surf">Tile</b><span id="tl-m-meta">0.35 · steady buzz · L/R 0.20/0.35</span></div>
       <div class="tl-scope">
         <canvas id="tl-scope" aria-hidden="true"></canvas>
-        <span class="tl-scope-tag tl-scope-tag--l">Accel Z · ±0.5 g · 3 s</span>
+        <span class="tl-scope-tag tl-scope-tag--l">Simulated accel Z · ±0.5 g</span>
         <span class="tl-scope-tag tl-scope-tag--r" id="tl-rms">RMS 0.000 g</span>
       </div>
       <dl class="tl-ro">
@@ -123,7 +127,7 @@
       <p class="tl-cls-note">One decision per 1 s window, 50% overlap. Probabilities track the best model's confusion matrix; the SVM scored 87.3% test accuracy.</p>
     </section>
     <section class="tl-panel tl-ik" aria-labelledby="tl-ik-h">
-      <header class="tl-ph"><h2 id="tl-ik-h">Mecanum IK</h2><span class="tl-chip" id="tl-twist">V 0.00 · ω +0.00</span></header>
+      <header class="tl-ph"><h2 id="tl-ik-h">Mecanum IK</h2><span class="tl-chip" id="tl-twist">V 0.00 m/s · ω +0.00 rad/s</span></header>
       <canvas id="tl-ik" aria-hidden="true"></canvas>
     </section>
   </aside>
@@ -135,10 +139,10 @@
     <span>Z <b id="tl-z">+0.00</b></span>
     <span>Hdg <b id="tl-hdg">000°</b></span>
     <span>V <b id="tl-v">0.00</b> m/s</span>
-    <span><span class="tl-sym">ω</span> <b id="tl-w">+0.00</b></span>
+    <span><span class="tl-sym">ω</span> <b id="tl-w">+0.00</b> rad/s</span>
     <span>Tgt <b id="tl-tgt">-</b></span>
   </div>
-  <p class="tl-hint tl-needs3d" data-inert>
+  <p class="tl-hint tl-needs3d" id="tl-hint" aria-hidden="true" data-inert>
     <span class="tl-hint-desk"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows drive · <kbd>Q</kbd><kbd>E</kbd> rotate · <b>click</b> the floor to plan a path · <b>drag</b> to orbit · drive into a beacon to open it</span>
     <span class="tl-hint-touch"><b>Tap</b> the floor to drive · <b>drag</b> to orbit · <b>pinch</b> to zoom</span>
   </p>
@@ -197,7 +201,7 @@
         <button class="tl-sheet-close" type="button" data-close aria-label="Close section"><span aria-hidden="true"><span class="tl-esc">Esc </span>✕</span></button>
       </header>
 
-      <div class="tl-sheet-scroll" id="tl-sheet-scroll">
+      <div class="tl-sheet-scroll" id="tl-sheet-scroll" tabindex="0">
 
         <!-- ================= ABOUT ================= -->
         <article class="tl-sec" id="about">
@@ -278,24 +282,25 @@
               <li>ROS 2 driver<small>custom package</small></li>
               <li>rosbag2 → CSV</li>
               <li>Features<small>time + FFT</small></li>
-              <li>Classifier<small>SVM 87.3% best</small></li>
+              <li>Classifier<small>SVM 87.3% offline</small></li>
               <li>T2H lookup</li>
-              <li>Xbox haptics</li>
+              <li>Xbox haptics<small>Unity sim</small></li>
             </ol>
 
             <div class="tl-stats tl-stats--sm">
-              <div><b>40</b><span>test runs<br>4 surfaces</span></div>
+              <div><b>40</b><span>recorded runs<br>4 surfaces</span></div>
               <div><b>3,474</b><span>labeled<br>1-second windows</span></div>
               <div><b>40 Hz</b><span>VNYMR output<br>over serial</span></div>
               <div><b>87.3%</b><span>test accuracy<br>SVM · full fusion</span></div>
             </div>
+            <p class="tl-note">Test accuracy is measured on held-out runs 1 and 10 of each surface.</p>
 
             <div class="tl-cols">
               <div>
                 <h4 class="tl-mini">What I did</h4>
                 <ul class="tl-bul">
                   <li>Mounted a VectorNav VN-100 IMU on the wheel shaft of a Mecabot Plus robot to sense floor vibrations.</li>
-                  <li>Recorded 40 test runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
+                  <li>Recorded 40 runs on tile, hardwood, carpet and grass with ROS 2 on Linux, producing 3,474 labeled data windows.</li>
                   <li>Classified the four surfaces in Python with 87.3% test accuracy and gave each its own Xbox controller vibration in Unity.</li>
                 </ul>
                 <h4 class="tl-mini">Method</h4>
@@ -404,7 +409,7 @@
               <div class="tl-tl-when">Jun 2025 – Oct 2025</div>
               <div class="tl-tl-body">
                 <h3>Design Engineer <span>· Minar Industries</span></h3>
-                <p class="tl-sub">Karnataka, India</p>
+                <p class="tl-sub">Karnataka, India · Hydraulic cylinders</p>
                 <ul class="tl-bul">
                   <li>Designed hydraulic cylinders and pistons for heavy machinery and took each one from concept through design review.</li>
                   <li>Prepared the manufacturing drawings, assembly drawings and bills of materials (BOMs) used to build each part.</li>
@@ -419,7 +424,7 @@
               <div class="tl-tl-body">
                 <h3>Graduate Engineer <span>· Bosch</span></h3>
                 <p class="tl-sub">Karnataka, India · Precision diesel components</p>
-                <div class="tl-hl"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics, work recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
+                <div class="tl-hl"><b>15%</b><span>Contributed to a 15% improvement in test efficiency by developing standardized testing procedures and reporting quality metrics; recognized with the <strong>Impactful Engineering Award</strong>.</span></div>
                 <ul class="tl-bul">
                   <li>Worked in a precision diesel component service and manufacturing environment, managing quality control, production and assembly operations in compliance with ISO 9001.</li>
                   <li>Applied FMEA and root cause analysis to trace quality problems, then put corrective and preventive actions (CAPA) in place to reduce defects.</li>
@@ -443,7 +448,7 @@
         <article class="tl-sec" id="now">
           <header class="tl-sec-head">
             <p class="tl-kick">04 // Now</p>
-            <h2 id="now-title">Currently <em>building.</em></h2>
+            <h2 id="now-title">Currently <em>designing.</em></h2>
             <p class="tl-lead">An elbow joint actuator for a surgical assist robot arm, my ME 5374 Robot Design final project this fall, alongside the M.S. at Northeastern (expected May 2028). I'm looking for a co-op in mechanical design, manufacturing or quality engineering.</p>
           </header>
 
@@ -469,10 +474,10 @@
                 <ul class="tl-stack">
                   <li><b>Motor</b><span>Kollmorgen TBM2G-06008 frameless, B winding: 0.45 Nm continuous, 1.22 Nm peak</span></li>
                   <li><b>Gear</b><span>Harmonic Drive CSF-17-100-2A strain-wave set, 100:1 with near-zero backlash</span></li>
-                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is sized at ≥ 1 Nm (safety factor 2)</span></li>
+                  <li><b>Brake</b><span>Miki Pulley BXR-LE spring-applied brake on the motor side: through the 100:1 gear it needs only 0.5 Nm, so it is rated ≥ 1 Nm (safety factor 2)</span></li>
                   <li><b>Encoders</b><span>Motor-side magnetic encoder plus an RLS AksIM-2 absolute ring encoder on the output</span></li>
                   <li><b>Control</b><span>mjbots moteus n1 at 48 V in dual-encoder mode, with gravity feedforward</span></li>
-                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, with every custom part buildable on a mill or lathe</span></li>
+                  <li><b>Housing</b><span>Machined 6061-T6 aluminum, designed so every custom part can be made on a mill or lathe</span></li>
                 </ul>
               </div>
               <div>

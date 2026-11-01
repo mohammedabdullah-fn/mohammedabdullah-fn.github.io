@@ -459,6 +459,14 @@ kbd { display: inline-block; min-width: 18px; margin: 0 1px; padding: 2px 4px; f
   .tl-brand-sub { display: none; }
   .tl-tool { padding: 7px 6px; }
 }
+/* Narrow phones: the name gets its own row so it never runs under the tool buttons */
+@media (max-width: 440px) {
+  :root { --top: 86px; }
+  .tl-top { flex-wrap: wrap; align-content: center; row-gap: 8px; }
+  .tl-brand { flex: 1 1 100%; }
+  .tl-brand-sub { display: block; }
+  .tl-tools { flex: 1 1 100%; justify-content: space-between; }
+}
 
 @media (hover: none) and (pointer: coarse) {
   .tl-hint-desk { display: none; }
