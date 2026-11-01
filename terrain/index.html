@@ -33,6 +33,8 @@
       }
     }
   </script>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" crossorigin>
+  <link rel="modulepreload" href="js/main.js">
 </head>
 <body>
   <a class="tl-skip" href="#tl-index">Skip to the section index</a>
@@ -546,7 +548,14 @@
   </div>
 
   <script type="module" src="js/panel.js"></script>
-  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    // build the 3D lab one frame after the first paint, so slow phones show the page first;
+    // the timer covers tabs that are not painting (background tabs, some in-app browsers)
+    let started = false;
+    const start = () => { if (!started) { started = true; import('./js/main.js'); } };
+    requestAnimationFrame(() => setTimeout(start, 0));
+    setTimeout(start, 1000);
+  </script>
   <script>
     // Detail toggle: the default view keeps only the essential instruments on screen
     (() => {

@@ -57,16 +57,27 @@ function applyTheme(t) {
   if (metaTheme) metaTheme.setAttribute('content', t === 'whiteprint' ? '#f4f2ec' : '#0d2b52');
   try { localStorage.setItem('bp-theme', t); } catch (e) { /* storage unavailable */ }
 }
+let themeNow = root.dataset.theme === 'whiteprint' ? 'whiteprint' : 'blueprint';   // updated at click time, not when the wipe lands
+let wiping = false;
 function setTheme(t, animate) {
   if (t !== 'whiteprint' && t !== 'blueprint') return;
-  const canAnimate = animate && motion.ok && document.startViewTransition && document.visibilityState === 'visible';
+  themeNow = t;
+  // one wipe at a time: starting a second one would skip the first (Chrome logs that as an error)
+  const canAnimate = animate && !wiping && motion.ok && document.startViewTransition && document.visibilityState === 'visible';
   if (canAnimate) {
-    try { document.startViewTransition(() => applyTheme(t)); return; } catch (e) { /* fall through */ }
+    try {
+      wiping = true;
+      // the callback reads themeNow, so a click during the wipe still lands on the right theme
+      const vt = document.startViewTransition(() => applyTheme(themeNow));
+      vt.ready.catch(() => {});
+      vt.finished.catch(() => {}).then(() => { wiping = false; });
+      return;
+    } catch (e) { wiping = false; }
   }
   applyTheme(t);
 }
-applyTheme(root.dataset.theme === 'whiteprint' ? 'whiteprint' : 'blueprint');
-themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'whiteprint' ? 'blueprint' : 'whiteprint', true));
+applyTheme(themeNow);
+themeBtn.addEventListener('click', () => setTheme(themeNow === 'whiteprint' ? 'blueprint' : 'whiteprint', true));
 
 // -------------------------------------------------------------- components
 const drawer = new Drawer();

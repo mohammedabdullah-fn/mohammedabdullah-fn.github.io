@@ -49,6 +49,8 @@
     }
   }
   </script>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" crossorigin>
+  <link rel="modulepreload" href="assets/js/main.js">
 </head>
 <body class="is-booting">
 
@@ -583,6 +585,13 @@
   </div>
 
   <script type="module" src="assets/js/ui.js"></script>
-  <script type="module" src="assets/js/main.js"></script>
+  <script type="module">
+    // build the 3D scene one frame after the first paint, so slow phones show the page first;
+    // the timer covers tabs that are not painting (background tabs, some in-app browsers)
+    let started = false;
+    const start = () => { if (!started) { started = true; import('./assets/js/main.js'); } };
+    requestAnimationFrame(() => setTimeout(start, 0));
+    setTimeout(start, 1000);
+  </script>
 </body>
 </html>
