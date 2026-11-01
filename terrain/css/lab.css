@@ -455,6 +455,13 @@ kbd { display: inline-block; min-width: 18px; margin: 0 1px; padding: 2px 4px; f
   .tl-rows li { flex-direction: column; gap: 2px; }
   .tl-pdf { height: 60vh; }
 }
+/* Portrait phones: footer links get a 24 px touch height (WCAG 2.5.8) */
+@media (max-width: 760px) {
+  :root { --foot: 84px; }
+  .tl-foot { gap: 0; }
+  .tl-foot a { display: inline-flex; align-items: center; gap: .35em; min-height: 24px; }
+  .tl-foot-links, .tl-versions { row-gap: 0; }
+}
 @media (max-width: 380px) {
   .tl-brand-sub { display: none; }
   .tl-tool { padding: 7px 6px; }
